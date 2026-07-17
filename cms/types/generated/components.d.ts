@@ -124,15 +124,18 @@ export interface SectionsHeroBanner extends Struct.ComponentSchema {
     altText: Schema.Attribute.Text;
     buttonLink: Schema.Attribute.String;
     buttonText: Schema.Attribute.String;
+    contentAlignment: Schema.Attribute.Enumeration<['Left', 'Center', 'Right']>;
     desktopImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
-    >;
+    > &
+      Schema.Attribute.Required;
     mobileImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
     subTitle: Schema.Attribute.Text;
+    tabImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     title: Schema.Attribute.String;
   };
 }

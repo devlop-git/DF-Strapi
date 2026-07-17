@@ -20,6 +20,7 @@
     "desktopImage": {
       "type": "media",
       "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -39,6 +40,24 @@
     },
     "altText": {
       "type": "text"
+    },
+    "tabImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "contentAlignment": {
+      "type": "enumeration",
+      "enum": [
+        "Left",
+        "Center",
+        "Right"
+      ]
     }
   },
   "config": {}
