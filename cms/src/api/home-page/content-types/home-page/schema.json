@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "HomePage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "default": "Homepage EN"
+    },
+    "Sections": {
+      "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "components": [
+        "sections.promotion-banner",
+        "sections.new-home-page",
+        "sections.hero-banner",
+        "sections.featured-categories",
+        "sections.slides",
+        "sections.reviews",
+        "sections.posts",
+        "sections.newsletter",
+        "sections.instagram-feed",
+        "sections.image-text-section",
+        "sections.feature-item",
+        "sections.feature-highlights",
+        "sections.custom-banner"
+      ]
+    },
+    "market": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::market.market",
+      "mappedBy": "home_page"
+    }
+  }
+}

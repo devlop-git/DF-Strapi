@@ -1,0 +1,93 @@
+import { FaGift as Gift} from "react-icons/fa6";
+import { HiOutlineSparkles as Sparkles } from "react-icons/hi2";
+import { FaLock as Lock } from "react-icons/fa";
+
+export default function NewsletterSignup({ data }) {
+  const benefits = data.description
+    .split("\n")
+    .filter((item) => item.trim() !== "");
+
+  const icons = [Lock, Gift, Sparkles];
+
+  return (
+    <section className="bg-white py-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          {/* Left Content */}
+          <div className="max-w-xl">
+            <h2 className="font-serif text-[42px] lg:text-[58px] leading-[1.08] font-light text-[#111]">
+              {data.heading}
+            </h2>
+
+            <div className="mt-10 space-y-6">
+              {benefits.map((item, index) => {
+                const Icon = icons[index] || Sparkles;
+
+                return (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4"
+                  >
+                    <Icon
+                      size={18}
+                      className="text-[#A5744A] mt-1"
+                    />
+
+                    <p className="text-[17px] text-[#333] leading-7">
+                      {item}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Form */}
+          <div className="max-w-lg">
+            <form className="space-y-10">
+              <div>
+                <label className="block text-sm text-gray-700 mb-2">
+                  Name
+                </label>
+
+                <input
+                  type="text"
+                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black pb-3"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm text-gray-700 mb-2">
+                  Geburtstag
+                </label>
+
+                <input
+                  type="date"
+                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black pb-3"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm text-gray-700 mb-2">
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black pb-3"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="bg-[#A5744A] text-white px-8 py-4 font-medium hover:bg-[#8D6642] transition-colors"
+              >
+                Abonnieren
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

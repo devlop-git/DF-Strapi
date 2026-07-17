@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_newsletters",
+  "info": {
+    "displayName": "NewsletterSection"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

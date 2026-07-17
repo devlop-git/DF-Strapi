@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_feature_highlights",
+  "info": {
+    "displayName": "Feature Highlights"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "component": "sections.feature-item",
+      "repeatable": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

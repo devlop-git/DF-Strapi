@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_plp_banner_configurations",
+  "info": {
+    "displayName": "Banner configuration",
+    "icon": "magic"
+  },
+  "options": {},
+  "attributes": {
+    "showBanner": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string"
+    },
+    "bannerImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_plp_toolbar_configurations",
+  "info": {
+    "displayName": "Toolbar Configuration",
+    "icon": "connector"
+  },
+  "options": {},
+  "attributes": {
+    "showSort": {
+      "type": "boolean"
+    },
+    "showProductCount": {
+      "type": "boolean"
+    },
+    "showFilterButton": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

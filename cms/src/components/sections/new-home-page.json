@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_new_home_pages",
+  "info": {
+    "displayName": "Hero Carousel"
+  },
+  "options": {},
+  "attributes": {
+    "heroSlides": {
+      "type": "component",
+      "component": "sections.hero-banner",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

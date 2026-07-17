@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_plp_filter_configurations",
+  "info": {
+    "displayName": "Filter configuration",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "position": {
+      "type": "enumeration",
+      "default": "left",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ]
+    },
+    "sticky": {
+      "type": "boolean",
+      "default": true
+    },
+    "width": {
+      "type": "integer",
+      "default": 280
+    },
+    "order": {
+      "type": "json"
+    }
+  },
+  "config": {}
+}

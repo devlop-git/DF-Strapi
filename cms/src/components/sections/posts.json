@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_posts",
+  "info": {
+    "displayName": "Posts"
+  },
+  "options": {},
+  "attributes": {
+    "instaImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "instaURL": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_plp_product_grid_cofigurations",
+  "info": {
+    "displayName": "Product Grid Cofiguration",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "columns": {
+      "type": "integer",
+      "default": 4
+    },
+    "gap": {
+      "type": "integer",
+      "default": 24
+    }
+  },
+  "config": {}
+}

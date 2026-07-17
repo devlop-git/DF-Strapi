@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_sections_featured_categories",
+  "info": {
+    "displayName": "Product Highlight"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "ctaText": {
+      "type": "string"
+    },
+    "ctaURL": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

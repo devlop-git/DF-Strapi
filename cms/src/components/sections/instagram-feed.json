@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_instagram_feeds",
+  "info": {
+    "displayName": "Instagram Feed"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "posts": {
+      "type": "component",
+      "component": "sections.posts",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,59 @@
+{
+  "kind": "singleType",
+  "collectionName": "plp_experiences",
+  "info": {
+    "singularName": "plp-experience",
+    "pluralName": "plp-experiences",
+    "displayName": "plpExperience"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "filterConfig": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "plp.filter-configuration",
+      "repeatable": true
+    },
+    "gridConfig": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "plp.product-grid-cofiguration",
+      "repeatable": true
+    },
+    "toolbarConfig": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "plp.toolbar-configuration",
+      "repeatable": true
+    },
+    "bannerConfig": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "plp.banner-configuration",
+      "repeatable": true
+    }
+  }
+}
