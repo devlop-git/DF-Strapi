@@ -5,7 +5,7 @@
   },
   "options": {},
   "attributes": {
-    "icon": {
+    "desktopIcon": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [
@@ -17,6 +17,35 @@
     },
     "iconDescription": {
       "type": "text"
+    },
+    "mobileIcon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tabIcon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "iconPosition": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ]
     }
   },
   "config": {}

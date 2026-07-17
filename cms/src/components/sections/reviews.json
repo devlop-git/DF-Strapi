@@ -27,6 +27,18 @@
         "videos",
         "audios"
       ]
+    },
+    "gap": {
+      "type": "integer"
+    },
+    "desktopColumns": {
+      "type": "integer"
+    },
+    "tabColumns": {
+      "type": "integer"
+    },
+    "mobileColumn": {
+      "type": "integer"
     }
   },
   "config": {}

@@ -11,9 +11,9 @@
     "description": {
       "type": "text"
     },
-    "backgroundImage": {
+    "desktopBgImage": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "allowedTypes": [
         "images",
         "files",
@@ -26,6 +26,26 @@
     },
     "btnLink": {
       "type": "string"
+    },
+    "mobileBgImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tabBgImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   },
   "config": {}

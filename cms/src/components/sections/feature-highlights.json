@@ -15,6 +15,9 @@
     },
     "description": {
       "type": "text"
+    },
+    "gap": {
+      "type": "integer"
     }
   },
   "config": {}

@@ -5,7 +5,7 @@
   },
   "options": {},
   "attributes": {
-    "instaImage": {
+    "destopInstaImage": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [
@@ -17,6 +17,26 @@
     },
     "instaURL": {
       "type": "string"
+    },
+    "mobileInstaImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tabInstaImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   },
   "config": {}

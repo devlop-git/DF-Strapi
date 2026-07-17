@@ -11,7 +11,7 @@
     "description": {
       "type": "richtext"
     },
-    "image": {
+    "desktopImage": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [
@@ -26,6 +26,26 @@
     },
     "ctaURL": {
       "type": "string"
+    },
+    "tabImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "mobileImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   },
   "config": {}

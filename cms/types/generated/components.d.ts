@@ -79,6 +79,7 @@ export interface SectionsFeatureHighlights extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
+    gap: Schema.Attribute.Integer;
     items: Schema.Attribute.Component<'sections.feature-item', true>;
     title: Schema.Attribute.String;
   };
@@ -90,11 +91,18 @@ export interface SectionsFeatureItem extends Struct.ComponentSchema {
     displayName: 'Feature Item';
   };
   attributes: {
-    icon: Schema.Attribute.Media<
+    desktopIcon: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
     iconDescription: Schema.Attribute.Text;
+    iconPosition: Schema.Attribute.Enumeration<
+      ['left', 'right', 'top', 'bottom']
+    >;
+    mobileIcon: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    tabIcon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
   };
 }
 
@@ -107,7 +115,15 @@ export interface SectionsFeaturedCategories extends Struct.ComponentSchema {
     ctaText: Schema.Attribute.String;
     ctaURL: Schema.Attribute.String;
     description: Schema.Attribute.RichText;
-    image: Schema.Attribute.Media<
+    desktopImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    mobileImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    tabImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
@@ -148,12 +164,16 @@ export interface SectionsImageTextSection extends Struct.ComponentSchema {
   attributes: {
     buttonText: Schema.Attribute.String;
     buttonURL: Schema.Attribute.String;
+    contentAlignment: Schema.Attribute.Enumeration<['left', 'right']>;
     description: Schema.Attribute.Blocks;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
+    desktopImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
     >;
     imagePosition: Schema.Attribute.Enumeration<['left', 'right']>;
+    mobileImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    tabImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     title: Schema.Attribute.String;
   };
 }
@@ -196,11 +216,19 @@ export interface SectionsPosts extends Struct.ComponentSchema {
     displayName: 'Posts';
   };
   attributes: {
-    instaImage: Schema.Attribute.Media<
+    destopInstaImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
     instaURL: Schema.Attribute.String;
+    mobileInstaImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    tabInstaImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
   };
 }
 
@@ -210,13 +238,18 @@ export interface SectionsPromotionBanner extends Struct.ComponentSchema {
     displayName: 'Promotion Banner';
   };
   attributes: {
-    backgroundImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
     btnLink: Schema.Attribute.String;
     btnText: Schema.Attribute.String;
     description: Schema.Attribute.Text;
+    desktopBgImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    mobileBgImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    tabBgImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     title: Schema.Attribute.String;
   };
 }
@@ -227,11 +260,15 @@ export interface SectionsReviews extends Struct.ComponentSchema {
     displayName: 'Reviews';
   };
   attributes: {
+    desktopColumns: Schema.Attribute.Integer;
+    gap: Schema.Attribute.Integer;
     googleImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
     heading: Schema.Attribute.String;
+    mobileColumn: Schema.Attribute.Integer;
+    tabColumns: Schema.Attribute.Integer;
     trustpilotImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
