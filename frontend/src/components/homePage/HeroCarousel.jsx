@@ -28,21 +28,17 @@ export default function HeroCarousel({ data }) {
         }}
         className="w-full"
       >
-        {data.heroSlides.map((slide) => {
-          const image = slide.desktopImage?.[0];
+        {data?.heroSlides?.map((slide) => {
+          const image = slide?.desktopImage?.[0];
 
           return (
             <SwiperSlide key={slide.id}>
               <div className="relative h-[75vh] min-h-[700px] w-full">
-
                 {/* Background */}
                 {image && (
                   <Image
                     src={getStrapiMedia(image)}
-                    alt={
-                      image.alternativeText ||
-                      slide.title
-                    }
+                    alt={image.alternativeText || slide.title}
                     fill
                     priority
                     className="object-cover"
@@ -55,9 +51,7 @@ export default function HeroCarousel({ data }) {
                 {/* Content */}
                 <div className="absolute inset-0">
                   <div className="max-w-7xl mx-auto h-full px-8 lg:px-10 flex items-center">
-
                     <div className="max-w-lg ml-8 lg:ml-20">
-
                       <h2 className="font-serif text-[#111] text-5xl lg:text-7xl font-light leading-tight">
                         {slide.title}
                       </h2>
@@ -87,9 +81,7 @@ export default function HeroCarousel({ data }) {
                           {slide.buttonText}
                         </Link>
                       )}
-
                     </div>
-
                   </div>
                 </div>
               </div>

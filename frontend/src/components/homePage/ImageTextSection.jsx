@@ -3,9 +3,8 @@ import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
 
 export default function ImageTextSection({ data }) {
-  const description =
-    data.description?.[0]?.children?.[0]?.text || "";
-    const image = data.image[0];
+  const description = data.description?.[0]?.children?.[0]?.text || "";
+  const image = data?.image?.[0];
 
   return (
     <section className="w-full bg-[#FAF7F2] border-y border-gray-100 py-12 my-6">
@@ -17,9 +16,7 @@ export default function ImageTextSection({ data }) {
         {/* Content */}
         <div
           className={`max-w-lg ${
-            data.imagePosition === "right"
-              ? "lg:order-1"
-              : "lg:order-2"
+            data.imagePosition === "right" ? "lg:order-1" : "lg:order-2"
           }`}
         >
           <h2 className="font-serif text-[#171717] text-5xl lg:text-7xl leading-[1.05] font-light">
@@ -42,19 +39,19 @@ export default function ImageTextSection({ data }) {
         {/* Image */}
         <div
           className={`flex justify-center ${
-            data.imagePosition === "right"
-              ? "lg:order-2"
-              : "lg:order-1"
+            data.imagePosition === "right" ? "lg:order-2" : "lg:order-1"
           }`}
         >
-         {image && <div className="relative w-[520px] h-[420px] bg-[#F6F3EF] overflow-hidden">
-            <Image
-              src={getStrapiMedia(image)} // <-- Add your image URL here later
-              alt={data.title}
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
-            />
-          </div>}
+          {image && (
+            <div className="relative w-[520px] h-[420px] bg-[#F6F3EF] overflow-hidden">
+              <Image
+                src={getStrapiMedia(image)} // <-- Add your image URL here later
+                alt={data.title}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>
