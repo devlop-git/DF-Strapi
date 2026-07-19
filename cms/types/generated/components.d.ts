@@ -15,6 +15,18 @@ export interface PlpBannerConfiguration extends Struct.ComponentSchema {
   };
 }
 
+export interface PlpBannerInfo extends Struct.ComponentSchema {
+  collectionName: 'components_plp_banner_infos';
+  info: {
+    displayName: 'Banner Info';
+    icon: 'information';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface PlpFilterConfiguration extends Struct.ComponentSchema {
   collectionName: 'components_plp_filter_configurations';
   info: {
@@ -37,8 +49,12 @@ export interface PlpProductGridCofiguration extends Struct.ComponentSchema {
     icon: 'grid';
   };
   attributes: {
-    columns: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<4>;
-    gap: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<24>;
+    desktopColumns: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<4>;
+    desktopGap: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<24>;
+    mobileColumns: Schema.Attribute.Integer;
+    mobileGap: Schema.Attribute.Integer;
+    tabColumns: Schema.Attribute.Integer;
+    tabGap: Schema.Attribute.Integer;
   };
 }
 
@@ -216,7 +232,7 @@ export interface SectionsPosts extends Struct.ComponentSchema {
     displayName: 'Posts';
   };
   attributes: {
-    destopInstaImage: Schema.Attribute.Media<
+    desktopInstaImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
@@ -290,6 +306,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'plp.banner-configuration': PlpBannerConfiguration;
+      'plp.banner-info': PlpBannerInfo;
       'plp.filter-configuration': PlpFilterConfiguration;
       'plp.product-grid-cofiguration': PlpProductGridCofiguration;
       'plp.toolbar-configuration': PlpToolbarConfiguration;

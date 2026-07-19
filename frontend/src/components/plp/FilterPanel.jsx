@@ -8,7 +8,7 @@ export default function FilterPanel({ filters }) {
         Filters
       </h2>
       {
-        filters.map((filter)=>(
+        filters?.map((filter)=>(
           <FilterGroup
             key={filter.code}
             filter={filter}

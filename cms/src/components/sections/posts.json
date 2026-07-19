@@ -5,7 +5,7 @@
   },
   "options": {},
   "attributes": {
-    "destopInstaImage": {
+    "desktopInstaImage": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [

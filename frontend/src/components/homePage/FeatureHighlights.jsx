@@ -20,7 +20,7 @@ export default function FeatureHighlights({ data }) {
         {/* Features */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12">
 
-          {data.items.map((item) => {
+          {data.items?.map((item) => {
             const icon = item.icon?.[0];
 
             return (

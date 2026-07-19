@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LANGUAGES } from "@/constants/languages";
+import { MARKET } from "@/constants/market"; 
 import {
   FaPhoneAlt,
   FaMapMarkerAlt,
@@ -9,19 +11,19 @@ import {
   FaHeart,
   FaShoppingBag,
 } from "react-icons/fa";
-
-import { IoChevronDown } from "react-icons/io5";
-
 import { getHeader } from "@/services/header";
 import { getStrapiMedia } from "@/utils/strapi";
 import Navigation from "./Navigation";
+import LanguageDropdown from "../homePage/LanguageDropdown";
+import { getCurrentLocale } from "@/lib/locale";
 
-const Header = async ({ params }) => {
-  const { locale } = await params;
 
+const Header = async () => {
+  const locale = await getCurrentLocale();
   const headerData = await getHeader(locale);
-  
 
+  const languages = LANGUAGES[MARKET];
+ 
   const logo = headerData?.Logo[0];
 
   return (
@@ -68,14 +70,7 @@ const Header = async ({ params }) => {
 
           <div className="flex items-center gap-7">
 
-            <button className="flex items-center gap-2 text-sm font-medium uppercase">
-
-              <span className="text-xl">🇩🇪</span>
-
-              Deutsch
-
-            </button>
-
+            <LanguageDropdown languages={languages} />
             <button className="hover:text-[#A5744A]">
               <FaSearch size={24} />
             </button>

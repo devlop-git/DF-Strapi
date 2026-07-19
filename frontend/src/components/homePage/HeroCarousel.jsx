@@ -28,7 +28,7 @@ export default function HeroCarousel({ data }) {
         }}
         className="w-full"
       >
-        {data.heroSlides.map((slide) => {
+        {data.heroSlides?.map((slide) => {
           const image = slide.desktopImage?.[0];
 
           return (

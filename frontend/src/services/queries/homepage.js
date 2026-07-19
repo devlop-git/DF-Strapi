@@ -8,7 +8,11 @@ const homePopulate = qs.stringify(
                     "sections.new-home-page": {
                         populate: {
                             heroSlides: {
-                                populate: "*",
+                                populate: {
+                                    desktopImage: true,
+                                    mobileImage: true,
+                                    tabImage: true
+                                }
                             },
                         },
                     },
@@ -19,7 +23,9 @@ const homePopulate = qs.stringify(
 
                     "sections.image-text-section": {
                         populate: {
-                            image: true,
+                            desktopImage: true,
+                            tabImage: true,
+                            mobileImage: true
                         },
                     },
 
@@ -27,7 +33,9 @@ const homePopulate = qs.stringify(
                         populate: {
                             items: {
                                 populate: {
-                                    icon: true,
+                                    desktopIcon: true,
+                                    mobileIcon: true,
+                                    tabIcon: true
                                 },
                             },
                         },
@@ -35,7 +43,9 @@ const homePopulate = qs.stringify(
 
                     "sections.promotion-banner": {
                         populate: {
-                            backgroundImage: true,
+                            desktopBgImage: true,
+                            mobileBgImage: true,
+                            tabBgImage: true
                         },
                     },
 
@@ -47,7 +57,9 @@ const homePopulate = qs.stringify(
                         populate: {
                             posts: {
                                 populate: {
-                                    instaImage: true,
+                                    desktopInstaImage: true,
+                                    mobileInstaImage: true,
+                                    tabInstaImage: true
                                 },
                             },
                         },

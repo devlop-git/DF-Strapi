@@ -6,13 +6,25 @@
   },
   "options": {},
   "attributes": {
-    "columns": {
+    "desktopColumns": {
       "type": "integer",
       "default": 4
     },
-    "gap": {
+    "mobileColumns": {
+      "type": "integer"
+    },
+    "tabColumns": {
+      "type": "integer"
+    },
+    "desktopGap": {
       "type": "integer",
       "default": 24
+    },
+    "mobileGap": {
+      "type": "integer"
+    },
+    "tabGap": {
+      "type": "integer"
     }
   },
   "config": {}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
 
 export default function FeaturedCategories({ data }) {
-  const image = data.image[0];
+  const image = data.desktopImage?.[0];
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">

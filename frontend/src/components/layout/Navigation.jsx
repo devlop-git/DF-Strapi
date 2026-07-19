@@ -94,7 +94,7 @@ export default async function Navigation({ locale }) {
   const categories = categoryRes.data;
 
   const navigation = await Promise.all(
-    categories.map(async (category) => {
+    categories?.map(async (category) => {
       const res = await getSubCategories(category.category_id);
 
       return {
@@ -107,7 +107,7 @@ export default async function Navigation({ locale }) {
   return (
     <nav className="hidden lg:flex items-center justify-center h-16">
       <ul className="flex items-center">
-        {navigation.map((category) => (
+        {navigation?.map((category) => (
           <li
             key={category.category_id}
             className="group relative"

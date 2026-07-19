@@ -3,9 +3,11 @@ import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
 
 export default function ImageTextSection({ data }) {
-  const description =
-    data.description?.[0]?.children?.[0]?.text || "";
-    const image = data.image[0];
+  if (!data?.length) {
+    return null;
+  }
+  const description = data.description?.[0]?.children?.[0]?.text || "";
+  const image = data.desktopImage[0];
 
   return (
     <section className="w-full bg-[#FAF7F2] border-y border-gray-100 py-12 my-6">

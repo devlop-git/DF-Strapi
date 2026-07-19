@@ -3,7 +3,7 @@ export function reorderFilters(filters = [], order = []) {
   if (!order.length) return filters;
 
   const filterMap = new Map(
-    filters.map(filter => [filter.code, filter])
+    filters?.map(filter => [filter.code, filter])
   );
 
   const orderedFilters = [];
