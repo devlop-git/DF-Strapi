@@ -2,7 +2,6 @@ import Image from "next/image"
 import { getStrapiMedia } from "@/utils/strapi"
 
 export default function FeatureHighlights({ data }) {
-  console.log("feture h data is", data)
   return (
     <section className="w-full bg-[#FCFBF8] py-20 border-y border-[#EFE8DF]">
       <div className="max-w-6xl mx-auto px-6">
