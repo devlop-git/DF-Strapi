@@ -9,7 +9,7 @@ export default async function Page({ params }) {
   const homepage = await getHomepage(locale)
 
   return (
-    <main className="p-2 md:p-0">
+    <main className="p-2 md:p-0 w-fit md:w-full mx-auto">
       <Header params={params} />
       <div className="mb-2">
         <HomePage sections={homepage?.Sections || []} />
