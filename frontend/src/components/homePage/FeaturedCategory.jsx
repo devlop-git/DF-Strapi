@@ -1,57 +1,61 @@
-import Image from "next/image";
-import Link from "next/link";
-import { getStrapiMedia } from "@/utils/strapi";
+import Link from "next/link"
+import { getStrapiMedia } from "@/utils/strapi"
 
 export default function FeaturedCategories({ data }) {
-  const image = data?.image?.[0];
+  const desktopImage = data?.desktopImage?.[0]
+  const tabletImage = data?.tabImage?.[0]
+  const mobileImage = data?.mobileImage?.[0]
+
+  const imageUrl = getStrapiMedia(mobileImage || tabletImage || desktopImage)
+
   return (
-    <section className="bg-white py-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div className="max-w-lg">
-            <h2 className="font-serif text-[52px] leading-[1.1] font-light text-[#111827]">
+    <section className="bg-[#F8F5F2] py-20">
+      <div className="mx-auto max-w-[1600px] px-6 lg:px-20">
+        <div className="grid items-center gap-16 md:grid-cols-2">
+          {/* Left */}
+          <div className="max-w-xl ">
+            <h2 className="font-serif text-5xl lg:text-7xl font-light leading-[1.05] text-[#111]">
               {data.title}
             </h2>
 
-            <p className="mt-8 text-lg leading-8 text-gray-700 max-w-md">
+            <p className="mt-10 text-xl leading-9 text-[#444]">
               {data.description}
             </p>
+
+            <Link
+              href={data.ctaURL}
+              className="mt-14 inline-flex w-full justify-center border border-black px-10 py-5 text-center text-lg transition hover:bg-black hover:text-white md:w-auto"
+            >
+              {data.ctaText}
+            </Link>
           </div>
 
-          {/* Product Card */}
-          {data.ctaURL && (
-            <div className="flex justify-center lg:justify-start">
-              <Link href={data.ctaURL} className="group">
-                <div className="w-[290px] bg-white rounded shadow-sm hover:shadow-xl transition-all duration-300">
-                  {/* Product Image */}
-                  <div className="bg-[#faf9f8] flex items-center justify-center h-[340px]">
-                    <Image
-                      src={getStrapiMedia(image)} // <-- Add image URL here later
-                      alt={data.ctaText}
-                      width={260}
-                      height={260}
-                      className="object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
+          {/* Right */}
+          <div className="flex justify-center order-first md:order-last">
+            <picture>
+              {desktopImage && (
+                <source
+                  media="(min-width:1024px)"
+                  srcSet={getStrapiMedia(desktopImage)}
+                />
+              )}
 
-                  {/* Product Details */}
-                  <div className="px-6 py-7 text-center">
-                    <h3 className="text-2xl font-normal text-[#111827] leading-8">
-                      {data.ctaText}
-                    </h3>
+              {tabletImage && (
+                <source
+                  media="(min-width:768px)"
+                  srcSet={getStrapiMedia(tabletImage)}
+                />
+              )}
 
-                    {/* Replace this with actual product price later */}
-                    <p className="mt-4 text-3xl font-medium text-black">
-                      From €559
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          )}
+              <img
+                src={getStrapiMedia(mobileImage || tabletImage || desktopImage)}
+                alt={data.title}
+                className="w-full max-w-[650px] object-cover"
+              />
+            </picture>
+          </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
