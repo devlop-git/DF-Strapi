@@ -10,9 +10,8 @@ export async function getHomepage(locale) {
   //   `/homepage?locale=${locale}&populate=*`
   // );
   // const url = `/home-pages?locale=${locale}&${homePopulate}`;
-  // const url = `/home-pages?filters[market][slug][$eq]=uk&locale=${locale}&${homePopulate}`;
-  const url =
-    "http://localhost:1337/api/home-pages?filters[market][slug][$eq]=germany&locale=de&populate=*";
+  //http://localhost:1337/api/home-pages?[filter][slug][$eq]=germany&locale=de&&populate[Sections][on][sections.new-home-page][populate][heroSlides][populate]=*
+  const url = `/home-pages?filters[market][slug][$eq]=germany&locale=${locale}&&populate[Sections][on][sections.new-home-page][populate][heroSlides][populate]=*`;
   const res = await api.get(url);
   console.log(res.data);
   if (res.status !== 200) {
