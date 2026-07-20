@@ -12,7 +12,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
   return (
     <>
       {/* Hamburger Button */}
-      <div className="lg:hidden flex items-center justify-between">
+      <div className="lg:hidden flex min-h-16 items-center justify-between">
         <button
           onClick={() => setOpen(true)}
           aria-label="Open Menu"
@@ -20,7 +20,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
         >
           <HiBars3 className="text-4xl text-[#111]" />
         </button>
-        <h2 className="font-serif text-1xl text-[#111]">DIAMONDS FACTORY</h2>
+        <h2 className="font-serif text-sm text-[#111]">DIAMONDS FACTORY</h2>
         <HeaderTabs />
       </div>
 
@@ -44,7 +44,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
               <HiXMark className="text-4xl text-[#111]" />
             </button>
 
-            <h2 className="font-serif text-2xl tracking-wide text-[#111]">
+            <h2 className="font-serif text-sm tracking-wide text-[#111]">
               DIAMONDS FACTORY
             </h2>
             <HeaderTabs />
