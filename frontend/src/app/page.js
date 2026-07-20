@@ -14,7 +14,7 @@ export default async function Page() {
   return (
     <main className="p-2">
         <Header />
-         <HomePage sections={homepage?.Sections || []} />;
+         <HomePage sections={homepage?.Sections || []} />
         {/* <Banner homepage={homepage} heroImage={heroImage} /> */}
       <Footer />
     </main>

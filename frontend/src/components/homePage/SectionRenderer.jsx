@@ -24,5 +24,5 @@ export default function SectionRenderer({ section }) {
         console.log("No component found");
         return null;
     }
-    return <Component data={section} />;
+    return <Component data={section} />
 }
