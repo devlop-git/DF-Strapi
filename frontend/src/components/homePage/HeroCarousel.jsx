@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+import Image from "next/image"
+import Link from "next/link"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Autoplay, Pagination, EffectFade } from "swiper/modules"
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
+import "swiper/css"
+import "swiper/css/pagination"
+import "swiper/css/effect-fade"
 
-import { getStrapiMedia } from "@/utils/strapi";
+import { getStrapiMedia } from "@/utils/strapi"
 
 export default function HeroCarousel({ data }) {
   return (
@@ -28,26 +28,49 @@ export default function HeroCarousel({ data }) {
         }}
         className="w-full"
       >
-        {data.heroSlides?.map((slide) => {
-          const image = slide.desktopImage?.[0];
+        {data?.heroSlides?.map((slide) => {
+          const imageForDesktop = slide?.desktopImage?.[0]
+          const imageForMobile = slide?.mobileImage?.[0]
+          const imageForTablet = slide?.tabImage
 
           return (
             <SwiperSlide key={slide.id}>
               <div className="relative h-[75vh] min-h-[700px] w-full">
-
                 {/* Background */}
-                {image && (
-                  <Image
-                    src={getStrapiMedia(image)}
-                    alt={
-                      image.alternativeText ||
-                      slide.title
-                    }
-                    fill
-                    priority
-                    className="object-cover"
-                  />
-                )}
+                <div className="absolute inset-0">
+                  {/* Mobile */}
+                  {imageForMobile && (
+                    <Image
+                      src={getStrapiMedia(imageForMobile)}
+                      alt={imageForMobile.alternativeText || slide.title}
+                      fill
+                      priority
+                      className="block md:hidden object-cover"
+                    />
+                  )}
+
+                  {/* Tablet */}
+                  {imageForTablet && (
+                    <Image
+                      src={getStrapiMedia(imageForTablet)}
+                      alt={imageForTablet.alternativeText || slide.title}
+                      fill
+                      priority
+                      className="hidden md:block lg:hidden object-cover"
+                    />
+                  )}
+
+                  {/* Desktop */}
+                  {imageForDesktop && (
+                    <Image
+                      src={getStrapiMedia(imageForDesktop)}
+                      alt={imageForDesktop.alternativeText || slide.title}
+                      fill
+                      priority
+                      className="hidden lg:block object-cover"
+                    />
+                  )}
+                </div>
 
                 {/* Optional Dark Overlay */}
                 <div className="absolute inset-0 bg-black/10" />
@@ -55,9 +78,7 @@ export default function HeroCarousel({ data }) {
                 {/* Content */}
                 <div className="absolute inset-0">
                   <div className="max-w-7xl mx-auto h-full px-8 lg:px-10 flex items-center">
-
                     <div className="max-w-lg ml-8 lg:ml-20">
-
                       <h2 className="font-serif text-[#111] text-5xl lg:text-7xl font-light leading-tight">
                         {slide.title}
                       </h2>
@@ -87,14 +108,12 @@ export default function HeroCarousel({ data }) {
                           {slide.buttonText}
                         </Link>
                       )}
-
                     </div>
-
                   </div>
                 </div>
               </div>
             </SwiperSlide>
-          );
+          )
         })}
       </Swiper>
 
@@ -116,5 +135,5 @@ export default function HeroCarousel({ data }) {
         }
       `}</style>
     </section>
-  );
+  )
 }
