@@ -55,7 +55,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
             {navigation.map((category) => (
               <Link
                 key={category.category_id}
-                href={`/${locale}/plp/${category.category_id}`}
+                href={`/plp/${category.category_id}`}
                 onClick={() => setOpen(false)}
                 className="flex items-center justify-between border-b border-gray-100 px-8 py-6 text-base uppercase tracking-wide text-[#111] transition hover:bg-[#F8F5F1]"
               >
