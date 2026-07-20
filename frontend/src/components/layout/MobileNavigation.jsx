@@ -30,7 +30,9 @@ export default function MobileNavigation({ navigation = [], locale }) {
           <HiBars3 className="text-4xl text-[#111]" />
         </button>
 
-        <h2 className="font-serif text-sm tracking-wide">DIAMONDS FACTORY</h2>
+        <h2 className="font-serif text-[12px] tracking-wide">
+          DIAMONDS FACTORY
+        </h2>
 
         <HeaderTabs />
       </div>
@@ -55,10 +57,10 @@ export default function MobileNavigation({ navigation = [], locale }) {
 
           <div className="flex h-20 items-center justify-between border-b border-[#ECE6DE] px-4">
             <button onClick={closeDrawer} aria-label="Close Menu">
-              <HiXMark className="text-4xl text-[#111]" />
+              <HiXMark className="text-3xl text-[#111]" />
             </button>
 
-            <h2 className="font-serif text-base tracking-wide">
+            <h2 className="font-serif text-[11px] tracking-wide">
               DIAMONDS FACTORY
             </h2>
 
@@ -81,7 +83,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
                       setSelectedCategory(category)
                     }
                   }}
-                  className="flex w-full items-center justify-between border-b border-[#ECE6DE] px-8 py-7 text-left text-[18px] uppercase tracking-wide transition hover:bg-[#F8F5F1]"
+                  className="flex w-full items-center justify-between border-b border-[#ECE6DE] px-8 py-7 text-left text-[11px] uppercase tracking-wide transition hover:bg-[#F8F5F1]"
                 >
                   <span>
                     {category.category_details.displayCategoryName.en}
@@ -107,7 +109,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
                 >
                   <HiChevronLeft className="text-3xl" />
 
-                  <span className="text-lg font-medium uppercase text-[#A5744A]">
+                  <span className="text-[12px] font-medium uppercase text-[#A5744A]">
                     {selectedCategory.category_details.displayCategoryName.en}
                   </span>
                 </button>
@@ -119,7 +121,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
                     key={child.category_id}
                     href={`/${locale}/plp/${child.category_id}`}
                     onClick={closeDrawer}
-                    className="flex items-center justify-between border-b border-[#ECE6DE] px-8 py-7 text-[17px] uppercase transition hover:bg-[#F8F5F1]"
+                    className="flex items-center justify-between border-b border-[#ECE6DE] px-8 py-7 text-[12px] uppercase transition hover:bg-[#F8F5F1]"
                   >
                     <span>{child.category_details.displayCategoryName.en}</span>
 

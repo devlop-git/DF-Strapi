@@ -25,7 +25,7 @@ export default function ReviewsSection({ data }) {
 
   return (
     <section className="bg-white py-12 md:py-16 lg:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto  px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         {data?.heading && (
           <h2 className="text-center font-serif text-3xl font-light leading-tight text-[#111] sm:text-4xl lg:text-[54px]">
