@@ -25,8 +25,6 @@ export default function PlpSectionRenderer({
     return null;
   }
 
-  console.log('rendrere-',section, commerce);
-
   return (
     <Component
       data={section}

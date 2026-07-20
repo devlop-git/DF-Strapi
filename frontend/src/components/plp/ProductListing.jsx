@@ -5,7 +5,7 @@ import { reorderFilters } from "@/utils/reorderFilters";
 
 export default function ProductListing({ data, commerce }) {
 
-  const position = data.filterConfig?.position || "left";
+  const position = data.filterConfig?.[0]?.position || "left";
 
   const filters = reorderFilters(
     commerce.filters,

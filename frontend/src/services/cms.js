@@ -20,9 +20,7 @@ export async function getHomepage(locale,market) {
 
 export async function getPLPExperience(locale){
   const url = `/plp-pages?locale=${locale}&${plpPopulate}`
-  console.log(url);
   const res = await api.get(url);
-  console.log('plp--',res.data.data);
   return res.data.data;
 }
 
