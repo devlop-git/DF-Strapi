@@ -1,18 +1,15 @@
 {
-  "collectionName": "components_plp_banner_configurations",
+  "collectionName": "components_plp_guides",
   "info": {
-    "displayName": "Banner configuration",
-    "icon": "magic"
+    "displayName": "Guides",
+    "icon": "file"
   },
   "options": {},
   "attributes": {
-    "showBanner": {
-      "type": "boolean"
-    },
     "title": {
       "type": "string"
     },
-    "desktopBannerImage": {
+    "desktopIcon": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -22,7 +19,7 @@
         "audios"
       ]
     },
-    "mobileBannerImage": {
+    "mobileIcon": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -32,7 +29,7 @@
         "audios"
       ]
     },
-    "tabBannerImage": {
+    "tabIcon": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -41,6 +38,13 @@
         "videos",
         "audios"
       ]
+    },
+    "CTALabel": {
+      "type": "string",
+      "default": "Read More"
+    },
+    "CTAUrl": {
+      "type": "string"
     }
   },
   "config": {}

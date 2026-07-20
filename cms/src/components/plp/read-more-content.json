@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_plp_read_more_contents",
+  "info": {
+    "displayName": "ReadMoreContent",
+    "icon": "quote"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "previewContent": {
+      "type": "text"
+    },
+    "expandedTitle": {
+      "type": "string"
+    },
+    "expandedContent": {
+      "type": "text"
+    },
+    "readMoreLabel": {
+      "type": "string"
+    },
+    "readLessLabel": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

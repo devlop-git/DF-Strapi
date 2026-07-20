@@ -18,7 +18,7 @@ export async function getHomepage(locale,market) {
 }
 
 export async function getPLPExperience(locale){
-  const url = `/plp-experience?locale=${locale}&populate=*`
+  const url = `/plp-pages?locale=${locale}&populate=*`
     const res = await api.get(url);
     return res.data.data;
 }

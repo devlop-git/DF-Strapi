@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_plp_guide_sections",
+  "info": {
+    "displayName": "guide Section",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "guideItem": {
+      "type": "component",
+      "component": "plp.guides",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

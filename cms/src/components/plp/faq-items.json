@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_plp_faq_items",
+  "info": {
+    "displayName": "FAQ Items"
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

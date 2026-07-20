@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_plp_faqs",
+  "info": {
+    "displayName": "FAQ",
+    "icon": "question"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "faqItem": {
+      "type": "component",
+      "component": "plp.faq-items",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
