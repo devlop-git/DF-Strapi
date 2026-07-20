@@ -1,9 +1,10 @@
 import React from 'react'
 import { getFooter } from '@/services/footer';
 import { FaInstagram, FaFacebookF } from 'react-icons/fa';
+import { getCurrentLocale } from '@/lib/locale';
 
-const Footer = async ({params}) => {
-    const { locale } = await params;
+const Footer = async () => {
+    const locale = await getCurrentLocale();
     const footerData = await getFooter(locale);
   
   

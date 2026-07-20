@@ -5,15 +5,9 @@ const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_STRAPI_URL + "/api",
 })
 
-export async function getHomepage(locale) {
-  // const res = await api.get(
-  //   `/homepage?locale=${locale}&populate=*`
-  // );
-  // const url = `/home-pages?locale=${locale}&${homePopulate}`;
-  //http://localhost:1337/api/home-pages?[filter][slug][$eq]=germany&locale=de&&populate[Sections][on][sections.new-home-page][populate][heroSlides][populate]=*
-  const url = `/home-pages?filters[market][slug][$eq]=germany&locale=de&populate[Sections][populate]=*`
+export async function getHomepage(locale, market) {
+  const url = `/home-pages?filters[market][slug][$eq]=${market}&locale=${locale}&${homePopulate}`
   const res = await api.get(url)
-  console.log(res.data)
   if (res.status !== 200) {
     throw new Error("Failed to fetch homepage")
   }
@@ -22,8 +16,12 @@ export async function getHomepage(locale) {
 }
 
 export async function getPLPExperience(locale) {
-  const res = await api.get(
-    "http://localhost:1337/api/plp-experience?locale=en&populate=*",
-  )
+  const url = `/plp-pages?locale=${locale}&populate=*`
+  const res = await api.get(url)
+  return res.data.data
+}
+
+export async function getMarket() {
+  const res = await api.get("/markets")
   return res.data.data
 }

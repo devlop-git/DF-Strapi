@@ -1,0 +1,1 @@
+export const MARKET = process.env.NEXT_PUBLIC_MARKET || "germany";

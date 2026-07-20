@@ -12,7 +12,27 @@
     "title": {
       "type": "string"
     },
-    "bannerImage": {
+    "desktopBannerImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "mobileBannerImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tabBannerImage": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [

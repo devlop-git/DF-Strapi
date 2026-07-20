@@ -40,7 +40,7 @@ export default function FilterGroup({ filter }) {
 
             {
 
-              filter.options.map((option)=>(
+              filter?.options?.map((option)=>(
 
                 <label
 

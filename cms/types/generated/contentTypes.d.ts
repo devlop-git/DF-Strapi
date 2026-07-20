@@ -771,6 +771,7 @@ export interface ApiMarketMarket extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    plp_page: Schema.Attribute.Relation<'manyToOne', 'api::plp-page.plp-page'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
@@ -852,6 +853,69 @@ export interface ApiPlpExperiencePlpExperience extends Struct.SingleTypeSchema {
       'plp.toolbar-configuration',
       true
     > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPlpPagePlpPage extends Struct.CollectionTypeSchema {
+  collectionName: 'plp_pages';
+  info: {
+    displayName: 'PLP Page';
+    pluralName: 'plp-pages';
+    singularName: 'plp-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::plp-page.plp-page'
+    >;
+    markets: Schema.Attribute.Relation<'oneToMany', 'api::market.market'>;
+    plp_section: Schema.Attribute.DynamicZone<
+      [
+        'plp.toolbar-configuration',
+        'plp.product-grid-cofiguration',
+        'plp.filter-configuration',
+        'plp.banner-info',
+        'plp.banner-configuration',
+        'plp.faq',
+        'sections.feature-highlights',
+        'sections.newsletter',
+        'plp.guide-section',
+        'plp.read-more-content',
+      ]
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1381,6 +1445,7 @@ declare module '@strapi/strapi' {
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::market.market': ApiMarketMarket;
       'api::plp-experience.plp-experience': ApiPlpExperiencePlpExperience;
+      'api::plp-page.plp-page': ApiPlpPagePlpPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

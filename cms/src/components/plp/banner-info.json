@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_plp_banner_infos",
+  "info": {
+    "displayName": "SEO Banner Info",
+    "icon": "information"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

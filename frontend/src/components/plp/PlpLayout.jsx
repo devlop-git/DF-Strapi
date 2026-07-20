@@ -5,7 +5,6 @@ import { reorderFilters } from "@/utils/reorderFilters";
 
 export default function PlpLayout({ commerce, cms }) {
   const filterConfig = cms.filterConfig;  
-  console.log('-----',filterConfig);
   const position = filterConfig[0]?.position;
 
   const filters = reorderFilters(

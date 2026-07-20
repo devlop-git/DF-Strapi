@@ -7,11 +7,53 @@ export interface PlpBannerConfiguration extends Struct.ComponentSchema {
     icon: 'magic';
   };
   attributes: {
-    bannerImage: Schema.Attribute.Media<
+    desktopBannerImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    mobileBannerImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
     showBanner: Schema.Attribute.Boolean;
+    tabBannerImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface PlpBannerInfo extends Struct.ComponentSchema {
+  collectionName: 'components_plp_banner_infos';
+  info: {
+    displayName: 'SEO Banner Info';
+    icon: 'information';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PlpFaq extends Struct.ComponentSchema {
+  collectionName: 'components_plp_faqs';
+  info: {
+    displayName: 'FAQ';
+    icon: 'question';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    faqItem: Schema.Attribute.Component<'plp.faq-items', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PlpFaqItems extends Struct.ComponentSchema {
+  collectionName: 'components_plp_faq_items';
+  info: {
+    displayName: 'FAQ Items';
+  };
+  attributes: {
+    answer: Schema.Attribute.Text;
+    question: Schema.Attribute.String;
   };
 }
 
@@ -30,6 +72,39 @@ export interface PlpFilterConfiguration extends Struct.ComponentSchema {
   };
 }
 
+export interface PlpGuideSection extends Struct.ComponentSchema {
+  collectionName: 'components_plp_guide_sections';
+  info: {
+    displayName: 'guide Section';
+    icon: 'user';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    guideItem: Schema.Attribute.Component<'plp.guides', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PlpGuides extends Struct.ComponentSchema {
+  collectionName: 'components_plp_guides';
+  info: {
+    displayName: 'Guides';
+    icon: 'file';
+  };
+  attributes: {
+    CTALabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Read More'>;
+    CTAUrl: Schema.Attribute.String;
+    desktopIcon: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    mobileIcon: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    tabIcon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface PlpProductGridCofiguration extends Struct.ComponentSchema {
   collectionName: 'components_plp_product_grid_cofigurations';
   info: {
@@ -37,8 +112,28 @@ export interface PlpProductGridCofiguration extends Struct.ComponentSchema {
     icon: 'grid';
   };
   attributes: {
-    columns: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<4>;
-    gap: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<24>;
+    desktopColumns: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<4>;
+    desktopGap: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<24>;
+    mobileColumns: Schema.Attribute.Integer;
+    mobileGap: Schema.Attribute.Integer;
+    tabColumns: Schema.Attribute.Integer;
+    tabGap: Schema.Attribute.Integer;
+  };
+}
+
+export interface PlpReadMoreContent extends Struct.ComponentSchema {
+  collectionName: 'components_plp_read_more_contents';
+  info: {
+    displayName: 'ReadMoreContent';
+    icon: 'quote';
+  };
+  attributes: {
+    expandedContent: Schema.Attribute.Text;
+    expandedTitle: Schema.Attribute.String;
+    previewContent: Schema.Attribute.Text;
+    readLessLabel: Schema.Attribute.String;
+    readMoreLabel: Schema.Attribute.String;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -216,7 +311,7 @@ export interface SectionsPosts extends Struct.ComponentSchema {
     displayName: 'Posts';
   };
   attributes: {
-    destopInstaImage: Schema.Attribute.Media<
+    desktopInstaImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
@@ -290,8 +385,14 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'plp.banner-configuration': PlpBannerConfiguration;
+      'plp.banner-info': PlpBannerInfo;
+      'plp.faq': PlpFaq;
+      'plp.faq-items': PlpFaqItems;
       'plp.filter-configuration': PlpFilterConfiguration;
+      'plp.guide-section': PlpGuideSection;
+      'plp.guides': PlpGuides;
       'plp.product-grid-cofiguration': PlpProductGridCofiguration;
+      'plp.read-more-content': PlpReadMoreContent;
       'plp.toolbar-configuration': PlpToolbarConfiguration;
       'sections.custom-banner': SectionsCustomBanner;
       'sections.feature-highlights': SectionsFeatureHighlights;

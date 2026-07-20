@@ -8,7 +8,7 @@ export default function ProductGrid({ products }) {
 
       {
 
-        products.map((product)=>(
+        products?.map((product)=>(
 
           <ProductCard
 

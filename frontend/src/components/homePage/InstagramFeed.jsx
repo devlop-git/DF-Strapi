@@ -20,7 +20,7 @@ export default function InstagramFeed({ data }) {
 
         {/* Instagram Posts */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-          {data.posts.map((post) => {
+          {data?.posts?.map((post) => {
             const image = post.instaImage?.[0]
 
             return (

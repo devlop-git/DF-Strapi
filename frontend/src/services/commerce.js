@@ -20,8 +20,6 @@ async function fetchAPI(endpoint) {
     },
   });
 
-  console.log('respose---',response);
-
   if (!response.ok) {
      const error = await response.text();
     throw new Error(`API Error ${response.status}: ${error}`);

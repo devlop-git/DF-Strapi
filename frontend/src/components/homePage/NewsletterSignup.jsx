@@ -20,7 +20,7 @@ export default function NewsletterSignup({ data }) {
             </h2>
 
             <div className="mt-10 space-y-6">
-              {benefits.map((item, index) => {
+              {benefits?.map((item, index) => {
                 const Icon = icons[index] || Sparkles;
 
                 return (

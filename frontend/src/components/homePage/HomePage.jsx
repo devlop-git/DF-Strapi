@@ -4,7 +4,7 @@ import SectionRenderer from './SectionRenderer'
 const HomePage = ({sections}) => {
   return (
     <>
-     {sections.map(section => (
+     {sections?.map(section => (
                 <SectionRenderer
                     key={`${section.__component}-${section.id}`}
                     section={section}

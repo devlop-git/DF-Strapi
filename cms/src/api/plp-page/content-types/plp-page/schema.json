@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "plp_pages",
+  "info": {
+    "singularName": "plp-page",
+    "pluralName": "plp-pages",
+    "displayName": "PLP Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "slug": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "markets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::market.market",
+      "mappedBy": "plp_page"
+    },
+    "plp_section": {
+      "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "components": [
+        "plp.toolbar-configuration",
+        "plp.product-grid-cofiguration",
+        "plp.filter-configuration",
+        "plp.banner-info",
+        "plp.banner-configuration",
+        "plp.faq",
+        "sections.feature-highlights",
+        "sections.newsletter",
+        "plp.guide-section",
+        "plp.read-more-content"
+      ]
+    }
+  }
+}
