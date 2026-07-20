@@ -13,7 +13,7 @@ import {
 
 const HeaderTabs = ({ logo, getStrapiMedia, languages }) => {
   return (
-    <div className="border-b border-[#E8DDCF] ">
+    <div className="lg:border-b lg:border-[#E8DDCF] ">
       <div className="lg:max-w-[1700px] gap-x-1 mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left */}
         <div className="flex items-center gap-x-1  md:gap-6">

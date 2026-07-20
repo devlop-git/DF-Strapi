@@ -1,91 +1,97 @@
 import Link from "next/link"
 import { FaAngleDown } from "react-icons/fa"
 
-export default async function Navigation({ locale, navigation = [] }) {
+export default function Navigation({ locale, navigation = [] }) {
+  if (!navigation?.length) return null
+
   return (
-    <nav className="hidden lg:flex items-center justify-center h-16">
+    <nav className="hidden h-16 items-center justify-center lg:flex">
       <ul className="flex items-center">
-        {navigation?.map((category) => (
-          <li key={category.category_id} className="group relative">
-            {/* Parent Category */}
-            <Link
-              href={`/${locale}/plp/${category.category_id}`}
-              className="
-                flex
-                items-center
-                gap-1
-                px-5
-                h-16
-                text-[13px]
-                uppercase
-                tracking-wide
-                font-medium
-                text-[#111]
-                hover:text-[#A5744A]
-                transition-colors
-              "
-            >
-              {category.category_details.displayCategoryName.en}
+        {navigation.map((category) => {
+          const { category_id, category_details, children = [] } = category
 
-              {category.children.length > 0 && (
-                <FaAngleDown size={11} className="mt-[1px]" />
-              )}
-            </Link>
+          const categoryName =
+            category_details?.displayCategoryName?.en ??
+            category_details?.categoryName ??
+            "Category"
 
-            {/* Dropdown */}
-            {category.children.length > 0 && (
-              <div
-                className="
-                  absolute
-                  left-0
-                  top-full
-                  w-72
-
-                  invisible
-                  opacity-0
-                  translate-y-2
-
-                  group-hover:visible
-                  group-hover:opacity-100
-                  group-hover:translate-y-0
-
-                  transition-all
-                  duration-300
-
-                  bg-white
-                  border
-                  border-[#ECE6DE]
-                  shadow-2xl
-                  z-50
-                "
+          return (
+            <li key={category_id} className="group relative">
+              {/* Parent Category */}
+              <Link
+                href={`/${locale}/plp/${category_id}`}
+                className="flex h-16 items-center gap-1 px-5 text-[13px] font-medium uppercase tracking-wide text-[#111] transition-colors hover:text-[#A5744A]"
               >
-                <div className="py-2">
-                  {category.children.map((sub) => (
-                    <Link
-                      key={sub.category_id}
-                      href={`/${locale}/plp/${sub.category_id}`}
-                      className="
-                        block
-                        px-6
-                        py-3
+                {categoryName}
 
-                        text-sm
-                        text-gray-700
+                {children.length > 0 && (
+                  <FaAngleDown size={11} className="mt-[1px]" />
+                )}
+              </Link>
 
-                        hover:bg-[#F8F5F1]
-                        hover:text-[#A5744A]
+              {/* Dropdown */}
+              {children.length > 0 && (
+                <div
+                  className="
+                    invisible
+                    absolute
+                    left-0
+                    top-full
+                    z-50
+                    w-72
+                    translate-y-2
+                    border
+                    border-[#ECE6DE]
+                    bg-white
+                    opacity-0
+                    shadow-2xl
+                    transition-all
+                    duration-300
+                    group-hover:visible
+                    group-hover:translate-y-0
+                    group-hover:opacity-100
+                  "
+                >
+                  <ul className="py-2">
+                    {children.map((subCategory) => {
+                      const {
+                        category_id: subCategoryId,
+                        category_details: subCategoryDetails,
+                      } = subCategory
 
-                        transition-colors
-                      "
-                    >
-                      {sub.category_details.displayCategoryName.en}
-                    </Link>
-                  ))}
+                      const subCategoryName =
+                        subCategoryDetails?.displayCategoryName?.en ??
+                        subCategoryDetails?.categoryName ??
+                        "Sub Category"
+
+                      console.log("subCategoryName is", subCategoryName)
+
+                      return (
+                        <li key={subCategoryId}>
+                          <Link
+                            href={`/${locale}/plp/${subCategoryId}`}
+                            className="
+                              block
+                              px-6
+                              py-3
+                              text-sm
+                              text-gray-700
+                              transition-colors
+                              hover:bg-[#F8F5F1]
+                              hover:text-[#A5744A]
+                            "
+                          >
+                            {subCategoryName}
+                          </Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
                 </div>
-              </div>
-            )}
-          </li>
-        ))}
+              )}
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )

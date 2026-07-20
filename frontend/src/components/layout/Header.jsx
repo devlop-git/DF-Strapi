@@ -31,7 +31,7 @@ const Header = async () => {
           </div>
           {/* Navigation */}
           <div className="border-b border-[#E8DDCF]">
-            <div className="max-w-[1700px] mx-auto overflow-x-auto px-4 sm:px-6 lg:px-8">
+            <div className=" px-4 sm:px-6 lg:px-8">
               <Navigation locale={locale} />
             </div>
           </div>
