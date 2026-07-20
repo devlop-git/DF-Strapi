@@ -1,5 +1,6 @@
 import axios from "axios";
 import homePopulate from "./queries/homepage";
+import plpPopulate from "./queries/plpPage";
 
 
 const api = axios.create({
@@ -18,9 +19,11 @@ export async function getHomepage(locale,market) {
 }
 
 export async function getPLPExperience(locale){
-  const url = `/plp-pages?locale=${locale}&populate=*`
-    const res = await api.get(url);
-    return res.data.data;
+  const url = `/plp-pages?locale=${locale}&${plpPopulate}`
+  console.log(url);
+  const res = await api.get(url);
+  console.log('plp--',res.data.data);
+  return res.data.data;
 }
 
 export async function getMarket(){

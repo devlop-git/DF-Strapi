@@ -45,16 +45,14 @@
         }
       },
       "components": [
-        "plp.toolbar-configuration",
-        "plp.product-grid-cofiguration",
-        "plp.filter-configuration",
         "plp.banner-info",
         "plp.banner-configuration",
         "plp.faq",
         "sections.feature-highlights",
         "sections.newsletter",
         "plp.guide-section",
-        "plp.read-more-content"
+        "plp.read-more-content",
+        "plp.product-listing"
       ]
     }
   }

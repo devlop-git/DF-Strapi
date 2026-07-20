@@ -31,7 +31,7 @@ export default async function Navigation({ locale }) {
           >
             {/* Parent Category */}
             <Link
-              href={`/${locale}/plp/${category.category_id}`}
+              href={`/plp/${category.category_id}`}
               className="
                 flex
                 items-center
@@ -88,7 +88,7 @@ export default async function Navigation({ locale }) {
                   {category.children.map((sub) => (
                     <Link
                       key={sub.category_id}
-                      href={`/${locale}/plp/${sub.category_id}`}
+                      href={`/plp/${sub.category_id}`}
                       className="
                         block
                         px-6

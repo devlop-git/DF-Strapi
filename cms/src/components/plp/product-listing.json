@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_plp_product_listings",
+  "info": {
+    "displayName": "Product Listing"
+  },
+  "options": {},
+  "attributes": {
+    "toolbarConfig": {
+      "type": "component",
+      "component": "plp.toolbar-configuration",
+      "repeatable": true
+    },
+    "filterConfig": {
+      "type": "component",
+      "component": "plp.filter-configuration",
+      "repeatable": true
+    },
+    "gridConfig": {
+      "type": "component",
+      "component": "plp.product-grid-cofiguration",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

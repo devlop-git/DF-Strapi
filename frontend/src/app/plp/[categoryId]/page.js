@@ -16,7 +16,7 @@ export default async function PLPPage({ params }) {
     <Header params={params} />
      <PLPLayout
       commerce={commerce.data}
-      cms={cms}
+      cms={cms[0]}
     />
 
       <Footer params={params} />
