@@ -891,9 +891,6 @@ export interface ApiPlpPagePlpPage extends Struct.CollectionTypeSchema {
     markets: Schema.Attribute.Relation<'oneToMany', 'api::market.market'>;
     plp_section: Schema.Attribute.DynamicZone<
       [
-        'plp.toolbar-configuration',
-        'plp.product-grid-cofiguration',
-        'plp.filter-configuration',
         'plp.banner-info',
         'plp.banner-configuration',
         'plp.faq',
@@ -901,6 +898,7 @@ export interface ApiPlpPagePlpPage extends Struct.CollectionTypeSchema {
         'sections.newsletter',
         'plp.guide-section',
         'plp.read-more-content',
+        'plp.product-listing',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

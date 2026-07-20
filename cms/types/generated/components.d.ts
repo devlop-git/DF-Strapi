@@ -121,6 +121,24 @@ export interface PlpProductGridCofiguration extends Struct.ComponentSchema {
   };
 }
 
+export interface PlpProductListing extends Struct.ComponentSchema {
+  collectionName: 'components_plp_product_listings';
+  info: {
+    displayName: 'Product Listing';
+  };
+  attributes: {
+    filterConfig: Schema.Attribute.Component<'plp.filter-configuration', true>;
+    gridConfig: Schema.Attribute.Component<
+      'plp.product-grid-cofiguration',
+      true
+    >;
+    toolbarConfig: Schema.Attribute.Component<
+      'plp.toolbar-configuration',
+      true
+    >;
+  };
+}
+
 export interface PlpReadMoreContent extends Struct.ComponentSchema {
   collectionName: 'components_plp_read_more_contents';
   info: {
@@ -392,6 +410,7 @@ declare module '@strapi/strapi' {
       'plp.guide-section': PlpGuideSection;
       'plp.guides': PlpGuides;
       'plp.product-grid-cofiguration': PlpProductGridCofiguration;
+      'plp.product-listing': PlpProductListing;
       'plp.read-more-content': PlpReadMoreContent;
       'plp.toolbar-configuration': PlpToolbarConfiguration;
       'sections.custom-banner': SectionsCustomBanner;

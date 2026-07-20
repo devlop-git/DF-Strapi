@@ -1,5 +1,6 @@
 import axios from "axios"
 import homePopulate from "./queries/homepage"
+import plpPopulate from "./queries/plpPage"
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_STRAPI_URL + "/api",
@@ -16,7 +17,7 @@ export async function getHomepage(locale, market) {
 }
 
 export async function getPLPExperience(locale) {
-  const url = `/plp-pages?locale=${locale}&populate=*`
+  const url = `/plp-pages?locale=${locale}&${plpPopulate}`
   const res = await api.get(url)
   return res.data.data
 }
