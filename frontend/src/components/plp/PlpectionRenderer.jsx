@@ -11,24 +11,15 @@ const componentMap = {
   "plp.guide-section": GuideSection,
   "plp.read-more-content": ReadMoreContent,
   "plp.faq": FAQSection,
-  "plp.banner-info": BannerInfo
+  "plp.banner-info": BannerInfo,
 };
 
-export default function PlpSectionRenderer({
-  section,
-  commerce,
-}) {
+export default function PlpSectionRenderer({ section, commerce }) {
   const Component = componentMap[section.__component];
 
   if (!Component) {
-    console.log("No component found:", section.__component);
     return null;
   }
 
-  return (
-    <Component
-      data={section}
-      commerce={commerce}
-    />
-  );
+  return <Component data={section} commerce={commerce} />;
 }
