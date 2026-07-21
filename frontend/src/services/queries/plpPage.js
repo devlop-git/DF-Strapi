@@ -18,7 +18,9 @@ const plpPopulate = qs.stringify(
                     },
                     "plp.faq": {
                         populate: {
-                          faqItem: true,
+                          faqItem: {
+                            populate: "*"
+                          },
                         },
                     },
                     "plp.banner-info": {
