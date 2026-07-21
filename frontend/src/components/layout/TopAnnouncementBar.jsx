@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
 export default function TopAnnouncementBar() {
   return (
@@ -11,59 +11,49 @@ export default function TopAnnouncementBar() {
           SALE
         </Link>
       </div>
-      <div className="mx-auto hidden lg:flex h-14 max-w-[1700px] items-center overflow-x-auto whitespace-nowrap scrollbar-hide">
-        <div className="flex min-w-max items-center text-sm font-medium">
+      <div className="mx-auto hidden lg:flex h-14  items-center overflow-x-auto whitespace-nowrap scrollbar-hide">
+        <div className="flex items-center text-sm font-medium">
           {/* Sale */}
           <div className="px-5 uppercase tracking-wide">SALE</div>
 
-          <div className="h-6 w-px bg-white/30" />
-
           {/* Trustpilot */}
-          <div className="flex items-center gap-3 px-5">
+          <div className="flex items-center gap-3 ">
             <span className="text-[17px] font-bold">Hervorragend</span>
 
             <span className="text-[17px]">4.3 von 5</span>
 
             {/* Trustpilot */}
-            <Image
+            {/* <Image
               src="/images/trustpilot-logo.svg"
               alt="Trustpilot"
               width={130}
               height={28}
               className="h-7 w-auto"
-            />
+            /> */}
           </div>
-
-          <div className="h-6 w-px bg-white/30" />
 
           {/* Klarna */}
           <div className="flex items-center gap-3 px-5 uppercase">
             <span>Bezahlen Sie später mit</span>
 
-            <Image
+            {/* <Image
               src="/images/klarna-logo.svg"
               alt="Klarna"
               width={95}
               height={24}
               className="h-6 w-auto"
-            />
+            /> */}
           </div>
 
-          <div className="h-6 w-px bg-white/30" />
-
           <div className="px-5 uppercase">Preisanpassungsgarantie</div>
-
-          <div className="h-6 w-px bg-white/30" />
 
           <div className="px-5 uppercase">
             30 Tage kostenloses Rückgaberecht
           </div>
 
-          <div className="h-6 w-px bg-white/30" />
-
           <div className="px-5 uppercase">Lebenslange Garantie</div>
         </div>
       </div>
     </section>
-  )
+  );
 }
