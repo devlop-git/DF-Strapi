@@ -2,7 +2,7 @@ import PlpSectionRenderer from "./PlpectionRenderer";
 
 export default function PlpLayout({ commerce, cms }) {
   return (
-    <main className="max-w-10xl mx-auto p-6 bg-amber-50 text-black">
+    <main className="max-w-10xl mx-auto lg:p-6 p-3 bg-amber-50 text-black">
       {cms.plp_section?.map((section) => {
         return (
           <PlpSectionRenderer
