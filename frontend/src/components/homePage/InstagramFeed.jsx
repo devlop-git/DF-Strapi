@@ -11,10 +11,16 @@ export default function InstagramFeed({ data }) {
         {/* Heading */}
         <div className="mb-14 text-center">
           {title && (
-            <h2 className="font-serif text-3xl font-light text-[#111] sm:text-4xl lg:text-5xl">
-              {prefix}
-              {handle && <span className="text-[#A5744A]">@{handle}</span>}
-            </h2>
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-x-4">
+              <h2 className="font-serif text-3xl font-light text-[#111] sm:text-4xl lg:text-[36px]">
+                {prefix}
+              </h2>
+              {handle && (
+                <span className="text-[#A5744A] text-[28px] lg:text-[36px]">
+                  @{handle}
+                </span>
+              )}
+            </div>
           )}
         </div>
 
