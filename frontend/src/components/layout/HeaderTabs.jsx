@@ -1,6 +1,6 @@
-import Image from "next/image"
-import Link from "next/link"
-import LanguageDropdown from "../homePage/LanguageDropdown"
+import Image from "next/image";
+import Link from "next/link";
+import LanguageDropdown from "../homePage/LanguageDropdown";
 import {
   FaPhoneAlt,
   FaMapMarkerAlt,
@@ -9,12 +9,12 @@ import {
   FaRegUser,
   FaHeart,
   FaShoppingBag,
-} from "react-icons/fa"
+} from "react-icons/fa";
 
 const HeaderTabs = ({ logo, getStrapiMedia, languages }) => {
   return (
     <div className="lg:border-b lg:border-[#E8DDCF] ">
-      <div className="lg:max-w-[1700px] gap-x-1 mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className=" gap-x-1 mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left */}
         <div className="flex items-center gap-x-1  md:gap-6">
           <button className="hover:text-[#A5744A] transition">
@@ -34,14 +34,15 @@ const HeaderTabs = ({ logo, getStrapiMedia, languages }) => {
         {/* Logo */}
         <Link href="/">
           {logo && (
-            <Image
-              src={getStrapiMedia(logo)}
-              alt={logo.alternativeText || "Logo"}
-              width={logo.width}
-              height={logo.height}
-              priority
-              className="h-8 w-auto object-contain sm:h-10 md:h-12"
-            />
+            <div className="relative w-50.25 h-[14px]">
+              <Image
+                src={getStrapiMedia(logo)}
+                alt={logo?.alternativeText || "Logo"}
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           )}
         </Link>
 
@@ -68,7 +69,7 @@ const HeaderTabs = ({ logo, getStrapiMedia, languages }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HeaderTabs
+export default HeaderTabs;
