@@ -1,26 +1,26 @@
-import Link from "next/link"
-import { FaAngleDown } from "react-icons/fa"
+import Link from "next/link";
+import { FaAngleDown } from "react-icons/fa";
 
 export default function Navigation({ locale, navigation = [] }) {
-  if (!navigation?.length) return null
+  if (!navigation?.length) return null;
 
   return (
-    <nav className="hidden h-16 items-center justify-center lg:flex">
+    <nav className="hidden h-10 items-center justify-center lg:flex">
       <ul className="flex items-center">
         {navigation.map((category) => {
-          const { category_id, category_details, children = [] } = category
+          const { category_id, category_details, children = [] } = category;
 
           const categoryName =
             category_details?.displayCategoryName?.en ??
             category_details?.categoryName ??
-            "Category"
+            "Category";
 
           return (
             <li key={category_id} className="group relative">
               {/* Parent Category */}
               <Link
                 href={`/${locale}/plp/${category_id}`}
-                className="flex h-16 items-center gap-1 px-5 text-[13px] font-medium uppercase tracking-wide text-[#111] transition-colors hover:text-[#A5744A]"
+                className="flex h-10 items-center gap-1 px-5 text-[13px] font-medium uppercase tracking-wide text-[#111] transition-colors hover:text-[#A5744A]"
               >
                 {categoryName}
 
@@ -57,14 +57,14 @@ export default function Navigation({ locale, navigation = [] }) {
                       const {
                         category_id: subCategoryId,
                         category_details: subCategoryDetails,
-                      } = subCategory
+                      } = subCategory;
 
                       const subCategoryName =
                         subCategoryDetails?.displayCategoryName?.en ??
                         subCategoryDetails?.categoryName ??
-                        "Sub Category"
+                        "Sub Category";
 
-                      console.log("subCategoryName is", subCategoryName)
+                      console.log("subCategoryName is", subCategoryName);
 
                       return (
                         <li key={subCategoryId}>
@@ -84,15 +84,15 @@ export default function Navigation({ locale, navigation = [] }) {
                             {subCategoryName}
                           </Link>
                         </li>
-                      )
+                      );
                     })}
                   </ul>
                 </div>
               )}
             </li>
-          )
+          );
         })}
       </ul>
     </nav>
-  )
+  );
 }
