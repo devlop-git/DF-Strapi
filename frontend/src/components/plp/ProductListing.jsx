@@ -28,7 +28,7 @@ export default function ProductListing({ data, commerce }) {
         sort={sort}
         config={data.toolbarConfig}
       />
-      <div className="flex gap-8">
+      <div className="flex lg:flex-row flex-col gap-8">
         {position === "left" && <FilterSidebar filters={filters} />}
         <ProductGrid products={products} />
         {position === "right" && <FilterSidebar filters={filters} />}
