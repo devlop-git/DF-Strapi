@@ -9,17 +9,17 @@ export default function Breadcrumb({
   ],
 }) {
   return (
-    <section className="border-y border-[#E8DDCF] bg-white">
-      <div className="mx-auto max-w-7xl px-5 py-5 md:px-8 lg:px-10">
+    <section className="lg:border-y lg:border-[#E8DDCF] bg-white">
+      <div className="mx-auto lg:max-w-7xl  py-5 px-2 md:px-8 lg:px-10">
         <nav
           aria-label="Breadcrumb"
-          className="flex flex-wrap items-center gap-x-2 gap-y-2 text-sm md:text-base"
+          className="flex  items-center  text-sm md:text-base"
         >
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
 
             return (
-              <div key={item.label} className="flex items-center">
+              <div key={item.label} className="flex text-sm items-center">
                 {isLast ? (
                   <span className="font-medium text-[#1F1F1F]">
                     {item.label}
@@ -34,7 +34,10 @@ export default function Breadcrumb({
                 )}
 
                 {!isLast && (
-                  <FiChevronRight className="mx-3 text-[#4A4A4A]" size={18} />
+                  <FiChevronRight
+                    className="lg:mx-3 text-[#4A4A4A]"
+                    size={14}
+                  />
                 )}
               </div>
             );

@@ -14,7 +14,7 @@ export default function BannerInfo() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className="bg-[#faf7f2]">
+    <section className="lg:bg-[#faf7f2]">
       <div className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-16 lg:px-12 lg:py-20">
         {/* Heading */}
         <h2 className="text-center font-serif text-[38px] leading-tight text-[#1D1D1D] md:text-[56px] lg:text-[72px]">
