@@ -4,20 +4,23 @@ import { FaRegHeart } from "react-icons/fa";
 
 export default function ProductCard({ product }) {
   return (
-    <Link href={`/en/pdp/${product.productId}`} className="group block">
-      <article className="bg-white">
-        {/* Image Section */}
-        <div className="relative overflow-hidden bg-[#FAF8F6]">
-          {/* Action Badge */}
+    <Link href={`/en/pdp/${product.productId}`} className="group">
+      <article className="bg-white transition-all duration-300 hover:shadow-lg p-2">
+        {/* Image */}
+        <div className="relative bg-[#faf8f6] overflow-hidden">
+          {/* Discount Badge */}
           {product.discount && (
-            <span className="absolute left-4 top-4 z-10 bg-[#A06F4F] px-4 py-2 text-xs md:text-sm font-medium uppercase text-white">
-              ACTION
+            <span className="absolute top-3 left-3 z-10 bg-[#A5744A] text-white text-xs font-semibold px-3 py-1">
+              {product.discount}% OFF
             </span>
           )}
 
           {/* Wishlist */}
-          <button className="absolute right-4 top-0.5  z-10">
-            <FaRegHeart className="text-[18px] md:text-[36px] text-[#9C6D4B] transition group-hover:fill-[#9C6D4B]" />
+          <button className="absolute top-3 right-3 z-10">
+            <faHeart
+              size={22}
+              className="stroke-[#9C7A58] hover:fill-[#9C7A58]"
+            />
           </button>
 
           {/* Product Image */}
@@ -49,7 +52,10 @@ export default function ProductCard({ product }) {
             </h3>
 
             <p className="shrink-0 text-[16px] md:text-[18px] font-normal text-[#1E1E1E]">
-              From <span className="font-medium">€{product.price}</span>
+              From{" "}
+              <span className="font-medium">
+                £{product.priceFrom.salePrice}
+              </span>
             </p>
           </div>
 

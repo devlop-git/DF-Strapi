@@ -1,6 +1,7 @@
 import categoriesMockData from "@/mock/commerce/categories";
 import subcategoriesResponse from "@/mock/commerce/subcategories";
-import plpResponse from "@/mock/cms/plpexperience";
+// import plpResponse from "@/mock/cms/plpexperience";
+import plpApiData from "@/mock/cms/plpApiData";
 
 const API = "https://app-center.nevejewels.com/apapi/mdm/category/getAll";
 
@@ -69,5 +70,5 @@ export async function getSubCategories(parentCategoryId) {
 
 
 export async function getPLP(categoryId){
-    return plpResponse;
+    return plpApiData;
 }

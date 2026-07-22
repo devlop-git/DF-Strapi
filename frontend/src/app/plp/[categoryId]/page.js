@@ -6,15 +6,15 @@ import Header from "@/components/layout/Header";
 import { getCurrentLocale } from "@/lib/locale";
 
 export default async function PLPPage({ params }) {
-  const { categoryId } = await params;
-  const commerce = await getPLP(categoryId);
+  // const { categoryId } = await params;
+  const commerce = await getPLP();
   const locale = await getCurrentLocale();
   const cms = await getPLPExperience(locale);
 
   return (
     <main>
       <Header params={params} />
-      <PLPLayout commerce={commerce.data} cms={cms[0]} />
+      <PLPLayout commerce={commerce} cms={cms[0]} />
 
       <Footer params={params} />
     </main>

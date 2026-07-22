@@ -119,7 +119,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
                 {selectedCategory.children.map((child) => (
                   <Link
                     key={child.category_id}
-                    href={`/${locale}/plp/${child.category_id}`}
+                    href={`/plp/${child.category_id}`}
                     onClick={closeDrawer}
                     className="flex items-center justify-between border-b border-[#ECE6DE] px-8 py-7 text-[12px] uppercase transition hover:bg-[#F8F5F1]"
                   >

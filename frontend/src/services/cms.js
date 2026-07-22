@@ -12,7 +12,6 @@ export async function getHomepage(locale, market) {
   if (res.status !== 200) {
     throw new Error("Failed to fetch homepage");
   }
-
   return res.data.data[0];
 }
 

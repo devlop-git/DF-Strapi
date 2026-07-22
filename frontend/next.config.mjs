@@ -10,6 +10,11 @@ const nextConfig = {
         port: "1337",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "static.diamondsfactory.com",
+        pathname: "/**",
+      },
     ],
     dangerouslyAllowLocalIP: true,
   },
