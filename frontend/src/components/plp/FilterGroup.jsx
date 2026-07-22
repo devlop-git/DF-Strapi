@@ -140,12 +140,17 @@ export default function FilterGroup({
                     {children}
                   </div>
                 )}
-                renderThumb={({ props }) => (
-                  <div
-                    {...props}
-                    className="h-5 w-5 rounded-full bg-[#8b6b49] border-2 border-white shadow"
-                  />
-                )}
+                renderThumb={({ props }) => {
+                  const { key, ...restProps } = props;
+
+                  return (
+                    <div
+                      key={key}
+                      {...restProps}
+                      className="h-5 w-5 rounded-full bg-[#8b6b49] border-2 border-white shadow"
+                    />
+                  );
+                }}
               />
             </div>
           ) : (
