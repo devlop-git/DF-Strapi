@@ -18,10 +18,7 @@ export default function ProductListing({ data, commerce }) {
   } = commerce;
 
   const position = data.filterConfig?.[0]?.position || "left";
-  const filters = reorderFilters(
-    commerce.filters,
-    data.filterConfig?.order
-  );
+  const filters = reorderFilters(commerce.filters, data.filterConfig?.order);
 
   return (
     <>
@@ -29,22 +26,13 @@ export default function ProductListing({ data, commerce }) {
       <Toolbar
         totalProducts={totalProducts}
         sort={sort}
-        config={data.toolbarConfig} />
-      <div className="flex gap-8">
-        {position === "left" && (
-          <FilterSidebar
-            filters={filters}
-          />
-        )}
+        config={data.toolbarConfig}
+      />
+      <div className="flex lg:flex-row flex-col gap-8">
+        {position === "left" && <FilterSidebar filters={filters} />}
         <ProductGrid products={products} />
-        {position === "right" && (
-          <FilterSidebar
-            filters={filters}
-          />
-        )}
-        <Pagination
-          pagination={pagination}
-        />
+        {position === "right" && <FilterSidebar filters={filters} />}
+        <Pagination pagination={pagination} />
       </div>
     </>
   );
