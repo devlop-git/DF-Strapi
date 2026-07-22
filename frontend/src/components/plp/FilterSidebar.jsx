@@ -6,9 +6,12 @@ import Button from "../common/Button";
 import FilterGroup from "./FilterGroup";
 import SelectedTags from "./SelectedTags";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
+import BottomSheet from "./BottomSheet";
+import FilterContent from "./FilterContent";
 
 export default function FilterSidebar({ filters }) {
   const [selectedFilters, setSelectedFilters] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
   if (!filters) return null;
 
   useEffect(() => {
@@ -35,42 +38,30 @@ export default function FilterSidebar({ filters }) {
         <Button
           text="Filter & sort"
           count={1}
+          onClick={() => setIsOpen(true)}
           icon={HiOutlineAdjustmentsHorizontal}
           className="w-full h-16 bg-[#A0704F] hover:bg-[#8d6144] text-white gap-4"
           iconClassName="w-7 h-7"
           textClassName="text-[18px] font-semibold"
           badgeClassName="w-8 h-8 rounded-md bg-white text-[#A0704F] text-[18px] font-semibold"
         />
+        <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          <FilterContent
+            filters={filters}
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilters}
+            clearAll={clearAll}
+            className="p-6"
+          />
+        </BottomSheet>
       </div>
-      <div className="w-[320px] p-6 bg-white hidden lg:block">
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-2 text-[#8b6b49] font-medium">
-            <FiSliders />
-            Filters
-          </div>
-
-          <button
-            onClick={clearAll}
-            className="text-xs uppercase underline text-[#8b6b49]"
-          >
-            Clear All
-          </button>
-        </div>
-
-        <SelectedTags
+      <div className="hidden lg:block lg:min-w-78 ">
+        <FilterContent
           filters={filters}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
+          clearAll={clearAll}
         />
-
-        {filters.map((filter) => (
-          <FilterGroup
-            key={filter.featureId}
-            filter={filter}
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-        ))}
       </div>
     </div>
   );
