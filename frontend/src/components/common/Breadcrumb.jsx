@@ -1,13 +1,7 @@
 import Link from "next/link";
 import { FiChevronRight } from "react-icons/fi";
 
-export default function Breadcrumb({
-  items = [
-    { label: "Homepage", href: "/" },
-    { label: "Engagement rings", href: "/engagement-rings" },
-    { label: "Solitaire rings", href: null },
-  ],
-}) {
+export default function Breadcrumb({ items }) {
   return (
     <section className="lg:border-y lg:border-[#E8DDCF] bg-white">
       <div className="mx-auto lg:max-w-7xl  py-5 px-2 md:px-8 lg:px-10">
@@ -26,10 +20,10 @@ export default function Breadcrumb({
                   </span>
                 ) : (
                   <Link
-                    href={item.href}
+                    href={item?.url}
                     className="text-[#1F1F1F] transition hover:text-[#A0704F]"
                   >
-                    {item.label}
+                    {item?.label}
                   </Link>
                 )}
 
