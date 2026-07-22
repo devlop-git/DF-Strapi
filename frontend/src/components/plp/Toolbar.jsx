@@ -1,15 +1,10 @@
-"use client";
-
-import { useState } from "react";
-
 export default function Toolbar({
   totalProducts,
   selectedSort,
   sortOptions,
+  onSortChange,
   config,
 }) {
-  // const [selectedSort, setSelectedSort] = useState(selectedSort);
-console.log(totalProducts, selectedSort, sortOptions, config)
   if (!config) return null;
 
   return (
@@ -28,7 +23,7 @@ console.log(totalProducts, selectedSort, sortOptions, config)
 
           <select
             value={selectedSort}
-            onChange={(e) => setSelectedSort(e.target.value)}
+            onChange={(e) => onSortChange(e.target.value)}
             className="border rounded-md px-3 py-2 text-sm"
           >
             {sortOptions.map((option) => (

@@ -1,5 +1,7 @@
+"use client";
+
+import { useState } from "react";
 import Toolbar from "./Toolbar";
-import FilterPanel from "./FilterPanel";
 import ProductGrid from "./ProductGrid";
 import Breadcrumbs from "./Breadcrumbs";
 import Pagination from "./Pagination";
@@ -17,8 +19,20 @@ export default function ProductListing({ data, commerce }) {
     pagination, //object
   } = commerce;
 
+  const [selectedSort, setSelectedSort] = useState(sort.selected);
+
   const position = data.filterConfig?.[0]?.position || "left";
   const filters = reorderFilters(commerce.filters, data.filterConfig?.order);
+
+  const handleSortChange = (sort) => {
+    setSelectedSort(sort);
+
+    getProducts({
+      sort,
+      filters: appliedFilters,
+      page: 1,
+    });
+};
 
   return (
     <>
@@ -27,6 +41,7 @@ export default function ProductListing({ data, commerce }) {
         totalProducts={totalProducts}
         selectedSort={sort.selected}
         sortOptions={sort.options}
+        onSortChange={setSelectedSort} // later call handlesortChange fn
         config={data.toolbarConfig[0]} />
       <div className="flex lg:flex-row flex-col gap-8">
         {position === "left" && (
@@ -34,7 +49,7 @@ export default function ProductListing({ data, commerce }) {
             filters={filters}
           />
         )}
-        <ProductGrid products={products} />
+        <ProductGrid products={products} filters={filters}/>
         {position === "right" && <FilterSidebar filters={filters} />}
         <Pagination pagination={pagination} />
       </div>
