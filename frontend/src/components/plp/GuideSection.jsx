@@ -13,19 +13,19 @@ const GuideSection = ({ data }) => {
         <div className="mx-auto max-w-7xl px-5">
           {/* Heading */}
           <div className="text-center">
-            <h2 className="font-serif text-4xl md:text-6xl text-[#1E1E1E]">
+            <h2 className="font-serif text-[28px] lg:text-[36px] text-[#1E1E1E]">
               {data.title}
             </h2>
 
             {data.description && (
-              <p className="mt-3 text-lg md:text-xl text-[#1E1E1E]">
+              <p className="mt-3 text-base  text-[#1E1E1E]">
                 {data.description}
               </p>
             )}
           </div>
 
           {/* Guide Items */}
-          <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-14 gap-y-8 lg:gap-y-0 lg:mx-40 grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3">
             {data.guideItem?.map((item) => {
               const icon = item.desktopIcon || item.mobileIcon || item.tabIcon;
 
@@ -33,7 +33,7 @@ const GuideSection = ({ data }) => {
                 <Link
                   key={item.id}
                   href={item.CTAUrl || "#"}
-                  className="group flex items-center gap-6"
+                  className="group flex items-center lg:justify-center gap-6"
                 >
                   {/* Icon */}
                   <div className="flex h-24 w-24 shrink-0 items-center justify-center">
@@ -50,11 +50,11 @@ const GuideSection = ({ data }) => {
 
                   {/* Content */}
                   <div>
-                    <h3 className="text-2xl font-normal text-[#222]">
+                    <h3 className="text-base font-normal text-[#222]">
                       {item.title}
                     </h3>
 
-                    <p className="mt-3 text-xl font-medium text-[#A0704F] group-hover:underline">
+                    <p className="mt-1 lg:mt-3 text-sm  font-medium text-[#A0704F] group-hover:underline">
                       {item.CTALabel}
                     </p>
                   </div>
