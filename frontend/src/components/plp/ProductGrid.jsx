@@ -12,7 +12,7 @@ export default function ProductGrid({ products }) {
 
           <ProductCard
 
-            key={product.productId}
+            key={product.ornamentId}
 
             product={product}
 

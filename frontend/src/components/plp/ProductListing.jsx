@@ -1,12 +1,23 @@
 import Toolbar from "./Toolbar";
 import FilterPanel from "./FilterPanel";
 import ProductGrid from "./ProductGrid";
+import Breadcrumbs from "./Breadcrumbs";
+import Pagination from "./Pagination";
 import { reorderFilters } from "@/utils/reorderFilters";
+import FilterSidebar from "./FilterSidebar";
 
 export default function ProductListing({ data, commerce }) {
+  const {
+    breadcrumb, //array
+    category, //object
+    totalProducts, //number
+    sort,
+    // filters,
+    products,
+    pagination, //object
+  } = commerce;
 
   const position = data.filterConfig?.[0]?.position || "left";
-
   const filters = reorderFilters(
     commerce.filters,
     data.filterConfig?.order
@@ -14,20 +25,26 @@ export default function ProductListing({ data, commerce }) {
 
   return (
     <>
-      <Toolbar config={data.toolbarConfig} />
-
+      <Breadcrumbs items={breadcrumb} />
+      <Toolbar
+        totalProducts={totalProducts}
+        sort={sort}
+        config={data.toolbarConfig} />
       <div className="flex gap-8">
-
         {position === "left" && (
-          <FilterPanel filters={filters} />
+          <FilterSidebar
+            filters={filters}
+          />
         )}
-
-        <ProductGrid products={commerce.products} />
-
+        <ProductGrid products={products} />
         {position === "right" && (
-          <FilterPanel filters={filters} />
+          <FilterSidebar
+            filters={filters}
+          />
         )}
-
+        <Pagination
+          pagination={pagination}
+        />
       </div>
     </>
   );

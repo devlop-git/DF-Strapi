@@ -64,8 +64,6 @@ export default function Navigation({ locale, navigation = [] }) {
                         subCategoryDetails?.categoryName ??
                         "Sub Category";
 
-                      console.log("subCategoryName is", subCategoryName);
-
                       return (
                         <li key={subCategoryId}>
                           <Link
