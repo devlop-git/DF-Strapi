@@ -28,8 +28,9 @@ export default function ProductListing({ data, commerce }) {
       <Breadcrumbs items={breadcrumb} />
       <Toolbar
         totalProducts={totalProducts}
-        sort={sort}
-        config={data.toolbarConfig} />
+        selectedSort={sort.selected}
+        sortOptions={sort.options}
+        config={data.toolbarConfig[0]} />
       <div className="flex gap-8">
         {position === "left" && (
           <FilterSidebar
