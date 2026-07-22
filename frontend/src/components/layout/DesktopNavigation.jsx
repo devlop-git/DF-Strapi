@@ -19,7 +19,7 @@ export default function Navigation({ locale, navigation = [] }) {
             <li key={category_id} className="group relative">
               {/* Parent Category */}
               <Link
-                href={`/${locale}/plp/${category_id}`}
+                href={`/plp/${category_id}`}
                 className="flex h-10 items-center gap-1 px-5 text-[13px] font-medium uppercase tracking-wide text-[#111] transition-colors hover:text-[#A5744A]"
               >
                 {categoryName}
@@ -67,7 +67,7 @@ export default function Navigation({ locale, navigation = [] }) {
                       return (
                         <li key={subCategoryId}>
                           <Link
-                            href={`/${locale}/plp/${subCategoryId}`}
+                            href={`/plp/${subCategoryId}`}
                             className="
                               block
                               px-6
