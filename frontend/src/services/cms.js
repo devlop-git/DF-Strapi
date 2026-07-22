@@ -17,8 +17,8 @@ export async function getHomepage(locale, market) {
 }
 
 export async function getPLPExperience(locale) {
-  const url = `/plp-pages?locale=${locale}&${plpPopulate}`;
-  // const url = `/plp-pages?locale=en&populate[plp_section][on][sections.feature-highlights][populate][items][populate][desktopIcon]=true&populate[plp_section][on][sections.feature-highlights][populate][items][populate][mobileIcon]=true&populate[plp_section][on][sections.feature-highlights][populate][items][populate][tabIcon]=true&populate[plp_section][on][plp.faq][populate][faqItem][populate]=%2A&populate[plp_section][on][plp.banner-info][populate]=%2A&populate[plp_section][on][plp.guide-section][populate][guideItem][populate][desktopIcon]=true&populate[plp_section][on][plp.guide-section][populate][guideItem][populate][mobileIcon]=true&populate[plp_section][on][plp.guide-section][populate][guideItem][populate][tabIcon]=true&populate[plp_section][on][plp.read-more-content][populate]=%2A&populate[plp_section][on][plp.banner-configuration][populate]=%2A&populate[plp_section][on][plp.product-listing][populate]=%2A`;
+  // const url = `/plp-pages?locale=${locale}&${plpPopulate}`;
+  const url = `/plp-pages?locale=en&populate[plp_section][on][sections.feature-highlights][populate][items][populate][desktopIcon]=true&populate[plp_section][on][sections.feature-highlights][populate][items][populate][mobileIcon]=true&populate[plp_section][on][sections.feature-highlights][populate][items][populate][tabIcon]=true&populate[plp_section][on][plp.faq][populate][faqItem][populate]=%2A&populate[plp_section][on][plp.banner-info][populate]=%2A&populate[plp_section][on][plp.guide-section][populate][guideItem][populate][desktopIcon]=true&populate[plp_section][on][plp.guide-section][populate][guideItem][populate][mobileIcon]=true&populate[plp_section][on][plp.guide-section][populate][guideItem][populate][tabIcon]=true&populate[plp_section][on][plp.read-more-content][populate]=%2A&populate[plp_section][on][plp.banner-configuration][populate]=%2A&populate[plp_section][on][plp.product-listing][populate]=%2A`;
   const res = await api.get(url);
   return res.data.data;
 }
