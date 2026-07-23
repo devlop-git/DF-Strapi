@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FiSliders } from "react-icons/fi";
 import Button from "../common/Button";
-import FilterGroup from "./FilterGroup";
-import SelectedTags from "./SelectedTags";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import BottomSheet from "./BottomSheet";
 import FilterContent from "./FilterContent";
@@ -72,13 +69,36 @@ export default function FilterSidebar({
           />
         </div>
 
-        <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <BottomSheet
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          footer={
+            <div className="flex gap-3">
+              <button
+                onClick={clearAll}
+                className="flex-1 border border-[#A5744A] py-3 text-lg font-medium text-[#A5744A]"
+              >
+                Clear
+              </button>
+
+              <button
+                onClick={() => setIsOpen(false)}
+                className="flex flex-1 items-center justify-center gap-2 bg-[#A5744A] py-3 text-lg font-medium text-white"
+              >
+                Apply Filters
+                <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white text-sm font-semibold text-[#A5744A]">
+                  1
+                </span>
+              </button>
+            </div>
+          }
+        >
           <FilterContent
             filters={filters}
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
             clearAll={clearAll}
-            className="lg:p-6"
+            className="pb-4"
             setIsOpen={setIsOpen}
             selectedSort={selectedSort}
             sortOptions={sortOptions}
