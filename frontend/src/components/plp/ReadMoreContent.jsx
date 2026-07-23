@@ -2,12 +2,11 @@
 import React, { useState } from "react";
 
 const ReadMoreContent = ({ data }) => {
-  console.log("ReadMoreContent data:", data);
   const [expanded, setExpanded] = useState(false);
   return (
     <section className={` transition-all duration-500 `}>
       <div
-        className={`mx-auto flex max-w-7xl flex-col justify-center px-5 py-4 lg:py-12 md:px-8 lg:px-12 transition-all duration-500 ${
+        className={`mx-auto  flex max-w-7xl flex-col justify-center px-5  lg:py-12 md:px-8 lg:px-12 transition-all duration-500 ${
           expanded ? "lg:min-h-[338px]" : "lg:min-h-[314px]"
         }`}
       >

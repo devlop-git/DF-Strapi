@@ -1,5 +1,6 @@
 import ProductCard from "./ProductCard";
 import Toolbar from "./Toolbar";
+import Pagination from "./Pagination";
 export default function ProductGrid({
   products,
   filters,
@@ -8,6 +9,7 @@ export default function ProductGrid({
   selectedSort,
   sortOptions,
   onSortChange,
+  pagination,
 }) {
   return (
     <div className="mx-5 lg:mx-0">
@@ -34,6 +36,7 @@ export default function ProductGrid({
           />
         ))}
       </div>
+      <Pagination pagination={pagination} />
     </div>
   );
 }

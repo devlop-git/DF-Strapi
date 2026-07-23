@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Toolbar from "./Toolbar";
 import ProductGrid from "./ProductGrid";
-import Pagination from "./Pagination";
 import { reorderFilters } from "@/utils/reorderFilters";
 import FilterSidebar from "./FilterSidebar";
 
@@ -53,18 +51,18 @@ export default function ProductListing({ data, commerce }) {
             // selectedSort={sort.selected}
             selectedSort={selectedSort}
             sortOptions={sort.options}
+            pagination={pagination}
             onSortChange={setSelectedSort} // later call handlesortChange fn
           />
           {position === "right" && (
             <FilterSidebar
               filters={filters}
-              selectedSort={selectedSort}
+              selectedSort={sort?.selectedSort}
               sortOptions={sort?.options}
               onSortChange={setSelectedSort}
               config={data?.toolbarConfig[0]}
             />
           )}
-          {/* <Pagination pagination={pagination} /> */}
         </div>
       </div>
     </>
