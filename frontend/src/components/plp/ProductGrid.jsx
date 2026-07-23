@@ -35,7 +35,7 @@ export default function ProductGrid({
           )}
         </h1>
       </div>
-      <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4">
+      <div className="grid grid-cols-2 lg:gap-x-4 gap-y-10 lg:grid-cols-3">
         {products.map((product) => (
           <ProductCard
             key={product.ornamentId}
