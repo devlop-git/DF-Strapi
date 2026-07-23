@@ -35,17 +35,16 @@ export default function ProductListing({ data, commerce }) {
   return (
     <>
       <div className="lg:mx-18">
-        <div className="hidden lg:block">
-          <Toolbar
-            totalProducts={totalProducts}
-            selectedSort={sort.selected}
-            sortOptions={sort.options}
-            onSortChange={setSelectedSort} // later call handlesortChange fn
-            config={data.toolbarConfig[0]}
-          />
-        </div>
         <div className="flex lg:flex-row flex-col gap-8">
-          {position === "left" && <FilterSidebar filters={filters} />}
+          {position === "left" && (
+            <FilterSidebar
+              filters={filters}
+              selectedSort={sort?.selected}
+              sortOptions={sort?.options}
+              onSortChange={setSelectedSort}
+              config={data?.toolbarConfig[0]}
+            />
+          )}
           <ProductGrid
             products={products}
             filters={filters}
@@ -55,7 +54,15 @@ export default function ProductListing({ data, commerce }) {
             sortOptions={sort.options}
             onSortChange={setSelectedSort} // later call handlesortChange fn
           />
-          {position === "right" && <FilterSidebar filters={filters} />}
+          {position === "right" && (
+            <FilterSidebar
+              filters={filters}
+              selectedSort={sort?.selected}
+              sortOptions={sort?.options}
+              onSortChange={setSelectedSort}
+              config={data?.toolbarConfig[0]}
+            />
+          )}
           {/* <Pagination pagination={pagination} /> */}
         </div>
       </div>

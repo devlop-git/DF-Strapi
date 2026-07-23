@@ -15,23 +15,22 @@ export default function ProductGrid({
         <h1>
           {config.showProductCount && <span>{totalProducts} Products</span>}
         </h1>
-        <h1>
-          {config.showSort && (
-            <div className="flex items-center gap-3">
-              <select
-                value={selectedSort}
-                onChange={(e) => onSortChange(e.target.value)}
-                className=" px-3 py-2 text-sm"
-              >
-                {sortOptions.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-        </h1>
+
+        {config.showSort && (
+          <div className="flex items-center gap-3">
+            <select
+              value={selectedSort}
+              onChange={(e) => onSortChange(e.target.value)}
+              className=" px-3 py-2 text-sm"
+            >
+              {sortOptions.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
       </div>
       <div className="grid grid-cols-2 lg:gap-x-4 gap-y-10 lg:grid-cols-3">
         {products.map((product) => (

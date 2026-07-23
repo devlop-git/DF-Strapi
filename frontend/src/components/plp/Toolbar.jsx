@@ -1,35 +1,62 @@
+"use client";
+
+import { useState } from "react";
+import { FiChevronDown } from "react-icons/fi";
+
 export default function Toolbar({
-  totalProducts,
   selectedSort,
   sortOptions,
   onSortChange,
   config,
 }) {
-  if (!config) return null;
+  const [open, setOpen] = useState(false);
+
+  if (!config?.showSort) return null;
+
+  const selectedOption =
+    sortOptions.find((option) => option.id === selectedSort) || sortOptions[0];
 
   return (
-    <div className="flex items-center justify-between py-4  mb-8">
-      {/* <div className="text-sm text-gray-600">
-        {config.showProductCount && <span>{totalProducts} Products</span>}
-      </div> */}
-      {/* 
-      {config.showSort && (
-        <div className="flex items-center gap-3">
-          <span className="text-sm">Sort By</span>
+    <div className="relative w-full">
+      {/* Selected Option */}
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex h-12 w-full items-center justify-between rounded-md border border-[#B8B8B8] bg-white px-6 text-left"
+      >
+        <span className="text-sm font-medium text-[#1D1D1D]">
+          {selectedOption?.label}
+        </span>
 
-          <select
-            value={selectedSort}
-            onChange={(e) => onSortChange(e.target.value)}
-            className="border rounded-md px-3 py-2 text-sm"
-          >
-            {sortOptions.map((option) => (
-              <option key={option.id} value={option.id}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+        <FiChevronDown
+          className={`h-7 w-7 transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+
+      {/* Dropdown */}
+      {open && (
+        <div className="absolute left-0 right-0 z-20 mt-2 overflow-hidden rounded-xl border border-[#E5E5E5] bg-white shadow-lg">
+          {sortOptions.map((option) => (
+            <button
+              key={option.id}
+              type="button"
+              onClick={() => {
+                onSortChange(option.id);
+                setOpen(false);
+              }}
+              className={`w-full px-6 py-4 text-left transition hover:bg-[#F8F8F8] ${
+                option.id === selectedSort
+                  ? "bg-[#F8F8F8] font-medium text-[#A5744A]"
+                  : "text-[#1D1D1D]"
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
         </div>
-      )} */}
+      )}
     </div>
   );
 }

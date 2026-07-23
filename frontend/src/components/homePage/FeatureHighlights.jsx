@@ -25,7 +25,7 @@ export default function FeatureHighlights({ data }) {
 
             return (
               <div
-                key={item.id}
+                key={item?.id}
                 className="flex items-center justify-center gap-5"
               >
                 {/* Desktop */}

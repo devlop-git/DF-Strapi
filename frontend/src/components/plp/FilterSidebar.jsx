@@ -9,7 +9,13 @@ import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import BottomSheet from "./BottomSheet";
 import FilterContent from "./FilterContent";
 
-export default function FilterSidebar({ filters }) {
+export default function FilterSidebar({
+  filters,
+  selectedSort,
+  sortOptions,
+  onSortChange,
+  config,
+}) {
   const [selectedFilters, setSelectedFilters] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
@@ -72,7 +78,12 @@ export default function FilterSidebar({ filters }) {
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
             clearAll={clearAll}
-            className="p-6"
+            className="lg:p-6"
+            setIsOpen={setIsOpen}
+            selectedSort={selectedSort}
+            sortOptions={sortOptions}
+            onSortChange={onSortChange}
+            config={config}
           />
         </BottomSheet>
       </div>

@@ -7,33 +7,29 @@ export default function SelectedTags({
   selectedFilters,
   setSelectedFilters,
 }) {
-  const tags = Object.entries(selectedFilters).flatMap(
-    ([featureId, value]) => {
-      const filter = filters.find(
-        (f) => f.featureId === featureId
-      );
+  const tags = Object.entries(selectedFilters).flatMap(([featureId, value]) => {
+    const filter = filters.find((f) => f.featureId === featureId);
 
-      if (!filter) return [];
+    if (!filter) return [];
 
-      // Range Filter
-      if (filter.selectionType === "range") {
-        return [
-          {
-            featureId,
-            type: "range",
-            displayName: `${value.min}${filter.range.unit || filter.range.currency} - ${value.max}${filter.range.unit || filter.range.currency}`,
-          },
-        ];
-      }
-
-      // Single & Multi
-      return value.map((item) => ({
-        featureId,
-        type: filter.selectionType,
-        ...item,
-      }));
+    // Range Filter
+    if (filter.selectionType === "range") {
+      return [
+        {
+          featureId,
+          type: "range",
+          displayName: `${value.min}${filter.range.unit || filter.range.currency} - ${value.max}${filter.range.unit || filter.range.currency}`,
+        },
+      ];
     }
-  );
+
+    // Single & Multi
+    return value.map((item) => ({
+      featureId,
+      type: filter.selectionType,
+      ...item,
+    }));
+  });
 
   if (!tags.length) return null;
 
@@ -50,14 +46,15 @@ export default function SelectedTags({
       return {
         ...prev,
         [tag.featureId]: prev[tag.featureId].filter(
-          (item) => item.valueCode !== tag.valueCode
+          (item) => item.valueCode !== tag.valueCode,
         ),
       };
     });
   };
 
   return (
-    <div className="flex flex-wrap gap-2 mb-5">
+    <div className="flex lg:flex-row flex-col flex-wrap mt-6 lg:mt-0 lg:gap-2 mb-5 gap-y-2 lg:gap-y-0">
+      <p className="lg:hidden uppercase text-xs">filter by:</p>
       {tags.map((tag) => (
         <button
           key={
@@ -66,10 +63,10 @@ export default function SelectedTags({
               : `${tag.featureId}-${tag.valueCode}`
           }
           onClick={() => removeTag(tag)}
-          className="flex items-center gap-2 border border-[#b68b63] text-[#7b5d3c] rounded-full px-3 py-1 text-xs hover:bg-[#f9f5ef]"
+          className="flex items-center  gap-2 lg:border border-[#b68b63] lg:text-[#7b5d3c] rounded-full lg:px-3 lg:py-1 text-xs hover:bg-[#f9f5ef]"
         >
           {tag.displayName}
-          <IoClose size={14} />
+          <IoClose size={16} className="text-[#7b5d3c]" />
         </button>
       ))}
     </div>

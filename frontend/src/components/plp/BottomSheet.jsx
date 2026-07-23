@@ -17,14 +17,18 @@ export default function BottomSheet({ isOpen, onClose, children }) {
           isOpen ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <div className="mx-auto flex max-h-[65vh] flex-col">
+        <div className="mx-auto flex max-h-[70vh] flex-col">
           {/* Drag Handle */}
-          <div className="sticky top-0 flex justify-center bg-white py-4">
+          <div
+            className="sticky top-0 flex justify-center bg-white py-4 rounded-t-2xl
+
+"
+          >
             <div className="h-1.5 w-12 rounded-full bg-gray-300" />
           </div>
 
           {/* Scrollable Content */}
-          <div className="overflow-y-auto px-6 pb-6">{children}</div>
+          <div className="overflow-y-auto px-4 pb-6">{children}</div>
         </div>
       </div>
     </>
