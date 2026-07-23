@@ -46,7 +46,7 @@ export default function Toolbar({
                 onSortChange(option.id);
                 setOpen(false);
               }}
-              className={`w-full px-6 py-4 text-left transition hover:bg-[#F8F8F8] ${
+              className={`w-full px-6 py-4 text-left text-sm transition hover:bg-[#F8F8F8] ${
                 option.id === selectedSort
                   ? "bg-[#F8F8F8] font-medium text-[#A5744A]"
                   : "text-[#1D1D1D]"

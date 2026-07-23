@@ -26,7 +26,7 @@ export default function BottomSheet({ isOpen, onClose, children, footer }) {
         <div className="flex-1 overflow-y-auto px-4">{children}</div>
 
         {/* Fixed Footer */}
-        <div className="border-t bg-white p-4">{footer}</div>
+        <div className=" bg-white p-4">{footer}</div>
       </div>
     </>
   );

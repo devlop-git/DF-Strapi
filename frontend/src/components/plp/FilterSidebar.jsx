@@ -76,17 +76,17 @@ export default function FilterSidebar({
             <div className="flex gap-3">
               <button
                 onClick={clearAll}
-                className="flex-1 border border-[#A5744A] py-3 text-lg font-medium text-[#A5744A]"
+                className="flex-1 border border-[#976649] py-3 text-lg font-medium "
               >
                 Clear
               </button>
 
               <button
                 onClick={() => setIsOpen(false)}
-                className="flex flex-1 items-center justify-center gap-2 bg-[#A5744A] py-3 text-lg font-medium text-white"
+                className="flex flex-1 items-center justify-center gap-2 bg-[#A5744A]  text-base font-medium text-white"
               >
                 Apply Filters
-                <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white text-sm font-semibold text-[#A5744A]">
+                <span className="flex h-4 w-4 items-center justify-center rounded-md bg-white text-xs font-semibold text-[#A5744A]">
                   1
                 </span>
               </button>
