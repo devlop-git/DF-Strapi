@@ -36,19 +36,19 @@ const faqData = {
 };
 
 export default function FAQSection() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(null);
 
   return (
-    <section className="bg-[#FAF7F3] py-14 lg:py-24">
+    <section className="bg-[#FAF7F3] py-14 lg:py-18">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[340px_1fr] lg:gap-24">
+        <div className="grid lg:mx-24 grid-cols-1 gap-y-6 lg:grid-cols-[440px_1fr] lg:gap-24">
           {/* Left */}
           <div>
-            <h2 className="font-serif text-5xl lg:text-6xl text-[#1D1D1B]">
+            <h2 className="font-serif text-[28px] text-center lg:text-left  lg:text-[36px] text-[#1D1D1B]">
               {faqData.title}
             </h2>
 
-            <p className="mt-3 text-lg text-[#1D1D1B]">{faqData.description}</p>
+            <p className=" text-base  text-[#1D1D1B]">{faqData.description}</p>
           </div>
 
           {/* Right */}
@@ -60,16 +60,20 @@ export default function FAQSection() {
                 <div key={index} className="border-b border-[#E8DDCF]">
                   <button
                     onClick={() => setActive(isOpen ? null : index)}
-                    className="flex w-full items-center justify-between py-7 text-left"
+                    className="flex w-full items-center justify-between py-4 lg:py-5 text-left hover:cursor-pointer"
                   >
-                    <span className="pr-8 text-xl font-normal leading-8 text-[#1D1D1B]">
+                    <span
+                      className="pr-8 text-base font-semibold
+
+leading-6 lg:leading-8 text-[#1D1D1B]"
+                    >
                       {item.question}
                     </span>
 
                     {isOpen ? (
-                      <FiMinus size={28} className="shrink-0 text-[#1D1D1B]" />
+                      <FiMinus className="h-5 w-5  shrink-0 text-[#1D1D1B]" />
                     ) : (
-                      <FiPlus size={28} className="shrink-0 text-[#1D1D1B]" />
+                      <FiPlus className="h-5 w-5 shrink-0 text-[#1D1D1B]" />
                     )}
                   </button>
 
@@ -79,7 +83,7 @@ export default function FAQSection() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="max-w-4xl text-lg leading-10 text-[#333]">
+                      <p className="max-w-4xl text-base  leading-6  text-[#333]">
                         {item.answer}
                       </p>
                     </div>

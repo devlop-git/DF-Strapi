@@ -1,11 +1,10 @@
 import PlpSectionRenderer from "./PlpectionRenderer";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import PlpApiMockData from "../../mock/cms/plpApiData";
 
 export default function PlpLayout({ commerce, cms }) {
   return (
     <main className="max-w-10xl mx-auto   text-black">
-      <Breadcrumb items={PlpApiMockData?.breadcrumb} />
+      <Breadcrumb items={commerce?.breadcrumb} />
       {cms.plp_section?.map((section) => {
         return (
           <PlpSectionRenderer
