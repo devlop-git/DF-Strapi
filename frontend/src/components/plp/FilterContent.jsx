@@ -28,7 +28,7 @@ export default function FilterContent({
 
         <button
           onClick={clearAll}
-          className="text-xs hidden lg:block uppercase underline text-[#8b6b49]"
+          className="text-xs hover:cursor-pointer hidden lg:block uppercase underline text-[#8b6b49]"
         >
           Clear All
         </button>

@@ -63,10 +63,10 @@ export default function SelectedTags({
               : `${tag.featureId}-${tag.valueCode}`
           }
           onClick={() => removeTag(tag)}
-          className="flex items-center  gap-2 lg:border border-[#b68b63] lg:text-[#7b5d3c] rounded-full lg:px-3 lg:py-1 text-xs hover:bg-[#f9f5ef]"
+          className="flex items-center  gap-2  lg:px-3 lg:py-1 text-xs "
         >
           {tag.displayName}
-          <IoClose size={16} className="text-[#7b5d3c]" />
+          <IoClose size={16} className="text-[#7b5d3c] hover:cursor-pointer" />
         </button>
       ))}
     </div>

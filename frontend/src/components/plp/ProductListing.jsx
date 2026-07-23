@@ -34,12 +34,12 @@ export default function ProductListing({ data, commerce }) {
 
   return (
     <>
-      <div className="lg:mx-18">
+      <div className="lg:mx-18 lg:mt-10">
         <div className="flex lg:flex-row flex-col gap-8">
           {position === "left" && (
             <FilterSidebar
               filters={filters}
-              selectedSort={sort?.selected}
+              selectedSort={sort?.selectedSort}
               sortOptions={sort?.options}
               onSortChange={setSelectedSort}
               config={data?.toolbarConfig[0]}
@@ -50,14 +50,15 @@ export default function ProductListing({ data, commerce }) {
             filters={filters}
             config={data.toolbarConfig[0]}
             totalProducts={totalProducts}
-            selectedSort={sort.selected}
+            // selectedSort={sort.selected}
+            selectedSort={selectedSort}
             sortOptions={sort.options}
             onSortChange={setSelectedSort} // later call handlesortChange fn
           />
           {position === "right" && (
             <FilterSidebar
               filters={filters}
-              selectedSort={sort?.selected}
+              selectedSort={selectedSort}
               sortOptions={sort?.options}
               onSortChange={setSelectedSort}
               config={data?.toolbarConfig[0]}

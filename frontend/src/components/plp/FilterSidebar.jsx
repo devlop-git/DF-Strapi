@@ -107,7 +107,7 @@ export default function FilterSidebar({
           />
         </BottomSheet>
       </div>
-      <div className="hidden lg:block lg:min-w-78 ">
+      <div className="hidden lg:block lg:w-78 ">
         <FilterContent
           filters={filters}
           selectedFilters={selectedFilters}

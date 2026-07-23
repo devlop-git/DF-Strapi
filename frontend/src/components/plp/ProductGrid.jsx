@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-
+import Toolbar from "./Toolbar";
 export default function ProductGrid({
   products,
   filters,
@@ -17,21 +17,12 @@ export default function ProductGrid({
         </h1>
 
         <div className="hidden lg:block">
-          {config.showSort && (
-            <div className="flex items-center gap-3">
-              <select
-                value={selectedSort}
-                onChange={(e) => onSortChange(e.target.value)}
-                className=" px-3 py-2 text-sm"
-              >
-                {sortOptions.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
+          <Toolbar
+            selectedSort={selectedSort}
+            sortOptions={sortOptions}
+            onSortChange={onSortChange}
+            config={config}
+          />
         </div>
       </div>
       <div className="grid grid-cols-2 gap-x-3 lg:gap-x-4 gap-y-10 lg:grid-cols-3">
