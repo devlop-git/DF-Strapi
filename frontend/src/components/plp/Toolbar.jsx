@@ -9,10 +9,10 @@ export default function Toolbar({
 
   return (
     <div className="flex items-center justify-between py-4  mb-8">
-      <div className="text-sm text-gray-600">
+      {/* <div className="text-sm text-gray-600">
         {config.showProductCount && <span>{totalProducts} Products</span>}
-      </div>
-
+      </div> */}
+      {/* 
       {config.showSort && (
         <div className="flex items-center gap-3">
           <span className="text-sm">Sort By</span>
@@ -29,7 +29,7 @@ export default function Toolbar({
             ))}
           </select>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

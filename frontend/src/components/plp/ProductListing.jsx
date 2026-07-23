@@ -46,9 +46,17 @@ export default function ProductListing({ data, commerce }) {
         </div>
         <div className="flex lg:flex-row flex-col gap-8">
           {position === "left" && <FilterSidebar filters={filters} />}
-          <ProductGrid products={products} filters={filters} />
+          <ProductGrid
+            products={products}
+            filters={filters}
+            config={data.toolbarConfig[0]}
+            totalProducts={totalProducts}
+            selectedSort={sort.selected}
+            sortOptions={sort.options}
+            onSortChange={setSelectedSort} // later call handlesortChange fn
+          />
           {position === "right" && <FilterSidebar filters={filters} />}
-          <Pagination pagination={pagination} />
+          {/* <Pagination pagination={pagination} /> */}
         </div>
       </div>
     </>
