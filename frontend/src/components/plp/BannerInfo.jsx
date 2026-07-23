@@ -2,14 +2,6 @@
 
 import { useState } from "react";
 
-const DATA = {
-  title: "Solitaire engagement ring",
-  shortDescription: `A solitaire engagement ring showcases the pure essence of a diamond: a single, radiant treasure set in a simple, masterfully crafted setting. This timeless icon symbolizes enduring love and has captivated generations with its elegant restraint and exceptional brilliance.
-
-Our curated selection of engagement rings includes delicate 1-carat solitaires as well as striking 2-carat designs. From the diamond shape and prong style to the precious metal, every detail can be tailored to create your perfect ring.`,
-  fullDescription: `Whether you prefer a classic round brilliant or a modern princess cut, our solitaire rings are designed to highlight the beauty of the center stone. Available in yellow gold, white gold, rose gold and platinum, each ring is handcrafted with exceptional attention to detail. Discover timeless elegance and create a ring that will last a lifetime.`,
-};
-
 export default function BannerInfo({ data }) {
   const descriptionText = data.description[0].children[0].text;
   const [expanded, setExpanded] = useState(false);
