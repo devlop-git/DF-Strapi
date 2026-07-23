@@ -18,12 +18,10 @@ export default function ProductGrid({
         <h1>
           {config.showSort && (
             <div className="flex items-center gap-3">
-              <span className="text-sm">Sort By</span>
-
               <select
                 value={selectedSort}
                 onChange={(e) => onSortChange(e.target.value)}
-                className="border rounded-md px-3 py-2 text-sm"
+                className=" px-3 py-2 text-sm"
               >
                 {sortOptions.map((option) => (
                   <option key={option.id} value={option.id}>

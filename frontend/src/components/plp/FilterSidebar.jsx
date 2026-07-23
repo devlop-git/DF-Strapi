@@ -12,6 +12,8 @@ import FilterContent from "./FilterContent";
 export default function FilterSidebar({ filters }) {
   const [selectedFilters, setSelectedFilters] = useState({});
   const [isOpen, setIsOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
   if (!filters) return null;
 
   useEffect(() => {
@@ -28,23 +30,42 @@ export default function FilterSidebar({ filters }) {
     setSelectedFilters(initial);
   }, [filters]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const trigger = 250; // adjust this value
+
+      setIsSticky(window.scrollY >= trigger);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const clearAll = () => {
     setSelectedFilters({});
   };
 
   return (
     <div className="">
-      <div className="lg:hidden">
-        <Button
-          text="Filter & sort"
-          count={1}
-          onClick={() => setIsOpen(true)}
-          icon={HiOutlineAdjustmentsHorizontal}
-          className="w-full h-16 bg-[#A0704F] hover:bg-[#8d6144] text-white gap-4"
-          iconClassName="w-7 h-7"
-          textClassName="text-[18px] font-semibold"
-          badgeClassName="w-8 h-8 rounded-md bg-white text-[#A0704F] text-[18px] font-semibold"
-        />
+      <div
+        className={`left-0 right-0 z-50 bg-white py-3 transition-all duration-300 lg:hidden ${
+          isSticky ? "fixed top-0 shadow-sm " : "relative"
+        }`}
+      >
+        <div className="mx-4">
+          <Button
+            text="Filter & sort"
+            count={1}
+            onClick={() => setIsOpen(true)}
+            icon={HiOutlineAdjustmentsHorizontal}
+            className="h-12 w-full bg-[#A0704F] text-white hover:bg-[#8d6144]"
+            iconClassName="h-7 w-7"
+            textClassName="text-base font-medium"
+            badgeClassName="flex h-5 w-5 items-center justify-center rounded-md bg-white text-[12px] font-semibold text-[#A0704F]"
+          />
+        </div>
+
         <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
           <FilterContent
             filters={filters}
