@@ -5,6 +5,7 @@ import { FaRegHeart } from "react-icons/fa";
 
 export default function ProductCard({ product, filters }) {
   const [hoveredMetal, setHoveredMetal] = useState(null);
+
   const metalFilter = filters?.find((f) => f.featureId === "FEATURE-METAL");
 
   const availableMetals = product.availableValues?.["FEATURE-METAL"] || [];
@@ -38,7 +39,7 @@ export default function ProductCard({ product, filters }) {
             height={500}
             unoptimized
             className="
-          h-[300px]
+          lg:h-[300px]
           w-full
           object-contain
           transition-transform
@@ -65,8 +66,8 @@ export default function ProductCard({ product, filters }) {
       </article>
       {/* Details */}
       <div className="pt-4">
-        <div className="flex justify-between items-start gap-4">
-          <h3 className="text-[12px] text-gray-800 leading-5 font-normal">
+        <div className="flex lg:flex-row flex-col justify-between items-start gap-4">
+          <h3 className="text-[12px] line-clamp-2 text-gray-800 leading-4 lg:leading-5 font-normal">
             {product.name}
           </h3>
 

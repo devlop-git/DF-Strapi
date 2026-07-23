@@ -10,8 +10,8 @@ export default function ProductGrid({
   onSortChange,
 }) {
   return (
-    <div>
-      <div className="flex justify-between">
+    <div className="mx-5 lg:mx-0">
+      <div className="hidden lg:flex justify-between">
         <h1>
           {config.showProductCount && <span>{totalProducts} Products</span>}
         </h1>
@@ -32,7 +32,7 @@ export default function ProductGrid({
           </div>
         )}
       </div>
-      <div className="grid grid-cols-2 lg:gap-x-4 gap-y-10 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-x-3 lg:gap-x-4 gap-y-10 lg:grid-cols-3">
         {products.map((product) => (
           <ProductCard
             key={product.ornamentId}
