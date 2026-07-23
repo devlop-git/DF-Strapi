@@ -5,6 +5,8 @@ import { FaRegHeart } from "react-icons/fa";
 
 export default function ProductCard({ product, filters }) {
   const [hoveredMetal, setHoveredMetal] = useState(null);
+  const [activeImage, setActiveImage] = useState(0);
+  const images = [product.image.medium, product.image.hover].filter(Boolean);
 
   const metalFilter = filters?.find((f) => f.featureId === "FEATURE-METAL");
 
@@ -21,46 +23,71 @@ export default function ProductCard({ product, filters }) {
     <Link href={`/pdp/${product.ornamentId}`} className="group">
       <article className="bg-white transition-all duration-300 shadow-md hover:shadow-lg ">
         {/* Image */}
-        <div className="relative  overflow-hidden">
+        <div className="relative overflow-hidden">
           {/* Discount Badge */}
           {discount > 0 && (
-            <span className="absolute top-3 left-3 z-10 bg-[#A5744A] text-white text-xs font-semibold px-3 ">
+            <span className="absolute top-3 left-3 z-10 bg-[#A5744A] px-3 text-xs font-semibold text-white">
               {discount}% OFF
             </span>
           )}
+
           {/* Wishlist */}
           <button className="absolute top-3 right-3 z-10">
             <FaRegHeart size={22} className="text-[#9C7A58]" />
           </button>
-          <Image
-            src={product.image.medium}
-            alt={product.image.altText}
-            width={500}
-            height={500}
-            unoptimized
-            className="
-          lg:h-[300px]
-          w-full
-          object-contain
-          transition-transform
-          duration-500
-          group-hover:scale-105
-        "
-          />
-          {product.image.hover && (
+
+          {/* Desktop Images */}
+          <div className="relative hidden lg:block">
             <Image
-              src={product.image.hover}
+              src={product.image.medium}
               alt={product.image.altText}
-              fill
+              width={500}
+              height={500}
               unoptimized
-              className="
-        object-contain
-        transition-opacity
-        duration-300
-        opacity-0
-        group-hover:opacity-100
-      "
+              className="h-[300px] w-full object-contain transition-transform duration-500 group-hover:scale-105"
             />
+
+            {product.image.hover && (
+              <Image
+                src={product.image.hover}
+                alt={product.image.altText}
+                fill
+                unoptimized
+                className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+            )}
+          </div>
+
+          {/* Mobile Image */}
+          <div className="lg:hidden">
+            <Image
+              src={images[activeImage]}
+              alt={product.image.altText}
+              width={500}
+              height={500}
+              unoptimized
+              className="w-full object-contain"
+            />
+          </div>
+
+          {/* Mobile Dots */}
+          {images.length > 1 && (
+            <div className=" flex absolute  left-1/2 bottom-[5%] -translate-x-1/2 justify-center gap-3 lg:hidden">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveImage(index);
+                  }}
+                  className={`h-2.5 w-2.5 rounded-full transition-all ${
+                    activeImage === index ? "bg-[#9C6D4B]" : "bg-[#9C6D4B]/40"
+                  }`}
+                />
+              ))}
+            </div>
           )}
         </div>
       </article>
