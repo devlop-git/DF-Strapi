@@ -17,7 +17,7 @@ export default function BottomSheet({ isOpen, onClose, children }) {
           isOpen ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <div className="mx-auto flex max-h-[90vh] flex-col">
+        <div className="mx-auto flex max-h-[65vh] flex-col">
           {/* Drag Handle */}
           <div className="sticky top-0 flex justify-center bg-white py-4">
             <div className="h-1.5 w-12 rounded-full bg-gray-300" />
