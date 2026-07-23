@@ -1,6 +1,6 @@
 import PlpSectionRenderer from "./PlpectionRenderer";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import PlpApiMockData from "../../mock/cms/plpApiData";
+import PlpApiMockData from "@/mock/cms/plpApiData";
 
 export default function PlpLayout({ commerce, cms }) {
   return (
