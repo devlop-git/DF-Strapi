@@ -3,39 +3,7 @@
 import { useState } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
 
-const faqData = {
-  title: "FAQs",
-  description: "*custom-made for engagement rings",
-  items: [
-    {
-      question: "What is the meaning of a solitaire engagement ring?",
-      answer:
-        "A solitaire engagement ring is considered the ultimate symbol of love. With its brilliant center stone that commands all the attention, a solitaire engagement ring is meant to symbolize strength, commitment, and purity.",
-    },
-    {
-      question: "Can I wear my solitaire engagement ring every day?",
-      answer:
-        "Yes. Solitaire engagement rings are designed for daily wear. Regular cleaning and occasional professional maintenance will help preserve their beauty.",
-    },
-    {
-      question: "Why are solitaire engagement rings more expensive?",
-      answer:
-        "The price depends on the center diamond's cut, clarity, color and carat weight. Since the center stone is the focus, it contributes most of the ring's value.",
-    },
-    {
-      question: "What makes a solitaire engagement ring special?",
-      answer:
-        "Its timeless elegance. A single center diamond creates a classic look that never goes out of style.",
-    },
-    {
-      question: "Can I wear my solitaire engagement ring every day?",
-      answer:
-        "Absolutely. With proper care, a solitaire engagement ring is perfect for everyday wear.",
-    },
-  ],
-};
-
-export default function FAQSection() {
+export default function FAQSection({ data }) {
   const [active, setActive] = useState(null);
 
   return (
@@ -45,15 +13,15 @@ export default function FAQSection() {
           {/* Left */}
           <div>
             <h2 className="font-serif text-[28px] text-center lg:text-left  lg:text-[36px] text-[#1D1D1B]">
-              {faqData.title}
+              {data?.title}
             </h2>
 
-            <p className=" text-base  text-[#1D1D1B]">{faqData.description}</p>
+            <p className=" text-base  text-[#1D1D1B]">{data?.description}</p>
           </div>
 
           {/* Right */}
           <div>
-            {faqData.items.map((item, index) => {
+            {data?.faqItem?.map((item, index) => {
               const isOpen = active === index;
 
               return (
@@ -65,9 +33,9 @@ export default function FAQSection() {
                     <span
                       className="pr-8 text-base font-semibold
 
-leading-6 lg:leading-8 text-[#1D1D1B]"
+    leading-6 lg:leading-8 text-[#1D1D1B]"
                     >
-                      {item.question}
+                      {item?.question}
                     </span>
 
                     {isOpen ? (
@@ -84,7 +52,7 @@ leading-6 lg:leading-8 text-[#1D1D1B]"
                   >
                     <div className="overflow-hidden">
                       <p className="max-w-4xl text-base  leading-6  text-[#333]">
-                        {item.answer}
+                        {item?.answer}
                       </p>
                     </div>
                   </div>

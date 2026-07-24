@@ -1,10 +1,11 @@
-import React from 'react'
-
-const Pagination = ({pagination}) => {
-    console.log(pagination)
+import React from "react";
+import OutlineButton from "@/components/common/OutlineButton";
+const Pagination = ({ pagination }) => {
   return (
-    <div>Pagination</div>
-  )
-}
+    <div className="lg:mt-12 my-8">
+      <OutlineButton>Load More</OutlineButton>
+    </div>
+  );
+};
 
-export default Pagination
+export default Pagination;

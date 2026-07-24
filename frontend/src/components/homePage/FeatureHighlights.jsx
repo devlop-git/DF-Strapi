@@ -1,5 +1,5 @@
-import Image from "next/image"
-import { getStrapiMedia } from "@/utils/strapi"
+import Image from "next/image";
+import { getStrapiMedia } from "@/utils/strapi";
 
 export default function FeatureHighlights({ data }) {
   return (
@@ -19,33 +19,56 @@ export default function FeatureHighlights({ data }) {
         {/* Features */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12">
           {data.items?.map((item) => {
-            const icon = item.icon?.[0]
+            const iconForDesktop = item?.desktopIcon?.[0];
+            const iconForMobile = item?.mobileIcon?.[0];
+            const iconForTablet = item?.tabIcon?.[0];
 
             return (
               <div
-                key={item.id}
+                key={item?.id}
                 className="flex items-center justify-center gap-5"
               >
-                {icon && (
-                  <div className="flex-shrink-0">
-                    <Image
-                      src={getStrapiMedia(icon)}
-                      alt={icon.alternativeText || item.iconDescription}
-                      width={60}
-                      height={60}
-                      className="object-contain"
-                    />
-                  </div>
+                {/* Desktop */}
+                {iconForDesktop && (
+                  <Image
+                    src={getStrapiMedia(iconForDesktop)}
+                    alt={iconForDesktop.alternativeText || item.iconDescription}
+                    width={60}
+                    height={60}
+                    className="hidden object-contain lg:block"
+                  />
+                )}
+
+                {/* Tablet */}
+                {iconForTablet && (
+                  <Image
+                    src={getStrapiMedia(iconForTablet)}
+                    alt={iconForTablet.alternativeText || item.iconDescription}
+                    width={60}
+                    height={60}
+                    className="hidden object-contain md:block lg:hidden"
+                  />
+                )}
+
+                {/* Mobile */}
+                {iconForMobile && (
+                  <Image
+                    src={getStrapiMedia(iconForMobile)}
+                    alt={iconForMobile.alternativeText || item.iconDescription}
+                    width={60}
+                    height={60}
+                    className="block object-contain md:hidden"
+                  />
                 )}
 
                 <p className="text-[17px] leading-7 text-[#222] max-w-[180px]">
                   {item.iconDescription}
                 </p>
               </div>
-            )
+            );
           })}
         </div>
       </div>
     </section>
-  )
+  );
 }

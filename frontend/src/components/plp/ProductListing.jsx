@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Toolbar from "./Toolbar";
 import ProductGrid from "./ProductGrid";
-import Pagination from "./Pagination";
 import { reorderFilters } from "@/utils/reorderFilters";
 import FilterSidebar from "./FilterSidebar";
 
@@ -34,29 +32,37 @@ export default function ProductListing({ data, commerce }) {
 
   return (
     <>
-      <div className="lg:mx-18">
-        <div className="hidden lg:block">
-          <Toolbar
-            totalProducts={totalProducts}
-            selectedSort={sort.selected}
-            sortOptions={sort.options}
-            onSortChange={setSelectedSort} // later call handlesortChange fn
-            config={data.toolbarConfig[0]}
-          />
-        </div>
+      <div className="lg:mx-18 lg:mt-10">
         <div className="flex lg:flex-row flex-col gap-8">
-          {position === "left" && <FilterSidebar filters={filters} />}
+          {position === "left" && (
+            <FilterSidebar
+              filters={filters}
+              selectedSort={sort?.selectedSort}
+              sortOptions={sort?.options}
+              onSortChange={setSelectedSort}
+              config={data?.toolbarConfig[0]}
+            />
+          )}
           <ProductGrid
             products={products}
             filters={filters}
             config={data.toolbarConfig[0]}
             totalProducts={totalProducts}
-            selectedSort={sort.selected}
+            // selectedSort={sort.selected}
+            selectedSort={selectedSort}
             sortOptions={sort.options}
+            pagination={pagination}
             onSortChange={setSelectedSort} // later call handlesortChange fn
           />
-          {position === "right" && <FilterSidebar filters={filters} />}
-          {/* <Pagination pagination={pagination} /> */}
+          {position === "right" && (
+            <FilterSidebar
+              filters={filters}
+              selectedSort={sort?.selectedSort}
+              sortOptions={sort?.options}
+              onSortChange={setSelectedSort}
+              config={data?.toolbarConfig[0]}
+            />
+          )}
         </div>
       </div>
     </>

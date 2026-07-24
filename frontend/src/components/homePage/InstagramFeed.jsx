@@ -1,10 +1,10 @@
-import Image from "next/image"
-import Link from "next/link"
-import { getStrapiMedia } from "@/utils/strapi"
+import Image from "next/image";
+import Link from "next/link";
+import { getStrapiMedia } from "@/utils/strapi";
 
 export default function InstagramFeed({ data }) {
-  const title = data?.title ?? ""
-  const [prefix, handle] = title.split("@")
+  const title = data?.title ?? "";
+  const [prefix, handle] = title.split("@");
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -27,7 +27,9 @@ export default function InstagramFeed({ data }) {
         {/* Instagram Posts */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {data?.posts?.map((post) => {
-            const image = post.instaImage?.[0]
+            const imageForDesktop = post?.desktopInstaImage?.[0];
+            const imageForMobile = post?.mobileInstaImage?.[0];
+            const imageForTablet = post?.tabInstaImage?.[0];
 
             return (
               <Link
@@ -38,23 +40,43 @@ export default function InstagramFeed({ data }) {
                 className="group"
               >
                 <div className="relative aspect-square overflow-hidden bg-[#F8F8F8]">
-                  {image && (
+                  {imageForDesktop && (
                     <Image
-                      src={getStrapiMedia(image)}
-                      alt={image.alternativeText || "Instagram Post"}
+                      src={getStrapiMedia(imageForDesktop)}
+                      alt={imageForDesktop.alternativeText || "Instagram Post"}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      priority={false}
+                      className="hidden object-cover transition-transform duration-500 group-hover:scale-105 lg:block"
                     />
                   )}
 
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300" />
+                  {imageForTablet && (
+                    <Image
+                      src={getStrapiMedia(imageForTablet)}
+                      alt={imageForTablet.alternativeText || "Instagram Post"}
+                      fill
+                      priority={false}
+                      className="hidden object-cover transition-transform duration-500 group-hover:scale-105 md:block lg:hidden"
+                    />
+                  )}
+
+                  {imageForMobile && (
+                    <Image
+                      src={getStrapiMedia(imageForMobile)}
+                      alt={imageForMobile.alternativeText || "Instagram Post"}
+                      fill
+                      priority={false}
+                      className="object-cover transition-transform duration-500 group-hover:scale-105 md:hidden"
+                    />
+                  )}
+
+                  <div className="absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/20" />
                 </div>
               </Link>
-            )
+            );
           })}
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,17 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FiSliders } from "react-icons/fi";
 import Button from "../common/Button";
-import FilterGroup from "./FilterGroup";
-import SelectedTags from "./SelectedTags";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import BottomSheet from "./BottomSheet";
 import FilterContent from "./FilterContent";
 
-export default function FilterSidebar({ filters }) {
+export default function FilterSidebar({
+  filters,
+  selectedSort,
+  sortOptions,
+  onSortChange,
+  config,
+}) {
   const [selectedFilters, setSelectedFilters] = useState({});
   const [isOpen, setIsOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
   if (!filters) return null;
 
   useEffect(() => {
@@ -28,34 +33,81 @@ export default function FilterSidebar({ filters }) {
     setSelectedFilters(initial);
   }, [filters]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const trigger = 250; // adjust this value
+
+      setIsSticky(window.scrollY >= trigger);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const clearAll = () => {
     setSelectedFilters({});
   };
 
   return (
     <div className="">
-      <div className="lg:hidden">
-        <Button
-          text="Filter & sort"
-          count={1}
-          onClick={() => setIsOpen(true)}
-          icon={HiOutlineAdjustmentsHorizontal}
-          className="w-full h-16 bg-[#A0704F] hover:bg-[#8d6144] text-white gap-4"
-          iconClassName="w-7 h-7"
-          textClassName="text-[18px] font-semibold"
-          badgeClassName="w-8 h-8 rounded-md bg-white text-[#A0704F] text-[18px] font-semibold"
-        />
-        <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <div
+        className={`left-0 right-0 z-50 bg-white py-3 transition-all duration-300 lg:hidden ${
+          isSticky ? "fixed top-0 shadow-sm " : "relative"
+        }`}
+      >
+        <div className="mx-4">
+          <Button
+            text="Filter & sort"
+            count={1}
+            onClick={() => setIsOpen(true)}
+            icon={HiOutlineAdjustmentsHorizontal}
+            className="h-12 w-full bg-[#A0704F] text-white hover:bg-[#8d6144]"
+            iconClassName="h-7 w-7"
+            textClassName="text-base font-medium"
+            badgeClassName="flex h-5 w-5 items-center justify-center rounded-md bg-white text-[12px] font-semibold text-[#A0704F]"
+          />
+        </div>
+
+        <BottomSheet
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          footer={
+            <div className="flex gap-3">
+              <button
+                onClick={clearAll}
+                className="flex-1 border border-[#976649] py-3 text-lg font-medium "
+              >
+                Clear
+              </button>
+
+              <button
+                onClick={() => setIsOpen(false)}
+                className="flex flex-1 items-center justify-center gap-2 bg-[#A5744A]  text-base font-medium text-white"
+              >
+                Apply Filters
+                <span className="flex h-4 w-4 items-center justify-center rounded-md bg-white text-xs font-semibold text-[#A5744A]">
+                  1
+                </span>
+              </button>
+            </div>
+          }
+        >
           <FilterContent
             filters={filters}
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
             clearAll={clearAll}
-            className="p-6"
+            className="pb-4"
+            setIsOpen={setIsOpen}
+            selectedSort={selectedSort}
+            sortOptions={sortOptions}
+            onSortChange={onSortChange}
+            config={config}
           />
         </BottomSheet>
       </div>
-      <div className="hidden lg:block lg:min-w-78 ">
+      <div className="hidden lg:block lg:w-78 ">
         <FilterContent
           filters={filters}
           selectedFilters={selectedFilters}

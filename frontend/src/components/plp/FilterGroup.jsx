@@ -84,7 +84,7 @@ export default function FilterGroup({
         className="flex justify-between items-center w-full"
       >
         <div className="flex items-center gap-2">
-          <span className="uppercase tracking-wide text-xs font-semibold text-[#8b6b49]">
+          <span className="uppercase tracking-wide text-xs font-medium lg:font-semibold text-[#8b6b49]">
             {filter.displayName}
           </span>
           {filter.selectionType !== "range" &&
