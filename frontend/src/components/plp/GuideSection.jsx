@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
-import FAQSection from "./FAQSection";
-import NewsletterSection from "./NewsletterSection";
 
 const GuideSection = ({ data }) => {
   if (!data) return null;
@@ -64,8 +62,6 @@ const GuideSection = ({ data }) => {
           </div>
         </div>
       </section>
-      <FAQSection />
-      <NewsletterSection />
     </>
   );
 };

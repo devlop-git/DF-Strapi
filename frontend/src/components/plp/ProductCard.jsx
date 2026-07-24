@@ -2,6 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
+import DotIndicatorButton from "@/components/common/DotIndicatorButton";
 
 export default function ProductCard({ product, filters }) {
   const [hoveredMetal, setHoveredMetal] = useState(null);
@@ -74,17 +75,14 @@ export default function ProductCard({ product, filters }) {
           {images.length > 1 && (
             <div className=" flex absolute  left-1/2 bottom-[5%] -translate-x-1/2 justify-center gap-3 lg:hidden">
               {images.map((_, index) => (
-                <button
+                <DotIndicatorButton
                   key={index}
-                  type="button"
+                  active={activeImage === index}
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setActiveImage(index);
                   }}
-                  className={`h-2.5 w-2.5 rounded-full transition-all ${
-                    activeImage === index ? "bg-[#9C6D4B]" : "bg-[#9C6D4B]/40"
-                  }`}
                 />
               ))}
             </div>
