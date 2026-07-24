@@ -1,18 +1,18 @@
-import { FaGift as Gift } from "react-icons/fa6"
-import { HiOutlineSparkles as Sparkles } from "react-icons/hi2"
-import { FaLock as Lock } from "react-icons/fa"
+import { FaGift as Gift } from "react-icons/fa6";
+import { HiOutlineSparkles as Sparkles } from "react-icons/hi2";
+import { FaLock as Lock } from "react-icons/fa";
 
 export default function NewsletterSignup({ data }) {
   const benefits = data.description
     .split("\n")
-    .filter((item) => item.trim() !== "")
+    .filter((item) => item.trim() !== "");
 
-  const icons = [Lock, Gift, Sparkles]
+  const icons = [Lock, Gift, Sparkles];
 
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-2  ">
           {/* Left Content */}
           <div className="max-w-xl">
             <h2 className="font-serif text-[28px] lg:text-[38px] leading-[1.08] font-light text-[#111]">
@@ -21,7 +21,7 @@ export default function NewsletterSignup({ data }) {
 
             <div className="mt-10 space-y-6">
               {benefits?.map((item, index) => {
-                const Icon = icons[index] || Sparkles
+                const Icon = icons[index] || Sparkles;
 
                 return (
                   <div key={index} className="flex items-start gap-4">
@@ -29,20 +29,20 @@ export default function NewsletterSignup({ data }) {
 
                     <p className="text-[17px] text-[#333] leading-7">{item}</p>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
 
           {/* Right Form */}
           <div className="max-w-lg">
-            <form className="space-y-10">
+            <form className="space-y-4">
               <div>
-                <label className="block text-sm text-gray-700 mb-2">Name</label>
+                <label className="block text-sm text-gray-700 ">Name</label>
 
                 <input
                   type="text"
-                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black pb-3"
+                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black "
                 />
               </div>
 
@@ -64,7 +64,7 @@ export default function NewsletterSignup({ data }) {
 
                 <input
                   type="email"
-                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black pb-3"
+                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black "
                 />
               </div>
 
@@ -79,5 +79,5 @@ export default function NewsletterSignup({ data }) {
         </div>
       </div>
     </section>
-  )
+  );
 }

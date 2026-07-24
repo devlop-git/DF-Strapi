@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState } from "react"
-import { HiBars3, HiXMark, HiChevronLeft } from "react-icons/hi2"
-import { FiChevronRight } from "react-icons/fi"
-import HeaderTabs from "./HeaderTabs"
+import Link from "next/link";
+import { useState } from "react";
+import { HiBars3, HiXMark, HiChevronLeft } from "react-icons/hi2";
+import { IoIosArrowForward } from "react-icons/io";
+import HeaderTabs from "./HeaderTabs";
+import TopAnnouncementBar from "./TopAnnouncementBar";
 
 export default function MobileNavigation({ navigation = [], locale }) {
-  const [open, setOpen] = useState(false)
-  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [open, setOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const openDrawer = () => setOpen(true)
+  const openDrawer = () => setOpen(true);
 
   const closeDrawer = () => {
-    setOpen(false)
-    setSelectedCategory(null)
-  }
+    setOpen(false);
+    setSelectedCategory(null);
+  };
 
   const goBack = () => {
-    setSelectedCategory(null)
-  }
+    setSelectedCategory(null);
+  };
 
   return (
     <>
       {/* Mobile Header */}
-
       <div className="flex min-h-16 items-center justify-between lg:hidden">
         <button onClick={openDrawer} className="p-1" aria-label="Open Menu">
           <HiBars3 className="text-4xl text-[#111]" />
@@ -41,7 +41,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
 
       <div
         onClick={closeDrawer}
-        className={`fixed inset-0 z-[999] transition-all duration-300 ${
+        className={`fixed inset-0 z-999 transition-all duration-300 ${
           open ? "visible bg-black/40 opacity-100" : "invisible opacity-0"
         }`}
       >
@@ -49,18 +49,19 @@ export default function MobileNavigation({ navigation = [], locale }) {
 
         <aside
           onClick={(e) => e.stopPropagation()}
-          className={`absolute left-0 top-0 h-full w-[90%] max-w-[420px] bg-white transition-transform duration-300 ${
+          className={`absolute left-0  top-0 h-full w-full  bg-white transition-transform duration-300 ${
             open ? "translate-x-0" : "-translate-x-full"
           }`}
         >
           {/* Drawer Header */}
+          <TopAnnouncementBar headerTextStyle="!text-xs" />
 
-          <div className="flex h-20 items-center justify-between border-b border-[#ECE6DE] px-4">
+          <div className="flex  items-center justify-between  px-2">
             <button onClick={closeDrawer} aria-label="Close Menu">
               <HiXMark className="text-3xl text-[#111]" />
             </button>
 
-            <h2 className="font-serif text-[11px] tracking-wide">
+            <h2 className="font-serif text-[14px] tracking-wide">
               DIAMONDS FACTORY
             </h2>
 
@@ -80,17 +81,17 @@ export default function MobileNavigation({ navigation = [], locale }) {
                   key={category.category_id}
                   onClick={() => {
                     if (category.children?.length) {
-                      setSelectedCategory(category)
+                      setSelectedCategory(category);
                     }
                   }}
-                  className="flex w-full items-center justify-between border-b border-[#ECE6DE] px-8 py-7 text-left text-[11px] uppercase tracking-wide transition hover:bg-[#F8F5F1]"
+                  className="flex w-full items-center justify-between  px-4 py-4 text-left text-[11px] uppercase tracking-wide transition hover:bg-[#F8F5F1]"
                 >
                   <span>
                     {category.category_details.displayCategoryName.en}
                   </span>
 
                   {category.children?.length > 0 && (
-                    <FiChevronRight className="text-3xl" />
+                    <IoIosArrowForward className="text-2xl" />
                   )}
                 </button>
               ))}
@@ -105,9 +106,9 @@ export default function MobileNavigation({ navigation = [], locale }) {
 
                 <button
                   onClick={goBack}
-                  className="flex w-full items-center gap-3 border-b border-[#ECE6DE] px-6 py-6 text-left"
+                  className="flex w-full items-center gap-3  px-6 py-6 text-left"
                 >
-                  <HiChevronLeft className="text-3xl" />
+                  <HiChevronLeft className="text-2xl" />
 
                   <span className="text-[12px] font-medium uppercase text-[#A5744A]">
                     {selectedCategory.category_details.displayCategoryName.en}
@@ -121,7 +122,7 @@ export default function MobileNavigation({ navigation = [], locale }) {
                     key={child.category_id}
                     href={`/plp/${child.category_id}`}
                     onClick={closeDrawer}
-                    className="flex items-center justify-between border-b border-[#ECE6DE] px-8 py-7 text-[12px] uppercase transition hover:bg-[#F8F5F1]"
+                    className="flex items-center justify-between  px-8 text-[12px] uppercase transition hover:bg-[#F8F5F1]"
                   >
                     <span>{child.category_details.displayCategoryName.en}</span>
 
@@ -134,5 +135,5 @@ export default function MobileNavigation({ navigation = [], locale }) {
         </aside>
       </div>
     </>
-  )
+  );
 }

@@ -14,7 +14,7 @@ const flags = {
 const LanguageDropdown = ({ languages = [] }) => {
   const [selected, setSelected] = useState(languages[0]);
   const [open, setOpen] = useState(false);
-   const router = useRouter();
+  const router = useRouter();
 
   if (!selected) return null;
 
@@ -31,43 +31,35 @@ const LanguageDropdown = ({ languages = [] }) => {
   };
 
   return (
-    <div
-      className="relative"
-      tabIndex={0}
-      onBlur={() => setOpen(false)}
-    >
+    <div className="relative" tabIndex={0} onBlur={() => setOpen(false)}>
       {/* Trigger */}
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase rounded-md hover:bg-gray-100"
+        className="flex hover:cursor-pointer items-center gap-2 px-3 py-2 text-sm font-medium uppercase rounded-md hover:bg-gray-100"
       >
         <span className="text-xl">{flags[selected.code]}</span>
 
         <span>{selected.label}</span>
 
         <FaChevronDown
-          className={`text-xs transition-transform ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`text-xs transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute left-0 mt-2 w-44 rounded-lg border bg-white shadow-lg overflow-hidden z-50">
+        <div className="absolute hover:cursor-pointer left-0 mt-2 min-w-45  bg-[#fafafa]  z-50">
           {languages?.map((lang) => (
             <button
               key={lang.code}
               type="button"
               onMouseDown={() => handleSelect(lang)}
-              className={`flex w-full items-center gap-3 px-4 py-3 text-left uppercase hover:bg-gray-100 ${
-                selected.code === lang.code
-                  ? "bg-gray-50 font-semibold"
-                  : ""
+              className={`flex cursor-pointer w-full ml-2 my-1 items-center text-base  gap-x-1  text-left uppercase  ${
+                selected.code === lang.code ? "bg-gray-50 font-semibold" : ""
               }`}
             >
-              <span className="text-xl" >{flags[lang.code]}</span>
+              <span className="">{flags[lang.code]}</span>
               {lang.label}
             </button>
           ))}

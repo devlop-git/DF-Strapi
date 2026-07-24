@@ -14,7 +14,7 @@ import {
 const HeaderTabs = ({ logo, getStrapiMedia, languages }) => {
   return (
     <div className="lg:border-b lg:border-[#E8DDCF] ">
-      <div className=" gap-x-1 mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className=" gap-x-1 mx-auto flex lg:grid grid-cols-3 h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left */}
         <div className="flex items-center gap-x-1  md:gap-6">
           <button className="hover:text-[#A5744A] transition">
@@ -32,7 +32,7 @@ const HeaderTabs = ({ logo, getStrapiMedia, languages }) => {
         </div>
 
         {/* Logo */}
-        <Link href="/">
+        <Link href="/" className="lg:flex justify-center">
           {logo && (
             <div className="relative w-50.25 h-[14px]">
               <Image
@@ -48,7 +48,7 @@ const HeaderTabs = ({ logo, getStrapiMedia, languages }) => {
 
         {/* Right */}
 
-        <div className="flex items-center gap-7">
+        <div className="flex lg:justify-end items-center gap-x-4">
           <LanguageDropdown languages={languages} />
           <button className="hover:text-[#A5744A] hidden lg:block">
             <FaSearch className="text-lg md:text-2xl" />

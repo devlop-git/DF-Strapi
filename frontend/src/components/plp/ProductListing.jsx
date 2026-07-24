@@ -16,7 +16,8 @@ export default function ProductListing({ data, commerce }) {
   } = commerce;
 
   const [selectedSort, setSelectedSort] = useState(sort.selected);
-
+  const gridColumnsIs = data?.gridConfig[0];
+  const filterSectionStyleIs = data.filterConfig[0];
   const position = data.filterConfig?.[0]?.position || "left";
   const filters = reorderFilters(commerce.filters, data.filterConfig?.order);
 
@@ -41,6 +42,7 @@ export default function ProductListing({ data, commerce }) {
               sortOptions={sort?.options}
               onSortChange={setSelectedSort}
               config={data?.toolbarConfig[0]}
+              filterSectionStyleIs={filterSectionStyleIs}
             />
           )}
           <ProductGrid
@@ -52,6 +54,7 @@ export default function ProductListing({ data, commerce }) {
             selectedSort={selectedSort}
             sortOptions={sort.options}
             pagination={pagination}
+            gridColumnsIs={gridColumnsIs}
             onSortChange={setSelectedSort} // later call handlesortChange fn
           />
           {position === "right" && (
@@ -61,6 +64,7 @@ export default function ProductListing({ data, commerce }) {
               sortOptions={sort?.options}
               onSortChange={setSelectedSort}
               config={data?.toolbarConfig[0]}
+              filterSectionStyleIs={filterSectionStyleIs}
             />
           )}
         </div>

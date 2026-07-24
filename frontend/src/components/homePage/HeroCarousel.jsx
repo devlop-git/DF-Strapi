@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Pagination, EffectFade } from "swiper/modules"
+import Image from "next/image";
+import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 
-import "swiper/css"
-import "swiper/css/pagination"
-import "swiper/css/effect-fade"
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
-import { getStrapiMedia } from "@/utils/strapi"
+import { getStrapiMedia } from "@/utils/strapi";
 
 export default function HeroCarousel({ data }) {
   return (
@@ -29,9 +29,9 @@ export default function HeroCarousel({ data }) {
         className="w-full"
       >
         {data?.heroSlides?.map((slide) => {
-          const imageForDesktop = slide?.desktopImage?.[0]
-          const imageForMobile = slide?.mobileImage?.[0]
-          const imageForTablet = slide?.tabImage
+          const imageForDesktop = slide?.desktopImage?.[0];
+          const imageForMobile = slide?.mobileImage?.[0];
+          const imageForTablet = slide?.tabImage;
 
           return (
             <SwiperSlide key={slide.id}>
@@ -79,12 +79,12 @@ export default function HeroCarousel({ data }) {
                 <div className="absolute inset-0">
                   <div className="max-w-7xl mx-auto h-full px-8 lg:px-10 flex items-center">
                     <div className="max-w-lg ml-8 lg:ml-20">
-                      <h2 className="font-serif text-[#111] text-5xl lg:text-7xl font-light leading-tight">
+                      <h2 className="font-serif text-[#ffffff] text-5xl lg:text-7xl font-light leading-tight">
                         {slide.title}
                       </h2>
 
                       {slide.subTitle && (
-                        <p className="mt-5 text-lg lg:text-2xl text-[#222]">
+                        <p className="mt-5 text-lg lg:text-2xl text-[#ffffff] ">
                           {slide.subTitle}
                         </p>
                       )}
@@ -97,10 +97,10 @@ export default function HeroCarousel({ data }) {
                             mt-10
                             px-10
                             py-4
-                            bg-[#A5744A]
-                            text-white
+                            bg-[#ffffff]
+                            text-[#000000]
                             text-lg
-                            hover:bg-[#8E653F]
+                            
                             transition-all
                             duration-300
                           "
@@ -113,7 +113,7 @@ export default function HeroCarousel({ data }) {
                 </div>
               </div>
             </SwiperSlide>
-          )
+          );
         })}
       </Swiper>
 
@@ -135,5 +135,5 @@ export default function HeroCarousel({ data }) {
         }
       `}</style>
     </section>
-  )
+  );
 }
