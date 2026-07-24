@@ -10,6 +10,7 @@ export default function ProductGrid({
   sortOptions,
   onSortChange,
   pagination,
+  gridColumnsIs,
 }) {
   return (
     <div className="mx-5 lg:mx-0">
@@ -27,7 +28,13 @@ export default function ProductGrid({
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-x-3 lg:gap-x-4 gap-y-10 lg:grid-cols-3">
+
+      <div
+        className={`grid grid-cols-${gridColumnsIs?.mobileColumns} gap-x-${gridColumnsIs?.mobileGap}
+          md:grid-cols-${gridColumnsIs?.tabColumns} md:gap-x-${gridColumnsIs?.tabGap}
+          lg:grid-cols-${gridColumnsIs?.desktopColumns} lg:gap-x-${gridColumnsIs?.desktopGap}
+          `}
+      >
         {products.map((product) => (
           <ProductCard
             key={product.ornamentId}

@@ -12,6 +12,7 @@ export default function FilterSidebar({
   sortOptions,
   onSortChange,
   config,
+  filterSectionStyleIs,
 }) {
   const [selectedFilters, setSelectedFilters] = useState({});
   const [isOpen, setIsOpen] = useState(false);
@@ -107,7 +108,12 @@ export default function FilterSidebar({
           />
         </BottomSheet>
       </div>
-      <div className="hidden lg:block lg:w-78 ">
+      <div
+        className={`hidden lg:block `}
+        style={{
+          width: `${filterSectionStyleIs?.width || 312}px`,
+        }}
+      >
         <FilterContent
           filters={filters}
           selectedFilters={selectedFilters}
