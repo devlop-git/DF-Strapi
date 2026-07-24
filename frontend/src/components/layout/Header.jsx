@@ -31,7 +31,7 @@ const Header = async () => {
             />
           </div>
 
-          <div className="border-b border-[#E8DDCF]">
+          <div className="">
             <div className="px-4 sm:px-6 lg:px-8">
               <Navigation locale={locale} />
             </div>
