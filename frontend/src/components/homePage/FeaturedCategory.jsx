@@ -6,19 +6,19 @@ export default function FeaturedCategories({ data }) {
   const tabletImage = data?.tabImage?.[0];
   const mobileImage = data?.mobileImage?.[0];
 
-  const imageUrl = getStrapiMedia(mobileImage || tabletImage || desktopImage);
-
   return (
-    <section className="bg-[#F8F5F2] py-20">
+    <section className="lg:bg-[#F8F5F2] py-20">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-20">
         <div className="grid items-center gap-16 md:grid-cols-2">
           {/* Left */}
           <div className="max-w-xl flex flex-col gap-y-8 ">
-            <h2 className="font-serif text-5xl  font-light leading-[1.05] text-[#111]">
+            <h2 className="font-serif text-3xl lg:text-5xl  font-light leading-[1.05] text-[#111]">
               {data.title}
             </h2>
 
-            <p className=" text-xl leading-6 text-[#444]">{data.description}</p>
+            <p className=" text-lg lg:text-xl leading-6 text-[#444]">
+              {data.description}
+            </p>
 
             {data.ctaText && (
               <Link

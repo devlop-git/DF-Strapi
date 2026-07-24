@@ -3,11 +3,11 @@ import { getStrapiMedia } from "@/utils/strapi";
 
 export default function FeatureHighlights({ data }) {
   return (
-    <section className="w-full  py-20 ">
+    <section className="w-full  lg:py-20 ">
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-[28px] lg:text-[36px] text-left md:text-center font-light text-[#171717] leading-tight">
+          <h2 className="font-serif text-[28px] lg:text-[36px] text-center font-light text-[#171717] leading-tight">
             {data.title}
           </h2>
 
@@ -17,11 +17,11 @@ export default function FeatureHighlights({ data }) {
         </div>
 
         {/* Features */}
-        <div className="   grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <div className="   grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-12">
           {data.items?.map((item) => {
             const iconForDesktop = item?.desktopIcon?.[0];
-            const iconForMobile = item?.mobileIcon?.[0];
-            const iconForTablet = item?.tabIcon?.[0];
+            const iconForMobile = item?.mobileIcon;
+            const iconForTablet = item?.tabIcon;
 
             return (
               <div
