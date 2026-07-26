@@ -14,7 +14,7 @@ export default function NewsletterSignup({ data }) {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2  ">
           {/* Left Content */}
-          <div className="max-w-xl">
+          <div>
             <h2 className="font-serif text-[28px] lg:text-[38px] leading-[1.08] font-light text-[#111]">
               {data.heading}
             </h2>
@@ -35,7 +35,7 @@ export default function NewsletterSignup({ data }) {
           </div>
 
           {/* Right Form */}
-          <div className="max-w-lg">
+          <div>
             <form className="space-y-4">
               <div>
                 <label className="block text-sm text-gray-700 ">Name</label>
@@ -70,7 +70,7 @@ export default function NewsletterSignup({ data }) {
 
               <button
                 type="submit"
-                className="bg-[#A5744A] text-white px-8 py-4 font-medium hover:bg-[#8D6642] transition-colors"
+                className="bg-[#A5744A] w-full lg:w-auto text-white px-8 py-4 font-medium hover:bg-[#8D6642] transition-colors"
               >
                 Abonnieren
               </button>

@@ -25,16 +25,18 @@ export default function MobileNavigation({ navigation = [], locale }) {
   return (
     <>
       {/* Mobile Header */}
-      <div className="flex min-h-16 items-center justify-between lg:hidden">
+      <div className="md:relative flex min-h-16 items-center lg:hidden">
         <button onClick={openDrawer} className="p-1" aria-label="Open Menu">
           <HiBars3 className="text-4xl text-[#111]" />
         </button>
 
-        <h2 className="font-serif text-[12px] tracking-wide">
+        <h2 className="md:absolute md:left-[20%] md:-translate-x-1/2 font-serif text-[12px] tracking-wide">
           DIAMONDS FACTORY
         </h2>
 
-        <HeaderTabs />
+        <div className="ml-auto">
+          <HeaderTabs />
+        </div>
       </div>
 
       {/* Overlay */}

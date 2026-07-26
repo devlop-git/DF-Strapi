@@ -23,7 +23,7 @@ export default function FeaturedCategories({ data }) {
             {data.ctaText && (
               <Link
                 href={data.ctaURL || "/"}
-                className=" inline-flex w-full lg:w-[200px] justify-center border border-black px-7 py-3 text-center text-lg transition hover:bg-black hover:text-white md:w-auto"
+                className=" inline-flex w-full md:w-[200px] justify-center border border-black px-7 py-3 text-center text-lg transition hover:bg-black hover:text-white "
               >
                 {data.ctaText}
               </Link>

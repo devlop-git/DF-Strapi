@@ -11,7 +11,7 @@ export default function InstagramFeed({ data }) {
         {/* Heading */}
         <div className="mb-14 text-center">
           {title && (
-            <div className="flex flex-col lg:flex-row justify-center items-center gap-x-4">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-x-4">
               <h2 className="font-serif text-3xl font-light text-[#111] sm:text-4xl lg:text-[36px]">
                 {prefix}
               </h2>

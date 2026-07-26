@@ -34,7 +34,7 @@ export default function ReviewsSection({ data }) {
         )}
 
         {/* Review Images */}
-        <div className="mt-10 grid grid-cols-2 lg:flex items-center justify-center  sm:mt-12  md:gap-16 lg:gap-24">
+        <div className=" grid grid-cols-2 lg:flex items-center justify-center mt-6 md:mt-0  md:gap-16 lg:gap-24">
           {renderReviewImage(trustpilot, "Trustpilot", "")}
 
           {renderReviewImage(google, "Google Reviews", "")}
