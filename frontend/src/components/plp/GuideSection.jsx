@@ -23,7 +23,7 @@ const GuideSection = ({ data }) => {
           </div>
 
           {/* Guide Items */}
-          <div className="mt-14 gap-y-8 lg:gap-y-0 lg:mx-40 grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-14 gap-y-8 lg:gap-y-0 lg:mx-40 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4">
             {data.guideItem?.map((item) => {
               const icon = item.desktopIcon || item.mobileIcon || item.tabIcon;
 

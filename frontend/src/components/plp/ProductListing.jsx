@@ -33,8 +33,8 @@ export default function ProductListing({ data, commerce }) {
 
   return (
     <>
-      <div className="lg:mx-18 lg:mt-10">
-        <div className="flex lg:flex-row flex-col gap-8">
+      <div className="lg:mx-18 ">
+        <div className="flex lg:flex-row flex-col md:gap-8">
           {position === "left" && (
             <FilterSidebar
               filters={filters}

@@ -1,98 +1,80 @@
-"use client";
+import { FaGift as Gift } from "react-icons/fa6";
+import { HiOutlineSparkles as Sparkles } from "react-icons/hi2";
+import { FaLock as Lock } from "react-icons/fa";
 
-import { FaGift, FaRegCalendarAlt, FaRegStar } from "react-icons/fa";
-import { HiOutlineLockClosed } from "react-icons/hi2";
+export default function NewsletterSection({ data }) {
+  const benefits = data.description
+    .split("\n")
+    .filter((item) => item.trim() !== "");
 
-const benefits = [
-  {
-    icon: HiOutlineLockClosed,
-    text: "Unlock access to the private sale",
-  },
-  {
-    icon: FaGift,
-    text: "Birthday benefits",
-  },
-  {
-    icon: FaRegStar,
-    text: "And a world full of exclusive benefits, individually tailored for you.",
-  },
-];
+  const icons = [Lock, Gift, Sparkles];
 
-export default function NewsletterSection() {
   return (
-    <section className=" py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-20">
-          {/* Left Side */}
-
+    <section className="bg-white my-4">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-2  ">
+          {/* Left Content */}
           <div>
-            <h2 className="font-serif lg:text-[38px] leading-tight text-[#1D1D1D] ">
-              Join the DF Club - Discover a world of exclusive offers and get
-              early access.
+            <h2 className="font-serif text-[28px] lg:text-[38px] leading-[1.08] font-light text-[#111]">
+              {data.heading}
             </h2>
 
-            <div className="mt-10 space-y-7">
-              {benefits.map((item, index) => {
-                const Icon = item.icon;
+            <div className="mt-10 space-y-6">
+              {benefits?.map((item, index) => {
+                const Icon = icons[index] || Sparkles;
 
                 return (
-                  <div key={index} className="flex items-start gap-5">
-                    <Icon className="mt-1 text-[28px] text-[#A0704F]" />
+                  <div key={index} className="flex items-start gap-4">
+                    <Icon size={18} className="text-[#A5744A] mt-1" />
 
-                    <p className="text-lg leading-8 text-[#1D1D1D]">
-                      {item.text}
-                    </p>
+                    <p className="text-[17px] text-[#333] leading-7">{item}</p>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* Right Side */}
+          {/* Right Form */}
+          <div>
+            <form className="space-y-4">
+              <div>
+                <label className="block text-sm text-gray-700 ">Name</label>
 
-          <div className="flex flex-col justify-center">
-            {/* Name */}
+                <input
+                  type="text"
+                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black "
+                />
+              </div>
 
-            <div className="mb-10">
-              <label className="mb-4 block text-lg text-[#1D1D1D]">Name</label>
+              <div>
+                <label className="block text-sm text-gray-700 mb-2">
+                  Geburtstag
+                </label>
 
-              <input
-                type="text"
-                className="w-full border-b border-[#A0704F] bg-transparent pb-4 outline-none placeholder:text-gray-400"
-              />
-            </div>
+                <input
+                  type="date"
+                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black pb-3"
+                />
+              </div>
 
-            {/* Birthday */}
+              <div>
+                <label className="block text-sm text-gray-700 mb-2">
+                  Email
+                </label>
 
-            <div className="relative mb-10">
-              <label className="mb-4 block text-lg text-[#1D1D1D]">
-                Birthday
-              </label>
+                <input
+                  type="email"
+                  className="w-full border-0 border-b border-[#A5744A] bg-transparent focus:outline-none focus:border-black "
+                />
+              </div>
 
-              <input
-                type="date"
-                className="w-full border-b border-[#A0704F] bg-transparent pb-4 pr-12 outline-none"
-              />
-
-              <FaRegCalendarAlt className="absolute bottom-4 right-1 text-2xl text-[#1D1D1D]" />
-            </div>
-
-            {/* Email */}
-
-            <div className="mb-12">
-              <label className="mb-4 block text-lg text-[#1D1D1D]">
-                E-mail
-              </label>
-
-              <input
-                type="email"
-                className="w-full border-b border-[#A0704F] bg-transparent pb-4 outline-none"
-              />
-            </div>
-
-            <button className="w-fit bg-[#A0704F] px-10 py-5 text-xl font-medium text-white transition hover:bg-[#8B5D41]">
-              Subscribe
-            </button>
+              <button
+                type="submit"
+                className="bg-[#A5744A] w-full lg:w-auto text-white px-8 py-4 font-medium hover:bg-[#8D6642] transition-colors"
+              >
+                Abonnieren
+              </button>
+            </form>
           </div>
         </div>
       </div>

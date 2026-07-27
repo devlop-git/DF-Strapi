@@ -6,9 +6,7 @@ const ReadMoreContent = ({ data }) => {
   return (
     <section className={` transition-all duration-500 `}>
       <div
-        className={`mx-auto  flex max-w-7xl flex-col justify-center px-5  lg:py-12 md:px-8 lg:px-12 transition-all duration-500 ${
-          expanded ? "lg:min-h-[338px]" : "lg:min-h-[314px]"
-        }`}
+        className={`mx-auto  flex max-w-7xl flex-col justify-center px-5   md:px-8 lg:px-12 transition-all duration-500`}
       >
         {/* Heading */}
         <h2 className="text-center font-serif text-2xl leading-tight text-[#1D1D1D] lg:text-4xl lg:leading-15">
