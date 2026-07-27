@@ -5,6 +5,7 @@ import { useState } from "react"
 import { HiBars3, HiXMark, HiChevronLeft } from "react-icons/hi2"
 import { FiChevronRight } from "react-icons/fi"
 import HeaderTabs from "./HeaderTabs"
+import { slugify } from "@/utils/slugify"
 
 export default function MobileNavigation({ navigation = [], locale }) {
   const [open, setOpen] = useState(false)
@@ -116,18 +117,27 @@ export default function MobileNavigation({ navigation = [], locale }) {
 
                 {/* Children */}
 
-                {selectedCategory.children.map((child) => (
-                  <Link
-                    key={child.category_id}
-                    href={`/plp/${child.category_id}`}
-                    onClick={closeDrawer}
-                    className="flex items-center justify-between border-b border-[#ECE6DE] px-8 py-7 text-[12px] uppercase transition hover:bg-[#F8F5F1]"
-                  >
-                    <span>{child.category_details.displayCategoryName.en}</span>
+                {selectedCategory.children.map((child) => {
+                  const parentSlug = slugify(
+                    selectedCategory.category_details.displayCategoryName.en,
+                  )
+                  const childSlug = slugify(
+                    child.category_details.displayCategoryName.en,
+                  )
 
-                    <span className="text-4xl font-light">+</span>
-                  </Link>
-                ))}
+                  return (
+                    <Link
+                      key={child.category_id}
+                      href={`/${parentSlug}/${childSlug}`}
+                      onClick={closeDrawer}
+                      className="flex items-center justify-between border-b border-[#ECE6DE] px-8 py-7 text-[12px] uppercase transition hover:bg-[#F8F5F1]"
+                    >
+                      <span>{child.category_details.displayCategoryName.en}</span>
+
+                      <span className="text-4xl font-light">+</span>
+                    </Link>
+                  )
+                })}
               </>
             )}
           </div>
