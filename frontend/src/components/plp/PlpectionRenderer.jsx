@@ -4,7 +4,7 @@ import ReadMoreContent from "./ReadMoreContent";
 import FAQSection from "./FAQSection";
 import BannerInfo from "./BannerInfo";
 import ProductListing from "./ProductListing";
-import NewsletterSignup from "../homePage/NewsletterSignup";
+import NewsletterSignup from "@/components/common/SharedComponents/NewsletterSignup";
 
 const componentMap = {
   "sections.feature-highlights": FeatureHighlights,
@@ -13,7 +13,7 @@ const componentMap = {
   "plp.faq": FAQSection,
   "plp.banner-info": BannerInfo,
   "plp.product-listing": ProductListing,
-  "sections.newsletter": NewsletterSignup
+  "sections.newsletter": NewsletterSignup,
 };
 
 export default function PlpSectionRenderer({ section, commerce }) {

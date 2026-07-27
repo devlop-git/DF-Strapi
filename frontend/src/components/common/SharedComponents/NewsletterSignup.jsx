@@ -2,7 +2,7 @@ import { FaGift as Gift } from "react-icons/fa6";
 import { HiOutlineSparkles as Sparkles } from "react-icons/hi2";
 import { FaLock as Lock } from "react-icons/fa";
 
-export default function NewsletterSection({ data }) {
+export default function NewsletterSignup({ data }) {
   const benefits = data.description
     .split("\n")
     .filter((item) => item.trim() !== "");
@@ -10,7 +10,7 @@ export default function NewsletterSection({ data }) {
   const icons = [Lock, Gift, Sparkles];
 
   return (
-    <section className="bg-white my-4">
+    <section className="bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2  ">
           {/* Left Content */}

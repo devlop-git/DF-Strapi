@@ -2,8 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
 
+const lgGridCols = {
+  1: "lg:grid-cols-1",
+  2: "lg:grid-cols-2",
+  3: "lg:grid-cols-3",
+  4: "lg:grid-cols-4",
+};
+
 const GuideSection = ({ data }) => {
   if (!data) return null;
+  const guideItemsLengthIs = data?.guideItem?.length;
 
   return (
     <>
@@ -23,7 +31,11 @@ const GuideSection = ({ data }) => {
           </div>
 
           {/* Guide Items */}
-          <div className="mt-14 gap-y-8 lg:gap-y-0 lg:mx-40 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4">
+          <div
+            className={`mt-14 grid grid-cols-1 gap-y-8 md:grid-cols-2 lg:gap-y-0 lg:mx-40 ${
+              lgGridCols[guideItemsLengthIs] || "lg:grid-cols-4"
+            }`}
+          >
             {data.guideItem?.map((item) => {
               const icon = item.desktopIcon || item.mobileIcon || item.tabIcon;
 

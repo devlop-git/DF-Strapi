@@ -8,7 +8,7 @@ const Footer = async () => {
   const footerData = await getFooter(locale);
 
   return (
-    <div className="bg-[#171715] text-white">
+    <div className="bg-[#171715] text-white mt-6">
       <div className="max-w-7xl mx-auto px-8 py-14">
         {/* Top Footer */}
 
