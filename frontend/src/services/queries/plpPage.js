@@ -16,6 +16,9 @@ const plpPopulate = qs.stringify(
                             },
                         },
                     },
+                    "sections.newsletter": {
+                        populate: "*",
+                    },
                     "plp.faq": {
                         populate: {
                           faqItem: {
