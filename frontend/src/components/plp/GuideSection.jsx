@@ -7,7 +7,7 @@ const GuideSection = ({ data }) => {
 
   return (
     <>
-      <section className=" py-14 md:py-20">
+      <section>
         <div className="mx-auto max-w-7xl px-5">
           {/* Heading */}
           <div className="text-center">
@@ -31,7 +31,7 @@ const GuideSection = ({ data }) => {
                 <Link
                   key={item.id}
                   href={item.CTAUrl || "#"}
-                  className="group flex items-center lg:justify-center gap-6"
+                  className="group flex flex-col lg:flex-row items-center  lg:justify-center gap-6"
                 >
                   {/* Icon */}
                   <div className="flex h-24 w-24 shrink-0 items-center justify-center">

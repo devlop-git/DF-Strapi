@@ -18,7 +18,7 @@ export default function BannerInfo({ data }) {
         }`}
       >
         {/* Heading */}
-        <h2 className="text-center font-serif text-[38px] leading-tight text-[#1D1D1D] lg:text-[48px] lg:leading-15">
+        <h2 className="text-center font-serif text-[38px] leading-tight text-[#1D1D1D] md:text-[48px] lg:leading-15">
           {data?.title}
         </h2>
 

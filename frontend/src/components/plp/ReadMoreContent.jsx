@@ -23,7 +23,7 @@ const ReadMoreContent = ({ data }) => {
 
           {expanded && (
             <div>
-              <h2 className="text-center font-serif text-[38px] leading-tight text-[#1D1D1D] lg:text-[48px] lg:leading-15">
+              <h2 className="text-center font-serif text-[20px] leading-tight text-[#1D1D1D] lg:text-[28px] lg:leading-15">
                 {data?.expandedTitle}
               </h2>
 
