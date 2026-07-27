@@ -30,11 +30,7 @@ export default function FAQSection({ data }) {
                     onClick={() => setActive(isOpen ? null : index)}
                     className="flex w-full items-center justify-between py-4 lg:py-5 text-left hover:cursor-pointer"
                   >
-                    <span
-                      className="pr-8 text-base font-semibold
-
-    leading-6 lg:leading-8 text-[#1D1D1B]"
-                    >
+                    <span className="pr-8 text-base font-semibold leading-6 lg:leading-8 text-[#1D1D1B]">
                       {item?.question}
                     </span>
 

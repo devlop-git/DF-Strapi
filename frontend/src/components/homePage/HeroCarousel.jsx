@@ -12,17 +12,22 @@ import "swiper/css/effect-fade";
 import { getStrapiMedia } from "@/utils/strapi";
 
 export default function HeroCarousel({ data }) {
+  const canLoop = (data?.heroSlides?.length ?? 0) > 1;
   return (
     <section className="relative">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade]}
         effect="fade"
-        loop
+        loop={canLoop}
         speed={900}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
+        autoplay={
+          canLoop
+            ? {
+                delay: 5000,
+                disableOnInteraction: false,
+              }
+            : false
+        }
         pagination={{
           clickable: true,
         }}

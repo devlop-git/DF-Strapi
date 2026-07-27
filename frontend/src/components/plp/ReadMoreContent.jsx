@@ -9,7 +9,7 @@ const ReadMoreContent = ({ data }) => {
         className={`mx-auto  flex max-w-7xl flex-col justify-center px-5   md:px-8 lg:px-12 transition-all duration-500`}
       >
         {/* Heading */}
-        <h2 className="text-center font-serif text-2xl leading-tight text-[#1D1D1D] lg:text-4xl lg:leading-15">
+        <h2 className="text-center font-serif text-2xl md:text-3xl leading-tight text-[#1D1D1D] lg:text-4xl lg:leading-15">
           {data?.title}
         </h2>
 
@@ -21,7 +21,7 @@ const ReadMoreContent = ({ data }) => {
 
           {expanded && (
             <div>
-              <h2 className="text-center font-serif text-[20px] leading-tight text-[#1D1D1D] lg:text-[28px] lg:leading-15">
+              <h2 className="text-center font-serif  text-[24px] lg:my-2 my-4 leading-tight text-[#1D1D1D] lg:text-[28px] lg:leading-15">
                 {data?.expandedTitle}
               </h2>
 

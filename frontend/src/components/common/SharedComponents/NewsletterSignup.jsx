@@ -12,7 +12,7 @@ export default function NewsletterSignup({ data }) {
   return (
     <section className="bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-2  ">
+        <div className="grid lg:grid-cols-2 gap-y-4  ">
           {/* Left Content */}
           <div>
             <h2 className="font-serif text-[28px] lg:text-[38px] leading-[1.08] font-light text-[#111]">
