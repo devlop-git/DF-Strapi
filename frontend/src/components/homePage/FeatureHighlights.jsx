@@ -3,7 +3,7 @@ import { getStrapiMedia } from "@/utils/strapi";
 
 export default function FeatureHighlights({ data }) {
   return (
-    <section className="w-full md:py-10 ">
+    <section className="w-full  ">
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
         <div className="max-w-4xl mx-auto text-center">

@@ -1,17 +1,17 @@
-import Image from "next/image"
-import Link from "next/link"
-import { getStrapiMedia } from "@/utils/strapi"
+import Image from "next/image";
+import Link from "next/link";
+import { getStrapiMedia } from "@/utils/strapi";
 
 export default function PromotionBanner({ data }) {
-  if (!data) return null
+  if (!data) return null;
 
-  const desktopBgImage = data?.desktopBgImage ?? null
-  const tabletBgImage = data?.tabBgImage ?? null
-  const mobileBgImage = data?.mobileBgImage ?? null
+  const desktopBgImage = data?.desktopBgImage ?? null;
+  const tabletBgImage = data?.tabBgImage ?? null;
+  const mobileBgImage = data?.mobileBgImage ?? null;
 
   return (
-    <section className="bg-[#FCFBF8] py-20">
-      <div className="relative overflow-hidden min-h-[420px] md:min-h-90 lg:min-h-107.5">
+    <section className=" py-8">
+      <div className="relative overflow-hidden min-h-[420px]  lg:min-h-107.5">
         {/* Background Images */}
         <div className="absolute inset-0">
           {/* Mobile */}
@@ -113,5 +113,5 @@ export default function PromotionBanner({ data }) {
         </div>
       </div>
     </section>
-  )
+  );
 }

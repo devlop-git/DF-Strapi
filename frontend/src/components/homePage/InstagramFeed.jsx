@@ -6,7 +6,7 @@ export default function InstagramFeed({ data }) {
   const title = data?.title ?? "";
   const [prefix, handle] = title.split("@");
   return (
-    <section className="bg-white mt-6 md:mt-0 ">
+    <section className="bg-white  ">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Heading */}
         <div className="mb-14 text-center">
