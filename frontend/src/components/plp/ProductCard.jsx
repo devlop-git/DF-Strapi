@@ -20,13 +20,13 @@ export default function ProductCard({ product, filters }) {
       100,
   );
 
-  // PDP route is /design/{slug}/{sku}. We don't have this card's exact
-  // encoded SKU here (that depends on the full option schema, which PLP
-  // cards don't carry) -- `designRef` is just a placeholder path segment;
-  // <PdpDetails /> recomputes the real default-configuration SKU on mount
-  // and replaces the URL with it, so this only needs to be a valid link in.
+  // PDP route is /design/{slug}/{sku}. `product.sku` is the fully encoded
+  // default-configuration SKU (Commerce would hand this over directly in a
+  // real API). Fall back to the bare designRef if a product doesn't carry
+  // one yet -- <PdpDetails /> will still self-correct the URL to the PDP
+  // mock's own default combination once it mounts.
   const pdpHref = product.slug
-    ? `/design/${product.slug}/${product.designRef}`
+    ? `/design/${product.slug}/${product.sku || product.designRef}`
     : "#";
 
   return (

@@ -14,8 +14,7 @@ import { slugify } from "@/utils/slugify";
 // and re-fetches the PDP data for that configuration.
 export default async function PDPPage({ params }) {
   const { slug, sku } = await params;
-
-  const { data, meta } = await getPDPExperience(sku);
+  const { data, meta } = await getPDPExperience(slug,sku);
   const {
     basicDetails,
     options,
