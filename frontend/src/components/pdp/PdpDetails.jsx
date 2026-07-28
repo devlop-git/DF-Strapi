@@ -36,6 +36,7 @@ export default function PdpDetails({
   meta,
   bomDetails,
   inStockProducts,
+  currentSku,
 }) {
   const router = useRouter();
 
@@ -59,16 +60,22 @@ export default function PdpDetails({
     [options, meta?.designReference, selections],
   );
 
-  console.log('new sku--',sku);
-
   // Navigate to /design/{slug}/{sku} for the newly selected configuration.
   // This is a real route change (different dynamic segment), so Next
   // re-runs the PDP page Server Component and calls getPDPExperience(sku)
   // again -- i.e. every option click re-fetches the PDP API.
+  //
+  // Every navigation remounts this component with fresh `options`, which
+  // already reflect the sku that was just requested (the API echoes back
+  // isSelected matching it). So on mount, the sku we (re)compute here is
+  // normally IDENTICAL to `currentSku` (the one already in the URL) -- if we
+  // navigated again anyway, it'd be a second, redundant API call for the
+  // exact same configuration. Only navigate when the shopper has actually
+  // picked something different from what's already loaded.
   useEffect(() => {
-    if (!sku || !meta?.slug) return;
+    if (!sku || !meta?.slug || sku === currentSku) return;
     router.replace(`/design/${meta.slug}/${sku}`, { scroll: false });
-  }, [sku, meta?.slug, router]);
+  }, [sku, currentSku, meta?.slug, router]);
 
   const currency = priceInformation?.currency;
   const salePrice = priceInformation?.totalPrice;

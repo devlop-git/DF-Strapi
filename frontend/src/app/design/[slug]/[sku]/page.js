@@ -68,6 +68,7 @@ export default async function PDPPage({ params }) {
             meta={{ ...meta, slug }}
             bomDetails={bomDetails}
             inStockProducts={inStockProducts}
+            currentSku={sku}
           />
         </div>
       </section>

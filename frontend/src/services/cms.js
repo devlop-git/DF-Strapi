@@ -33,7 +33,6 @@ export async function getPLPExperience(locale) {
 // We simulate the real behaviour by decoding `sku` and overriding
 // `isSelected` to match it before returning.
 export async function getPDPExperience(slug, sku) {
-  console.log('calling api')
   // const url = 'http://localhost:8040/api/pdp/v1/en/design/clrn349_01/CLRN349_MS00MT0114MFCT00ST0002SF020100010001';
   const res = await api.get(`http://localhost:8040/api/pdp/v1/en/design/${slug}/${sku}`)
   const payload = res.data.data ? res.data : { data: pdpApiData, meta: {} };
