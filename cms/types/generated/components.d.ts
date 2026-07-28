@@ -113,11 +113,8 @@ export interface PlpProductGridCofiguration extends Struct.ComponentSchema {
   };
   attributes: {
     desktopColumns: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<4>;
-    desktopGap: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<24>;
     mobileColumns: Schema.Attribute.Integer;
-    mobileGap: Schema.Attribute.Integer;
     tabColumns: Schema.Attribute.Integer;
-    tabGap: Schema.Attribute.Integer;
   };
 }
 
