@@ -2,12 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
 
+const lgGridCols = {
+  1: "lg:grid-cols-1",
+  2: "lg:grid-cols-2",
+  3: "lg:grid-cols-3",
+  4: "lg:grid-cols-4",
+};
+
 const GuideSection = ({ data }) => {
   if (!data) return null;
+  const guideItemsLengthIs = data?.guideItem?.length;
 
   return (
     <>
-      <section className=" py-14 md:py-20">
+      <section>
         <div className="mx-auto max-w-7xl px-5">
           {/* Heading */}
           <div className="text-center">
@@ -23,7 +31,11 @@ const GuideSection = ({ data }) => {
           </div>
 
           {/* Guide Items */}
-          <div className="mt-14 gap-y-8 lg:gap-y-0 lg:mx-40 grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3">
+          <div
+            className={`mt-14 grid grid-cols-1 gap-y-8 md:grid-cols-2 lg:gap-y-0 lg:mx-40 ${
+              lgGridCols[guideItemsLengthIs] || "lg:grid-cols-4"
+            }`}
+          >
             {data.guideItem?.map((item) => {
               const icon = item.desktopIcon || item.mobileIcon || item.tabIcon;
 
@@ -31,7 +43,7 @@ const GuideSection = ({ data }) => {
                 <Link
                   key={item.id}
                   href={item.CTAUrl || "#"}
-                  className="group flex items-center lg:justify-center gap-6"
+                  className="group flex flex-col lg:flex-row items-center  lg:justify-center gap-6"
                 >
                   {/* Icon */}
                   <div className="flex h-24 w-24 shrink-0 items-center justify-center">

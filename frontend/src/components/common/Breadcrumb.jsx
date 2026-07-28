@@ -3,7 +3,7 @@ import { FiChevronRight } from "react-icons/fi";
 
 export default function Breadcrumb({ items }) {
   return (
-    <section className="lg:border-y lg:border-[#E8DDCF] bg-white">
+    <section className=" bg-white">
       <div className="mx-auto lg:max-w-7xl  py-5 px-2 md:px-8 lg:px-10">
         <nav
           aria-label="Breadcrumb"

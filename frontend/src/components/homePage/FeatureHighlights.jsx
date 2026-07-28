@@ -3,30 +3,30 @@ import { getStrapiMedia } from "@/utils/strapi";
 
 export default function FeatureHighlights({ data }) {
   return (
-    <section className="w-full bg-[#FCFBF8] py-20 border-y border-[#EFE8DF]">
+    <section className="w-full  ">
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-[28px] lg:text-[36px] text-left md:text-center font-light text-[#171717] leading-tight">
+          <h2 className="font-serif text-[28px] lg:text-[36px] text-center font-light text-[#171717] leading-tight">
             {data.title}
           </h2>
 
-          <p className="mt-6 text-base leading-6 text-[#4B4B4B] text-left md:text-center">
+          <p className="mt-6 text-base leading-6 text-[#4B4B4B] text-center">
             {data.description}
           </p>
         </div>
 
         {/* Features */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="   grid grid-cols-1 mt-8 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-12">
           {data.items?.map((item) => {
             const iconForDesktop = item?.desktopIcon?.[0];
-            const iconForMobile = item?.mobileIcon?.[0];
-            const iconForTablet = item?.tabIcon?.[0];
+            const iconForMobile = item?.mobileIcon;
+            const iconForTablet = item?.tabIcon;
 
             return (
               <div
                 key={item?.id}
-                className="flex items-center justify-center gap-5"
+                className="flex flex-col items-center justify-center gap-5"
               >
                 {/* Desktop */}
                 {iconForDesktop && (
@@ -61,9 +61,9 @@ export default function FeatureHighlights({ data }) {
                   />
                 )}
 
-                <p className="text-[17px] leading-7 text-[#222] max-w-[180px]">
+                <h4 className="text-base font-medium  text-[#171714] ">
                   {item.iconDescription}
-                </p>
+                </h4>
               </div>
             );
           })}

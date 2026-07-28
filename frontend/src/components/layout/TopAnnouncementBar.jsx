@@ -1,13 +1,28 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function TopAnnouncementBar() {
+export default function TopAnnouncementBar({ headerTextStyle }) {
+  const [showNavbar, setShowNavbar] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowNavbar(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!showNavbar) return null;
+
   return (
     <section className="w-full bg-[#1A1A18] text-white ">
       <div className=" min-h-10 flex justify-center items-center lg:hidden">
-        <Link href="/sale" className="hover:underline text-base">
+        <Link
+          href="/sale"
+          className={`hover:underline text-base ${headerTextStyle}`}
+        >
           SALE
         </Link>
       </div>

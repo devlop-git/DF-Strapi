@@ -6,12 +6,12 @@ export default function InstagramFeed({ data }) {
   const title = data?.title ?? "";
   const [prefix, handle] = title.split("@");
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white  ">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Heading */}
         <div className="mb-14 text-center">
           {title && (
-            <div className="flex flex-col lg:flex-row justify-center items-center gap-x-4">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-x-4">
               <h2 className="font-serif text-3xl font-light text-[#111] sm:text-4xl lg:text-[36px]">
                 {prefix}
               </h2>

@@ -13,12 +13,12 @@ export default function BannerInfo({ data }) {
       }`}
     >
       <div
-        className={`mx-auto flex max-w-7xl flex-col justify-center px-5 py-4 lg:py-12 md:px-8 lg:px-12 transition-all duration-500 ${
+        className={`mx-auto flex max-w-7xl flex-col justify-center px-5 md:px-8 lg:px-12 transition-all duration-500 ${
           expanded ? "lg:min-h-[338px]" : "lg:min-h-[314px]"
         }`}
       >
         {/* Heading */}
-        <h2 className="text-center font-serif text-[38px] leading-tight text-[#1D1D1D] lg:text-[48px] lg:leading-15">
+        <h2 className="text-center font-serif text-[38px] leading-tight text-[#1D1D1D] md:text-[48px] lg:leading-15">
           {data?.title}
         </h2>
 

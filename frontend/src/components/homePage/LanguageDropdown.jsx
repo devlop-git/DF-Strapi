@@ -14,7 +14,7 @@ const flags = {
 const LanguageDropdown = ({ languages = [] }) => {
   const [selected, setSelected] = useState(languages[0]);
   const [open, setOpen] = useState(false);
-   const router = useRouter();
+  const router = useRouter();
 
   if (!selected) return null;
 
@@ -31,11 +31,7 @@ const LanguageDropdown = ({ languages = [] }) => {
   };
 
   return (
-    <div
-      className="relative"
-      tabIndex={0}
-      onBlur={() => setOpen(false)}
-    >
+    <div className="relative" tabIndex={0} onBlur={() => setOpen(false)}>
       {/* Trigger */}
       <button
         type="button"
@@ -47,9 +43,7 @@ const LanguageDropdown = ({ languages = [] }) => {
         <span>{selected.label}</span>
 
         <FaChevronDown
-          className={`text-xs transition-transform ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`text-xs transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -62,12 +56,10 @@ const LanguageDropdown = ({ languages = [] }) => {
               type="button"
               onMouseDown={() => handleSelect(lang)}
               className={`flex w-full items-center gap-3 px-4 py-3 text-left uppercase hover:bg-gray-100 ${
-                selected.code === lang.code
-                  ? "bg-gray-50 font-semibold"
-                  : ""
+                selected.code === lang.code ? "bg-gray-50 font-semibold" : ""
               }`}
             >
-              <span className="text-xl" >{flags[lang.code]}</span>
+              <span className="text-xl">{flags[lang.code]}</span>
               {lang.label}
             </button>
           ))}
