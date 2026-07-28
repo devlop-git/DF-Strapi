@@ -610,6 +610,7 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
       'images' | 'files' | 'videos' | 'audios',
       true
     > &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -938,6 +939,7 @@ export interface ApiPlpPagePlpPage extends Struct.CollectionTypeSchema {
         'plp.product-listing',
       ]
     > &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -945,12 +947,14 @@ export interface ApiPlpPagePlpPage extends Struct.CollectionTypeSchema {
       }>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     title: Schema.Attribute.String &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

@@ -21,7 +21,8 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "slug": {
       "type": "string",
@@ -29,7 +30,8 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "markets": {
       "type": "relation",
@@ -53,7 +55,8 @@
         "plp.guide-section",
         "plp.read-more-content",
         "plp.product-listing"
-      ]
+      ],
+      "required": true
     }
   }
 }
