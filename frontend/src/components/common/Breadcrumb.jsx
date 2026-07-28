@@ -14,16 +14,25 @@ export default function Breadcrumb({ items }) {
 
             return (
               <div key={item.label} className="flex text-sm items-center">
-                {isLast ? (
-                  <span className="font-medium text-[#1F1F1F]">
+                {isLast || !item?.url ? (
+                  // Last crumb, or a crumb with no page of its own (e.g. a
+                  // parent category, which is only a menu grouping and has
+                  // no standalone PLP route) -- render as plain text.
+                  <span
+                    className={
+                      isLast
+                        ? "font-medium text-[#1F1F1F]"
+                        : "text-[#1F1F1F]"
+                    }
+                  >
                     {item.label}
                   </span>
                 ) : (
                   <Link
-                    href={item?.url}
+                    href={item.url}
                     className="text-[#1F1F1F] transition hover:text-[#A0704F]"
                   >
-                    {item?.label}
+                    {item.label}
                   </Link>
                 )}
 

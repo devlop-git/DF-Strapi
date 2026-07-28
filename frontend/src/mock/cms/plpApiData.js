@@ -166,64 +166,29 @@ const plpApiData = {
     ],
      "products": [
       {
-        "ornamentId": "ORNAMENT-CLRN04546",
-        "designRef": "CLRN04546",
-        "designNumber": "RF0046029",
-        "baseProductCode": "CLRN04546",
-        "name": "Prong Setting Trilogy Diamond Engagement Ring",
+        "ornamentId": "ORNAMENT-0001",
+        "designRef": "CLRN349",
+        "designNumber": "RN0033666",
+        // "baseProductCode": "CLRN02218",
+        "slug": "clrn349_01",
+        // Full PDP SKU for this product's default configuration (see
+        // defaultSelection below for what each part decodes to). PLP cards
+        // link straight to this instead of re-deriving it, since PLP's own
+        // filter set has no Band Width / Clarity / Colour / Certificate /
+        // Polish / Symmetry / Fluorescence fields to encode the MT/SF
+        // segments from.
+        "sku": "CLRN349_MS03MT0014MFCT01ST0000SF020300000001",
+        "name": "Round Diamond Engagement Ring",
         "ornamentType": "Engagement Ring",
         "category": "Engagement Rings",
-        "subCategory": "Trilogy",
-        "language": "en",
-        "customisable": true,
-        "rating": 4.4,
-        "ratingCount": 128,
-        "badges": ["bestseller"],
-        "image": {
-          "altText": "Trilogy ring front view",
-          "thumbnail": "https://cdn.diamondsfactory.co.uk/design/CLRN04546/PL/ROUND/MAIN_thumb.jpg",
-          "medium": "https://static.diamondsfactory.com/image/product_v2/clrn00349/rn0026163/showcase/vr/yy/di/0001.jpg",
-          "hover": "https://static.diamondsfactory.com/image/product_v2/clrn00349/rn0026163/showcase/front/yy/di/0001.jpg"
-        },
-        "priceFrom": {
-          "currency": "GBP",
-          "listPrice": 3310.0,
-          "salePrice": 2482.5,
-          "promotion": { "code": "RING25", "description": "25% off engagement rings" }
-        },
-        "availableValues": {
-          "FEATURE-STYLE": ["04"],
-          "FEATURE-STONETYPE": ["00", "01"],
-          "FEATURE-SHAPE": ["00", "01", "02"],
-          "FEATURE-METAL": ["00", "01", "02", "03"],
-          "FEATURE-SETTINGTYPE": ["02"],
-          "FEATURE-CARAT": { "min": 0.95, "max": 5.00 }
-        },
-        "defaultSelection": {
-          "FEATURE-STYLE": "04",
-          "FEATURE-STONETYPE": "00",
-          "FEATURE-SHAPE": "00",
-          "FEATURE-METAL": "00",
-          "FEATURE-SETTINGTYPE": "02",
-          "FEATURE-CARAT": 0.95
-        }
-      },
-      {
-        "ornamentId": "ORNAMENT-CLRN02218",
-        "designRef": "CLRN02218",
-        "designNumber": "RF0022187",
-        "baseProductCode": "CLRN02218",
-        "name": "Classic Halo Diamond Engagement Ring",
-        "ornamentType": "Engagement Ring",
-        "category": "Engagement Rings",
-        "subCategory": "Halo Rings",
+        "subCategory": "Solitaire",
         "language": "en",
         "customisable": true,
         "rating": 4.6,
         "ratingCount": 94,
         "badges": ["new"],
         "image": {
-          "altText": "Halo ring front view",
+          "altText": "Round diamond ring front view",
           "thumbnail": "https://cdn.diamondsfactory.co.uk/design/CLRN02218/RG/OVAL/MAIN_thumb.jpg",
           "medium": "https://static.diamondsfactory.com/image/product_v2/clrn00349/rn0026163/showcase/vr/yy/di/0001.jpg",
           "hover": "https://static.diamondsfactory.com/image/product_v2/clrn00349/rn0026163/showcase/front/yy/di/0001.jpg"
@@ -235,20 +200,36 @@ const plpApiData = {
           "promotion": { "code": "RING25", "description": "25% off engagement rings" }
         },
         "availableValues": {
-          "FEATURE-STYLE": ["02", "03"],
+          "FEATURE-BANDWIDTH": ["00", "01", "02"],
+          "FEATURE-RING-SIZE": ["02", "03", "14", "10", "09", "08"],
           "FEATURE-STONETYPE": ["00", "01", "02"],
           "FEATURE-SHAPE": ["02", "00", "05", "03"],
-          "FEATURE-METAL": ["03", "02", "00"],
-          "FEATURE-SETTINGTYPE": ["03"],
-          "FEATURE-CARAT": { "min": 0.50, "max": 4.00 }
+          "FEATURE-METAL": ["03", "02", "00", "11","10", "01"],
+          "FEATURE-CARAT": { "min": 0.2, "max": 3.00 },
+          "FEATURE-CLARITY": ["00", "01", "02", "03", "05", "06", "08", "09", "11"],
+          "FEATURE-COLOUR": ["00", "01", "03", "04", "06", "07", "09", "10", "11"],
+          "FEATURE-CERTIFICATE": ["00", "01", "02", "03"],
+          "FEATURE-POLISH": ["00", "01", "02", "03"],
+          "FEATURE-SYMMETRY": ["00", "01", "02", "03"],
+          "FEATURE-FLUORESCENCE": ["00", "01", "02", "03", "04"]
         },
+        // Decodes to: MS03 (18K White Gold) MT-> Band Width 00 (Schmal) +
+        // Ring Size 14 (M), CT01 (0.30ct), ST-> Stone Type 00 (Natural
+        // Diamond) + Shape 00 (Round), SF-> Clarity 02, Colour 03,
+        // Certificate 00, Polish 00, Symmetry 00, Fluorescence 01.
         "defaultSelection": {
-          "FEATURE-STYLE": "02",
+          "FEATURE-BANDWIDTH": "00",
+          "FEATURE-RING-SIZE": "14",
           "FEATURE-STONETYPE": "00",
-          "FEATURE-SHAPE": "02",
+          "FEATURE-SHAPE": "00",
           "FEATURE-METAL": "03",
-          "FEATURE-SETTINGTYPE": "03",
-          "FEATURE-CARAT": 1.00
+          "FEATURE-CARAT": "01",
+          "FEATURE-CLARITY": "02",
+          "FEATURE-COLOUR": "03",
+          "FEATURE-CERTIFICATE": "00",
+          "FEATURE-POLISH": "00",
+          "FEATURE-SYMMETRY": "00",
+          "FEATURE-FLUORESCENCE": "01"
         }
       }
     ]
