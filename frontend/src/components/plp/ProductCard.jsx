@@ -20,8 +20,17 @@ export default function ProductCard({ product, filters }) {
       100,
   );
 
+  // PDP route is /design/{slug}/{sku}. `product.sku` is the fully encoded
+  // default-configuration SKU (Commerce would hand this over directly in a
+  // real API). Fall back to the bare designRef if a product doesn't carry
+  // one yet -- <PdpDetails /> will still self-correct the URL to the PDP
+  // mock's own default combination once it mounts.
+  const pdpHref = product.slug
+    ? `/design/${product.slug}/${product.sku || product.designRef}`
+    : "#";
+
   return (
-    <Link href={`/pdp/${product.ornamentId}`} className="group">
+    <Link href={pdpHref} className="group">
       <article className="bg-white transition-all duration-300 shadow-md hover:shadow-lg ">
         {/* Image */}
         <div className="relative overflow-hidden">

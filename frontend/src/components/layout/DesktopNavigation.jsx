@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa";
+import { slugify } from "@/utils/slugify";
 
 export default function Navigation({ locale, navigation = [] }) {
   if (!navigation?.length) return null;
@@ -17,17 +18,15 @@ export default function Navigation({ locale, navigation = [] }) {
 
           return (
             <li key={category_id} className="group relative">
-              {/* Parent Category */}
-              <Link
-                href={`/plp/${category_id}`}
-                className="flex h-10 items-center gap-1 px-5 text-[13px] font-medium uppercase tracking-wide text-[#111] transition-colors hover:text-[#A5744A]"
-              >
+              {/* Parent Category: menu grouping only, not a real PLP page
+                  (isLastLevel: false), so it's a hover trigger, not a link. */}
+              <span className="flex h-10 items-center gap-1 px-5 text-[13px] font-medium uppercase tracking-wide text-[#111] transition-colors group-hover:text-[#A5744A]">
                 {categoryName}
 
                 {children.length > 0 && (
                   <FaAngleDown size={11} className="mt-[1px]" />
                 )}
-              </Link>
+              </span>
 
               {/* Dropdown */}
               {children.length > 0 && (
@@ -67,7 +66,7 @@ export default function Navigation({ locale, navigation = [] }) {
                       return (
                         <li key={subCategoryId}>
                           <Link
-                            href={`/plp/${subCategoryId}`}
+                            href={`/${slugify(categoryName)}/${slugify(subCategoryName)}`}
                             className="
                               block
                               px-6

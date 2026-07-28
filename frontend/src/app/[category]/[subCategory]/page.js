@@ -5,9 +5,14 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import { getCurrentLocale } from "@/lib/locale";
 
+// Route shape: /{category}/{subCategory}, e.g. /engagement-rings/solitaire.
+// Only subcategories are real listing pages in this data model (categories
+// themselves are `isLastLevel: false` menu groupings), so the PLP route is
+// always two segments -- there is no bare /{category} page.
 export default async function PLPPage({ params }) {
-  // const { categoryId } = await params;
-  const commerce = await getPLP();
+  const { category, subCategory } = await params;
+
+  const commerce = await getPLP(subCategory);
   const locale = await getCurrentLocale();
   const cms = await getPLPExperience(locale);
 

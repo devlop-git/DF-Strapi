@@ -15,16 +15,6 @@
     },
     "tabColumns": {
       "type": "integer"
-    },
-    "desktopGap": {
-      "type": "integer",
-      "default": 24
-    },
-    "mobileGap": {
-      "type": "integer"
-    },
-    "tabGap": {
-      "type": "integer"
     }
   },
   "config": {}
