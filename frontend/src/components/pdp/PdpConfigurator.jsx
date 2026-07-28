@@ -37,14 +37,21 @@ function metalColor(name = "") {
 }
 
 function metalAbbr(name = "") {
-  if (/platinum/i.test(name)) return "PT";
-  const k = name.match(/(\d+)K/i);
-  return k ? `${k[1]}K` : name.slice(0, 2);
+  // Some values are a platinum/karat-gold combo (e.g. "18K White Gold
+  // Shank/Platinum (950) Head") -- show both, e.g. "PL 18K". Pure
+  // "Platinum(950)" has no karat and shows just "PL". The full name is
+  // still available as the title on hover either way.
+  const karat = name.match(/(\d+)K/i);
+  const isPlatinum = /platinum/i.test(name);
+
+  if (isPlatinum && karat) return `PL ${karat[1]}K`;
+  if (isPlatinum) return "PL";
+  return karat ? `${karat[1]}K` : name.slice(0, 2);
 }
 
 function Label({ option }) {
   return (
-    <span className="flex items-center gap-1 text-sm text-[#4A4A4A]">
+    <span className="flex items-center gap-1 text-sm font-bold">
       {option.displayName}
       <FaRegQuestionCircle className="text-[11px] text-[#BCA98F]" />
     </span>

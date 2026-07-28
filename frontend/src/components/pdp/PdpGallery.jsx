@@ -64,7 +64,6 @@ export default function PdpGallery({ galleryGroups = [], caption }) {
   if (!groups.length) return null;
 
   const items = groups[activeGroup]?.items ?? [];
-  console.log('---',items);
   const current = items[activeItem] ?? items[0];
 
   const selectGroup = (index) => {

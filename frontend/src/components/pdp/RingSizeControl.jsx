@@ -22,7 +22,7 @@ export default function RingSizeControl({ option, current, onSelect, open, onTog
           className="flex flex-1 items-center gap-2 text-left"
         >
           <FaRegQuestionCircle className="shrink-0 text-[11px] text-[#BCA98F]" />
-          <span className="text-sm text-[#4A4A4A]">{option.displayName}</span>
+          <span className="text-sm font-bold">{option.displayName}</span>
           <span className="text-sm text-gray-400">
             {selected?.displayName ?? "Choose your size"}
           </span>

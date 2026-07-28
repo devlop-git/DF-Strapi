@@ -32,7 +32,7 @@ function Row({ label, value }) {
   if (value == null || value === "") return null;
   return (
     <div className="flex items-center justify-between border-b border-[#F0E9DF] py-2 text-sm last:border-b-0">
-      <dt className="text-[#4A4A4A]">{label}:</dt>
+      <dt className="font-bold">{label}:</dt>
       <dd className="text-right font-medium text-[#1F1F1F]">{value}</dd>
     </div>
   );

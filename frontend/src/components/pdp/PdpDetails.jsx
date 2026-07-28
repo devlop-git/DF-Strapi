@@ -59,6 +59,8 @@ export default function PdpDetails({
     [options, meta?.designReference, selections],
   );
 
+  console.log('new sku--',sku);
+
   // Navigate to /design/{slug}/{sku} for the newly selected configuration.
   // This is a real route change (different dynamic segment), so Next
   // re-runs the PDP page Server Component and calls getPDPExperience(sku)
@@ -84,7 +86,7 @@ export default function PdpDetails({
   ).toUpperCase();
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 p-4 bg-[#FAF7F2]">
       {/* Title + code */}
       <div className="flex items-start justify-between gap-4">
         <h1 className="text-2xl font-semibold text-[#1F1F1F]">{title}</h1>
@@ -199,7 +201,7 @@ export default function PdpDetails({
       </div>
 
       {/* Delivery / policies */}
-      <div className="space-y-2 pt-2 text-sm text-[#4A4A4A]">
+      <div className="space-y-2 pt-2 text-sm">
         <p className="flex items-center gap-2">
           <LuTruck className="text-[#9C7A58]" />
           Estimated Delivery 2-3 working weeks.
