@@ -17,6 +17,13 @@
 //      newly selected configuration on every option click.
 //   4. <PdpProductDetails /> reads the same `selections` to display the
 //      live Metal/Colour/Clarity/etc. values further down the page.
+//
+// Loading feedback for that navigation comes entirely from the route's
+// loading.js (a real full-page overlay, rendered with no risky ancestors
+// that could break `position: fixed`) -- not from a component nested here,
+// which would depend on none of its ancestors using transform/filter (any
+// one that does becomes the containing block, and the "full page" overlay
+// silently stops covering the actual viewport).
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FiChevronDown } from "react-icons/fi";
@@ -93,12 +100,12 @@ export default function PdpDetails({
   ).toUpperCase();
 
   return (
-    <div className="space-y-5 p-4 bg-[#FAF7F2]">
+    <div className="space-y-5 p-4">
       {/* Title + code */}
       <div className="flex items-start justify-between gap-4">
         <h1 className="text-2xl font-semibold text-[#1F1F1F]">{title}</h1>
         {productCode && (
-          <span className="whitespace-nowrap pt-2 text-xs text-gray-500">
+          <span className="whitespace-nowrap pt-2 text-xs text-gray-900">
             Product Code: {productCode}
           </span>
         )}
