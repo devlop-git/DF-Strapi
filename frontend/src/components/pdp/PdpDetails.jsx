@@ -1,35 +1,11 @@
 "use client";
 
-// This is the client boundary for the whole right-hand column: it owns the
-// shopper's live `selections` state (one entry per option name -> chosen
-// valueCode) so the configurator pills/dropdowns above AND the
-// "Ring & Diamond Details" accordion below always show the same picture.
-//
-// Flow:
-//   1. `selections` starts from each option's `isSelected` default (see
-//      initialSelections in utils/buildSku).
-//   2. Clicking a pill/swatch in <PdpConfigurator /> calls `selectOption`,
-//      which updates `selections` here.
-//   3. Every render, `buildSku` re-encodes the full `selections` map into
-//      the CLRN.../SKU string, and we navigate to /design/{slug}/{sku} with
-//      it. That's a real route change (not just a query string), so Next
-//      re-runs the PDP Server Component and re-fetches the PDP API for the
-//      newly selected configuration on every option click.
-//   4. <PdpProductDetails /> reads the same `selections` to display the
-//      live Metal/Colour/Clarity/etc. values further down the page.
-//
-// Loading feedback for that navigation comes entirely from the route's
-// loading.js (a real full-page overlay, rendered with no risky ancestors
-// that could break `position: fixed`) -- not from a component nested here,
-// which would depend on none of its ancestors using transform/filter (any
-// one that does becomes the containing block, and the "full page" overlay
-// silently stops covering the actual viewport).
 import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import { FiChevronDown } from "react-icons/fi";
 import { LuTruck } from "react-icons/lu";
 import { RiShieldCheckLine } from "react-icons/ri";
 import OutlineButton from "@/components/common/OutlineButton";
+import PendingOverlay from "@/components/common/PendingOverlay";
 import PdpConfigurator from "./PdpConfigurator";
 import PdpProductDetails from "./PdpProductDetails";
 import PdpInStockTable from "./PdpInStockTable";
@@ -45,12 +21,17 @@ export default function PdpDetails({
   inStockProducts,
   currentSku,
 }) {
-  const router = useRouter();
+  const [pdpData, setPdpData] = useState({
+    basicDetails,
+    priceInformation,
+    bomDetails,
+    inStockProducts,
+  });
 
-  // Which top tab is active: the build-your-own configurator, or the
-  // ready-to-ship variants table. Only one of the two option blocks below
-  // renders at a time; everything after it (appointments/delivery/details)
-  // stays visible regardless of tab.
+  const [loadedSku, setLoadedSku] = useState(currentSku);
+
+  // True while a filter-change fetch is in flight.
+  const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("customise");
 
   // Single source of truth for every option the shopper has chosen so far.
@@ -61,46 +42,61 @@ export default function PdpDetails({
   const selectOption = (option, valueCode) =>
     setSelections((prev) => ({ ...prev, [option.name]: valueCode }));
 
-  // Re-encode the SKU whenever a selection changes.
   const sku = useMemo(
     () => buildSku(options, meta?.designReference, selections),
     [options, meta?.designReference, selections],
   );
 
-  // Navigate to /design/{slug}/{sku} for the newly selected configuration.
-  // This is a real route change (different dynamic segment), so Next
-  // re-runs the PDP page Server Component and calls getPDPExperience(sku)
-  // again -- i.e. every option click re-fetches the PDP API.
-  //
-  // Every navigation remounts this component with fresh `options`, which
-  // already reflect the sku that was just requested (the API echoes back
-  // isSelected matching it). So on mount, the sku we (re)compute here is
-  // normally IDENTICAL to `currentSku` (the one already in the URL) -- if we
-  // navigated again anyway, it'd be a second, redundant API call for the
-  // exact same configuration. Only navigate when the shopper has actually
-  // picked something different from what's already loaded.
   useEffect(() => {
-    if (!sku || !meta?.slug || sku === currentSku) return;
-    router.replace(`/design/${meta.slug}/${sku}`, { scroll: false });
-  }, [sku, currentSku, meta?.slug, router]);
+    if (!sku || !meta?.slug || sku === loadedSku) {
+      setIsLoading(false);
+      return;
+    }
 
-  const currency = priceInformation?.currency;
-  const salePrice = priceInformation?.totalPrice;
-  const listPrice = priceInformation?.listPrice;
-  const promotion = priceInformation?.promotion;
+    let cancelled = false;
+    setIsLoading(true);
+
+    fetch(`/api/pdp/${meta.slug}/${sku}`)
+      .then((res) => res.json())
+      .then(({ data }) => {
+        if (cancelled) return;
+        setPdpData({
+          basicDetails: data.basicDetails,
+          priceInformation: data.priceInformation,
+          bomDetails: data.bomDetails,
+          inStockProducts: data.inStockProducts,
+        });
+        setLoadedSku(sku);
+        window.history.replaceState(null, "", `/design/${meta.slug}/${sku}`);
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [sku, loadedSku, meta?.slug]);
+
+  const currency = pdpData.priceInformation?.currency;
+  const salePrice = pdpData.priceInformation?.totalPrice;
+  const listPrice = pdpData.priceInformation?.listPrice;
+  const promotion = pdpData.priceInformation?.promotion;
   const onSale = listPrice > salePrice;
 
   const title =
-    basicDetails?.name ||
-    `${basicDetails?.subCategory ?? ""} ${basicDetails?.category ?? ""}`.trim();
+    pdpData.basicDetails?.name ||
+    `${pdpData.basicDetails?.subCategory ?? ""} ${pdpData.basicDetails?.category ?? ""}`.trim();
   const productCode = (
-    basicDetails?.productCode ||
+    pdpData.basicDetails?.productCode ||
     meta?.slug ||
     ""
   ).toUpperCase();
 
   return (
     <div className="space-y-5 p-4">
+      <PendingOverlay visible={isLoading} />
+
       {/* Title + code */}
       <div className="flex items-start justify-between gap-4">
         <h1 className="text-2xl font-semibold text-[#1F1F1F]">{title}</h1>
@@ -136,7 +132,7 @@ export default function PdpDetails({
           ready-to-ship "In-Stock Products" table below. */}
       <div className="flex gap-8 border-b border-[#E8DDCF] text-sm">
         <button
-          type="bustton"
+          type="button"
           onClick={() => setActiveTab("customise")}
           className={`pb-2 ${
             activeTab === "customise"
@@ -198,7 +194,7 @@ export default function PdpDetails({
         // ornament, each with its own Buy button instead of a shared
         // configurator + single Add to Bag button.
         <PdpInStockTable
-          products={inStockProducts}
+          products={pdpData.inStockProducts}
           ringSizeOption={options?.find((o) => o.name === "Ring Size")}
           currency={currency}
         />
@@ -228,8 +224,8 @@ export default function PdpDetails({
 
       {/* Product Description + Ring & Diamond Details collapsibles */}
       <PdpProductDetails
-        description={basicDetails?.description}
-        bomDetails={bomDetails}
+        description={pdpData.basicDetails?.description}
+        bomDetails={pdpData.bomDetails}
         meta={meta}
         options={options}
         selections={selections}
