@@ -1,7 +1,6 @@
 import axios from "axios";
 import homePopulate from "./queries/homepage";
 import plpPopulate from "./queries/plpPage";
-import pdpApiData from "@/mock/cms/pdpExperience";
 import { parseSku } from "@/utils/buildSku";
 
 const api = axios.create({
@@ -23,18 +22,9 @@ export async function getPLPExperience(locale) {
   return res.data.data;
 }
 
-// `sku` identifies the exact selected configuration (e.g.
-// "CLRN349_MS03MT1600MFCT00ST0300SF0102000302"), built by utils/buildSku.
-// A real Commerce/PIM PDP endpoint would return `options` with `isSelected`
-// mirroring whatever sku was requested. This mock always holds one fixed
-// combination, so every option click (which navigates to a new
-// /design/{slug}/{sku} URL and re-fetches here) would otherwise come back
-// with the SAME defaults and wipe out whatever the shopper just picked.
-// We simulate the real behaviour by decoding `sku` and overriding
-// `isSelected` to match it before returning.
 export async function getPDPExperience(slug, sku, language = "de") {
   const res = await api.get(`http://localhost:8040/api/pdp/v1/${language}/design/${slug}/${sku}`)
-  const payload = res.data.data ? res.data : { data: pdpApiData, meta: {} };
+  const payload = res.data.data ? res.data : {}
   const selections = sku ? parseSku(payload.data.options, sku) : null;
   if (!selections) return payload;
 
