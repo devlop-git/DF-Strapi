@@ -94,7 +94,7 @@ export default function PdpDetails({
   ).toUpperCase();
 
   return (
-    <div className="space-y-5 p-4">
+    <div className="space-y-5 p-4 bg-[#FAF7F2]">
       <PendingOverlay visible={isLoading} />
 
       {/* Title + code */}

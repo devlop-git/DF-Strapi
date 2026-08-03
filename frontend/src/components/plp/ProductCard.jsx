@@ -22,7 +22,7 @@ export default function ProductCard({ product, filters }) {
       100,
   );
 
-  const pdpHref = product.slug ? `/design/${product.slug}/${product.sku}` : "#";
+  const pdpHref = (product.slug && product.sku) ? `/design/${product.slug}/${product.sku}` : "#";
 
   return (
     <Link href={pdpHref} className="group">
