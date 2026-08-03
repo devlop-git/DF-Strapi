@@ -160,23 +160,17 @@ const plpApiData = {
           "selectedMax": 25000
         }
       }
-    ],
+     ],
     "appliedFilters": [
       { "featureId": "FEATURE-STYLE", "valueCode": "04", "displayName": "Trilogy" }
     ],
-     "products": [
+    "products": [
       {
         "ornamentId": "ORNAMENT-0001",
         "designRef": "CLRN349",
         "designNumber": "RN0033666",
         // "baseProductCode": "CLRN02218",
         "slug": "clrn349_01",
-        // Full PDP SKU for this product's default configuration (see
-        // defaultSelection below for what each part decodes to). PLP cards
-        // link straight to this instead of re-deriving it, since PLP's own
-        // filter set has no Band Width / Clarity / Colour / Certificate /
-        // Polish / Symmetry / Fluorescence fields to encode the MT/SF
-        // segments from.
         "sku": "CLRN349_MS03MT0014MFCT01ST0000SF020300000001",
         "name": "Round Diamond Engagement Ring",
         "ornamentType": "Engagement Ring",

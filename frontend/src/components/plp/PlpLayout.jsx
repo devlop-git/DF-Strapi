@@ -8,7 +8,7 @@ export default function PlpLayout({ commerce, cms }) {
       {cms?.plp_section?.map((section) => {
         return (
           <PlpSectionRenderer
-            key={section.id}
+            key={`${section.__component}-${section.id}`}
             section={section}
             commerce={commerce}
           />

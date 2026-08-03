@@ -100,3 +100,37 @@ export function initialSelections(options = []) {
     return acc;
   }, {});
 }
+
+// Which featureId(s) contribute to each SKU part, in the exact order their
+// codes are concatenated -- mirrors the `partOf`/`featureSequence` grouping
+// PDP options carry (see mock/cms/pdpExperience.js), but keyed by featureId
+// since that's all a PLP product's `defaultSelection` gives us.
+//
+// PLP's `defaultSelection` only ever carries MS/MT/CT/ST features (Metal,
+// Band Width, Ring Size, Carat, Stone Type, Shape) -- never the SF-part
+// grading attributes (Clarity, Colour, Certificate, Polish, Symmetry,
+// Fluorescence). MF and SF are left empty on purpose, so buildSkuFromFeatures
+// appends bare "MF"/"SF" with no value digits, same as buildSku() does for
+// any part with zero contributing options.
+const PART_FEATURE_ORDER = {
+  MS: ["FEATURE-METAL"],
+  MT: ["FEATURE-BANDWIDTH", "FEATURE-RINGSIZE"],
+  MF: [],
+  CT: ["FEATURE-CARAT"],
+  ST: ["FEATURE-STONETYPE", "FEATURE-SHAPE"],
+  SF: [],
+};
+
+// Builds a PDP-shaped SKU from a PLP product's `designRef` + `defaultSelection`
+// (featureId -> valueCode), for the "click a PLP card" default-configuration
+// link -- as opposed to buildSku(), which encodes from a shopper's live PDP
+// selections against the full `options` metadata.
+export function buildSkuFromFeatures(designRef = "", defaultSelection = {}) {
+  const segment = (part) =>
+    part +
+    PART_FEATURE_ORDER[part]
+      .map((featureId) => defaultSelection[featureId] ?? "")
+      .join("");
+
+  return `${designRef}_${SKU_PART_ORDER.map(segment).join("")}`;
+}

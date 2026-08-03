@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa";
 import { slugify } from "@/utils/slugify";
 
-export default function Navigation({ locale, navigation = [] }) {
+export default function DesktopNavigation({ navigation = [] }) {
   if (!navigation?.length) return null;
 
   return (

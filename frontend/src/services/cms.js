@@ -32,9 +32,8 @@ export async function getPLPExperience(locale) {
 // with the SAME defaults and wipe out whatever the shopper just picked.
 // We simulate the real behaviour by decoding `sku` and overriding
 // `isSelected` to match it before returning.
-export async function getPDPExperience(slug, sku) {
-  // const url = 'http://localhost:8040/api/pdp/v1/en/design/clrn349_01/CLRN349_MS00MT0114MFCT00ST0002SF020100010001';
-  const res = await api.get(`http://localhost:8040/api/pdp/v1/en/design/${slug}/${sku}`)
+export async function getPDPExperience(slug, sku, language = "de") {
+  const res = await api.get(`http://localhost:8040/api/pdp/v1/${language}/design/${slug}/${sku}`)
   const payload = res.data.data ? res.data : { data: pdpApiData, meta: {} };
   const selections = sku ? parseSku(payload.data.options, sku) : null;
   if (!selections) return payload;

@@ -135,7 +135,7 @@ export default function PdpInStockTable({
 
       {products.map((product) => (
         <Row
-          key={product.ornamentId}
+          key={product.designRef}
           product={product}
           ringSizeValues={ringSizeValues}
           currency={currency}

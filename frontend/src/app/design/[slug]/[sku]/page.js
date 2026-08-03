@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/common/Breadcrumb";
 import PdpGallery from "@/components/pdp/PdpGallery";
 import PdpDetails from "@/components/pdp/PdpDetails";
 import { slugify } from "@/utils/slugify";
+import { getCurrentLocale } from "@/lib/locale";
 
 // Route shape: /design/{slug}/{designRef}_{sku}
 //   e.g. /design/clrn349_01/CLRN349_MS03MT1600MFCT00ST0300SF0102000302
@@ -14,7 +15,8 @@ import { slugify } from "@/utils/slugify";
 // and re-fetches the PDP data for that configuration.
 export default async function PDPPage({ params }) {
   const { slug, sku } = await params;
-  const { data, meta } = await getPDPExperience(slug,sku);
+  const locale = await getCurrentLocale();
+  const { data, meta } = await getPDPExperience(slug, sku, locale);
   const {
     basicDetails,
     options,
@@ -65,7 +67,7 @@ export default async function PDPPage({ params }) {
             basicDetails={basicDetails}
             priceInformation={priceInformation}
             options={options}
-            meta={{ ...meta, slug }}
+            meta={{ ...meta, slug, locale }}
             bomDetails={bomDetails}
             inStockProducts={inStockProducts}
             currentSku={sku}

@@ -103,9 +103,9 @@ export default function ProductGrid({
     ${lgGaps[gridColumnsIs?.desktopGap]}
           `}
       >
-        {products.map((product) => (
+        {products?.map((product) => (
           <ProductCard
-            key={product.ornamentId}
+            key={product.sku || product.designRef}
             product={product}
             filters={filters}
           />

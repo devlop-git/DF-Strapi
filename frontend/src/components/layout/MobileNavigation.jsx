@@ -8,7 +8,7 @@ import HeaderTabs from "./HeaderTabs";
 import TopAnnouncementBar from "./TopAnnouncementBar";
 import { slugify } from "@/utils/slugify";
 
-export default function MobileNavigation({ navigation = [], locale }) {
+export default function MobileNavigation({ navigation = [] }) {
   const [open, setOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
 

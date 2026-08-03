@@ -6,6 +6,7 @@ import { getPDPExperience } from "@/services/cms";
 // same server-side call getPDPExperience already makes from page.js.
 export async function GET(request, { params }) {
   const { slug, sku } = await params;
-  const result = await getPDPExperience(slug, sku);
+  const language = new URL(request.url).searchParams.get("language") || "de";
+  const result = await getPDPExperience(slug, sku, language);
   return Response.json(result);
 }

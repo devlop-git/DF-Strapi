@@ -56,7 +56,7 @@ export default function PdpDetails({
     let cancelled = false;
     setIsLoading(true);
 
-    fetch(`/api/pdp/${meta.slug}/${sku}`)
+    fetch(`/api/pdp/${meta.slug}/${sku}?language=${meta.locale}`)
       .then((res) => res.json())
       .then(({ data }) => {
         if (cancelled) return;
