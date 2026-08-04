@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { LuTruck } from "react-icons/lu";
 import { RiShieldCheckLine } from "react-icons/ri";
@@ -9,6 +9,7 @@ import PendingOverlay from "@/components/common/PendingOverlay";
 import PdpConfigurator from "./PdpConfigurator";
 import PdpProductDetails from "./PdpProductDetails";
 import PdpInStockTable from "./PdpInStockTable";
+import PdpStickyBanner from "./PdpStickyBanner";
 import { buildSku, initialSelections } from "@/utils/buildSku";
 import { formatPrice } from "@/utils/formatPrice";
 
@@ -33,6 +34,24 @@ export default function PdpDetails({
   // True while a filter-change fetch is in flight.
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("customise");
+
+  // Sticky price banner: visible once the main Price block below has
+  // scrolled out of view, hidden again once it's back in view.
+  const priceRef = useRef(null);
+  const [priceOutOfView, setPriceOutOfView] = useState(false);
+
+  useEffect(() => {
+    const target = priceRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setPriceOutOfView(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
 
   // Single source of truth for every option the shopper has chosen so far.
   const [selections, setSelections] = useState(() =>
@@ -97,6 +116,14 @@ export default function PdpDetails({
     <div className="space-y-5 p-4 bg-[#FAF7F2]">
       <PendingOverlay visible={isLoading} />
 
+      <PdpStickyBanner
+        visible={priceOutOfView && activeTab === "customise"}
+        currency={currency}
+        bomDetails={pdpData.bomDetails}
+        priceInformation={pdpData.priceInformation}
+        salePrice={salePrice}
+      />
+
       {/* Title + code */}
       <div className="flex items-start justify-between gap-4">
         <h1 className="text-2xl font-semibold text-[#1F1F1F]">{title}</h1>
@@ -108,7 +135,7 @@ export default function PdpDetails({
       </div>
 
       {/* Price */}
-      <div className="flex items-baseline gap-3">
+      <div ref={priceRef} className="flex items-baseline gap-3">
         <span className="text-xl font-semibold text-[#9C6D4B]">
           {formatPrice(salePrice, currency)}
         </span>
