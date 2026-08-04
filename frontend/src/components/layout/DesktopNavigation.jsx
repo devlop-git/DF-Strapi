@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa";
 import { slugify } from "@/utils/slugify";
 
-export default function Navigation({ locale, navigation = [] }) {
+export default function DesktopNavigation({ navigation = [] }) {
   if (!navigation?.length) return null;
 
   return (
@@ -28,7 +28,14 @@ export default function Navigation({ locale, navigation = [] }) {
                 )}
               </span>
 
-              {/* Dropdown */}
+              {/* Mega-menu panel: full-width strip below the bar, with a
+                  "STYLE" column listing this category's real subcategories
+                  (grouped by matching category_id -> parentCategoryId via
+                  getSubCategories in services/commerce.js). Other mega-menu
+                  columns (Stone/Shape/Metal/Price shortcuts, "Popular
+                  Categories" imagery) aren't built yet -- that data comes
+                  from the Commerce filter API / Strapi CMS, neither of
+                  which is wired up here. */}
               {children.length > 0 && (
                 <div
                   className="
@@ -37,7 +44,7 @@ export default function Navigation({ locale, navigation = [] }) {
                     left-0
                     top-full
                     z-50
-                    w-72
+                    w-130
                     translate-y-2
                     border
                     border-[#ECE6DE]
@@ -51,39 +58,35 @@ export default function Navigation({ locale, navigation = [] }) {
                     group-hover:opacity-100
                   "
                 >
-                  <ul className="py-2">
-                    {children.map((subCategory) => {
-                      const {
-                        category_id: subCategoryId,
-                        category_details: subCategoryDetails,
-                      } = subCategory;
+                  <div className="px-8 py-6">
+                    <p className="mb-4 text-xs font-semibold tracking-wide text-[#A5744A]">
+                      STYLE
+                    </p>
+                    <ul className="grid grid-cols-3 gap-x-8 gap-y-4">
+                      {children.map((subCategory) => {
+                        const {
+                          category_id: subCategoryId,
+                          category_details: subCategoryDetails,
+                        } = subCategory;
 
-                      const subCategoryName =
-                        subCategoryDetails?.displayCategoryName?.en ??
-                        subCategoryDetails?.categoryName ??
-                        "Sub Category";
+                        const subCategoryName =
+                          subCategoryDetails?.displayCategoryName?.en ??
+                          subCategoryDetails?.categoryName ??
+                          "Sub Category";
 
-                      return (
-                        <li key={subCategoryId}>
-                          <Link
-                            href={`/${slugify(categoryName)}/${slugify(subCategoryName)}`}
-                            className="
-                              block
-                              px-6
-                              py-3
-                              text-sm
-                              text-gray-700
-                              transition-colors
-                              hover:bg-[#F8F5F1]
-                              hover:text-[#A5744A]
-                            "
-                          >
-                            {subCategoryName}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                        return (
+                          <li key={subCategoryId}>
+                            <Link
+                              href={`/${slugify(categoryName)}/${slugify(subCategoryName)}`}
+                              className="text-sm text-gray-700 transition-colors hover:text-[#A5744A]"
+                            >
+                              {subCategoryName}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
                 </div>
               )}
             </li>

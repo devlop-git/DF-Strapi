@@ -3,8 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import DotIndicatorButton from "@/components/common/DotIndicatorButton";
+import { buildSkuFromFeatures } from "@/utils/buildSku";
 
 export default function ProductCard({ product, filters }) {
+  if(!product)  return null;
   const [hoveredMetal, setHoveredMetal] = useState(null);
   const [activeImage, setActiveImage] = useState(0);
   const images = [product.image.medium, product.image.hover].filter(Boolean);
@@ -15,19 +17,12 @@ export default function ProductCard({ product, filters }) {
 
   const selectedMetal = product.defaultSelection?.["FEATURE-METAL"];
   const discount = Math.round(
-    ((product.priceFrom.listPrice - product.priceFrom.salePrice) /
-      product.priceFrom.listPrice) *
+    ((product.priceFrom?.listPrice - product.priceFrom?.salePrice) /
+      product.priceFrom?.listPrice) *
       100,
   );
 
-  // PDP route is /design/{slug}/{sku}. `product.sku` is the fully encoded
-  // default-configuration SKU (Commerce would hand this over directly in a
-  // real API). Fall back to the bare designRef if a product doesn't carry
-  // one yet -- <PdpDetails /> will still self-correct the URL to the PDP
-  // mock's own default combination once it mounts.
-  const pdpHref = product.slug
-    ? `/design/${product.slug}/${product.sku || product.designRef}`
-    : "#";
+  const pdpHref = (product.slug && product.sku) ? `/design/${product.slug}/${product.sku}` : "#";
 
   return (
     <Link href={pdpHref} className="group">
@@ -108,7 +103,7 @@ export default function ProductCard({ product, filters }) {
           <p className="text-[12px] font-normal leading-5 text-gray-800">
             From
             <span className="ml-1 whitespace-nowrap text-[13px] font-semibold text-black">
-              £{product.priceFrom.salePrice}
+              £{product.priceFrom?.salePrice}
             </span>
           </p>
         </div>

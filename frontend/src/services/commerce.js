@@ -1,74 +1,90 @@
-import categoriesMockData from "@/mock/commerce/categories";
-import subcategoriesResponse from "@/mock/commerce/subcategories";
-// import plpResponse from "@/mock/cms/plpexperience";
-import plpApiData from "@/mock/cms/plpApiData";
+import { slugify } from "@/utils/slugify";
 
-const API = "https://app-center.nevejewels.com/apapi/mdm/category/getAll";
+const CATEGORY_API = "http://localhost:8010/api/category/v1";
+const PLP_API = "http://localhost:8040/api/plp/v1";
 
-async function fetchAPI(endpoint) {
-  const response = await fetch(`${API}${endpoint}`, {
-    cache: "no-store",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NEVE_TOKEN}`,
-
-      entityId:
-        "ECO-PROCU-20240518000000-OTH-00001/ECO-NEVEJ-20251104053811-OTH-000001/COM-NAVGR-20251112093649-OTH-000001/COR-MUMBA-20251112102322-OTH-000002",
-      roleId: "ROLE-003",
-      isCompress: "false"
-    },
-  });
+async function fetchCategoryAPI(query) {
+  const url = query ? `${CATEGORY_API}?${query}` : CATEGORY_API;
+  const response = await fetch(url, { cache: "no-store" });
 
   if (!response.ok) {
-     const error = await response.text();
-    throw new Error(`API Error ${response.status}: ${error}`);
+    const error = await response.text();
+    throw new Error(`Category API error ${response.status}: ${error}`);
   }
 
   return response.json();
 }
 
-// Categories
-export async function getCategories() {
-//     const filterQuery = {
-//         category_details: {
-//             isLastLevel: false,
-//             pathToParent: "",
-//         }
-//     }
+// Top-level categories (menu groupings, e.g. "Engagement Rings"). The API
+// has no reliable "no parent" filter param, so this fetches everything and
+// keeps only entries with no parentCategoryId -- anything WITH one is a
+// subcategory and belongs in its parent's dropdown, not the main nav bar.
+export async function getCategories(language = "de") {
+  const res = await fetchCategoryAPI(`language=${language}`);
 
-//     const params = new URLSearchParams({
-//         filterQuery: JSON.stringify(filterQuery),
-//     });
-//   return fetchAPI(`?${params.toString()}`);
-    return categoriesMockData;
-}
-
-// sub
-export async function getSubCategories(parentCategoryId) {
-//   const filterQuery = {
-//     category_details: {
-//       isLastLevel: true,
-//       pathToParent: parentId,
-//     }
-//   };
-
-//   const params = new URLSearchParams({
-//     filterQuery: JSON.stringify(filterQuery),
-//   });
-
-//   return fetchAPI(`?${params.toString()}`);
-    return {
-    ...subcategoriesResponse,
-    data: subcategoriesResponse.data.filter(
-      (item) =>
-        item.category_details.parentCategoryId === parentCategoryId
+  return {
+    ...res,
+    data: (res.data || []).filter(
+      (category) => !category.category_details?.parentCategoryId,
     ),
   };
 }
 
+// Leaf subcategories under a parent (the actual PLP-linked entries, e.g.
+// "Solitaire" under "Engagement Rings").
+export async function getSubCategories(parentCategoryId, language = "de") {
+  const filterQuery = JSON.stringify({
+    category_details: { isLastLevel: true },
+  });
+  const search = JSON.stringify({ pathToParent: parentCategoryId });
 
-export async function getPLP(categoryId){
-    return plpApiData;
+  const query = `filterQuery=${encodeURIComponent(filterQuery)}&search=${encodeURIComponent(search)}&language=${language}`;
+  return fetchCategoryAPI(query);
+}
+
+// The PLP route is /{locale}/{categorySlug}/{subCategorySlug} -- slugs, not
+// the categoryId/subCategoryId the Commerce PLP API actually needs. Walks
+// the same category tree Navigation.jsx builds its links from and matches
+// on the same slugify(displayName) it uses, to recover the real ids.
+export async function resolveCategoryIds(categorySlug, subCategorySlug, language = "de") {
+  const { data: categories = [] } = await getCategories(language);
+
+  const category = categories.find(
+    (c) =>
+      slugify(
+        c.category_details?.displayCategoryName?.en ??
+          c.category_details?.categoryName ??
+          "",
+      ) === categorySlug,
+  );
+  if (!category) return null;
+
+  const { data: subCategories = [] } = await getSubCategories(
+    category.category_id,
+    language,
+  );
+  const subCategory = subCategories.find(
+    (sc) =>
+      slugify(
+        sc.category_details?.displayCategoryName?.en ??
+          sc.category_details?.categoryName ??
+          "",
+      ) === subCategorySlug,
+  );
+  if (!subCategory) return null;
+
+  return { categoryId: category.category_id, subCategoryId: subCategory.category_id };
+}
+
+export async function getPLP(categoryId, subCategoryId, language = "de") {
+  const query = `categoryId=${categoryId}&subCategoryId=${subCategoryId}&language=${language}`;
+  const response = await fetch(`${PLP_API}?${query}`, { cache: "no-store" });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`PLP API error ${response.status}: ${error}`);
+  }
+
+  const { data } = await response.json();
+  return data?.plp;
 }

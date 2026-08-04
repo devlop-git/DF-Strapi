@@ -36,12 +36,12 @@ const GuideSection = ({ data }) => {
               lgGridCols[guideItemsLengthIs] || "lg:grid-cols-4"
             }`}
           >
-            {data.guideItem?.map((item) => {
+            {data?.guideItem?.map((item) => {
               const icon = item.desktopIcon || item.mobileIcon || item.tabIcon;
 
               return (
                 <Link
-                  key={item.id}
+                  key={`${item.id}-${item.title}`}
                   href={item.CTAUrl || "#"}
                   className="group flex flex-col lg:flex-row items-center  lg:justify-center gap-6"
                 >

@@ -107,12 +107,90 @@ Before installing a new package, check whether an existing package already provi
 
 # 3. Next.js Routing
 
-The project uses App Router.
-
-Current structure includes:
+The project uses Next.js 15 App Router.
+## Current Route Structure
 
 ```text
 src/
-  app/
-    page.js
-    layout.js
+└── app/
+    ├── page.js
+    ├── layout.js
+    ├── loading.js
+    ├── globals.css
+    │
+    ├── api/
+    │   ├── categories/
+    │   │   └── route.js
+    │   │
+    │   └── commerce/
+    │       └── plp/
+    │           └── route.js
+    │
+    ├── [category]/
+    │   └── [subCategory]/
+    │       ├── page.js
+    │       └── loading.js
+    │
+    └── design/
+        └── [slug]/
+            └── [sku]/
+                ├── page.js
+                └── loading.js
+```
+
+## PLP Routing
+
+The Product Listing Page (PLP) is routed using dynamic category and subcategory segments.
+
+Example:
+```
+/engagement-rings/trilogy
+```
+Where:
+```
+params.category = "engagement-rings"
+
+params.subCategory = "trilogy"
+```
+The Commerce API or backend should use these URL segments to fetch the appropriate category data.
+Do not hardcode category IDs into the route.
+Use SEO-friendly URLs.
+Example:
+```
+/engagement-rings/side-stone-rings
+```
+instead of
+```
+/plp/CATEGORY-0002
+```
+---
+## PDP Routing
+
+The Product Detail Page (PDP) uses the following structure:
+```
+/design/[slug]/[sku]
+```
+Example:
+```
+/design/prong-setting-trilogy-diamond-engagement-ring/CLRN04546
+```
+Where:
+```
+params.slug = "prong-setting-trilogy-diamond-engagement-ring"
+params.sku = "CLRN04546"
+```
+The SKU (or equivalent unique identifier) should be used to fetch the product from the Commerce API.
+
+The slug is primarily for SEO and should not be considered the unique identifier unless the Commerce API specifically supports it.
+---
+
+## Routing Guidelines
+
+- Keep URLs SEO-friendly.
+- Do not expose internal category IDs in URLs.
+- Do not expose database IDs.
+- Prefer meaningful slugs.
+- Preserve URL compatibility with the existing Diamond Factory website where possible.
+- Use Next.js dynamic routes.
+- Handle invalid category, subcategory, or SKU using the appropriate Next.js `notFound()` pattern.
+- Add `loading.js` where required for route-level loading states.
