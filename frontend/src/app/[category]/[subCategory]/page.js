@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPLP, resolveCategoryIds } from "@/services/commerce";
-import { getPLPExperience } from "@/services/cms";
+import { getPLPLayout } from "@/services/cms";
 import PLPLayout from "@/components/plp/PlpLayout";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
@@ -21,7 +21,7 @@ export default async function PLPPage({ params }) {
   if (!ids) notFound();
 
   const commerce = await getPLP(ids.categoryId, ids.subCategoryId, locale);
-  const cms = await getPLPExperience(locale);
+  const cms = await getPLPLayout(locale);
 
   return (
     <main>

@@ -1,4 +1,4 @@
-import { getPDPExperience } from "@/services/cms";
+import { getPDP } from "@/services/commerce";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumb from "@/components/common/Breadcrumb";
@@ -16,7 +16,7 @@ import { getCurrentLocale } from "@/lib/locale";
 export default async function PDPPage({ params }) {
   const { slug, sku } = await params;
   const locale = await getCurrentLocale();
-  const { data, meta } = await getPDPExperience(slug, sku, locale);
+  const { data, meta } = await getPDP(slug, sku, locale);
   const {
     basicDetails,
     options,

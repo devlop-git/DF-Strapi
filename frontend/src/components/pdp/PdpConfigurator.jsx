@@ -52,8 +52,8 @@ function metalAbbr(name = "") {
 function Label({ option }) {
   return (
     <span className="flex items-center gap-1 text-sm font-bold">
-      {option.displayName}
       <FaRegQuestionCircle className="text-[11px] text-[#BCA98F]" />
+      {option.displayName}
     </span>
   );
 }

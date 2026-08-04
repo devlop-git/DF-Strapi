@@ -1,7 +1,9 @@
 import { slugify } from "@/utils/slugify";
+import { parseSku } from "@/utils/buildSku";
 
 const CATEGORY_API = "http://localhost:8010/api/category/v1";
 const PLP_API = "http://localhost:8040/api/plp/v1";
+const PDP_API = "http://localhost:8040/api/pdp/v1";
 
 async function fetchCategoryAPI(query) {
   const url = query ? `${CATEGORY_API}?${query}` : CATEGORY_API;
@@ -77,14 +79,46 @@ export async function resolveCategoryIds(categorySlug, subCategorySlug, language
 }
 
 export async function getPLP(categoryId, subCategoryId, language = "de") {
-  const query = `categoryId=${categoryId}&subCategoryId=${subCategoryId}&language=${language}`;
-  const response = await fetch(`${PLP_API}?${query}`, { cache: "no-store" });
-
+  const query = `categoryId=${categoryId}&subCategoryId=${subCategoryId}`;
+  const response = await fetch(`${PLP_API}/${language}?${query}`, { cache: "no-store" });
+  
   if (!response.ok) {
     const error = await response.text();
     throw new Error(`PLP API error ${response.status}: ${error}`);
   }
-
+  
   const { data } = await response.json();
   return data?.plp;
+}
+
+export async function getPDP(slug, sku, language = "de") {
+  const query = `${slug}/${sku}`;
+  const response = await fetch(`${PDP_API}/${language}/design/${query}`);
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`PDP API error ${response.status}: ${error}`);
+  }
+
+  // Keep the full `{status, data, meta}` envelope -- callers (page.js,
+  // api/pdp/route.js) destructure `{ data, meta }` off the return value, so
+  // `data` here must stay the whole payload, not just its `.data` field.
+  const payload = await response.json();
+  const selections = sku ? parseSku(payload.data.options, sku) : null;
+  if (!selections) return payload;
+
+  const options = payload.data.options.map((option) => {
+    // Not encoded in the SKU (its current value has no valueCode yet) --
+    // keep this option's original defaults untouched.
+    if (!(option.name in selections)) return option;
+
+    return {
+      ...option,
+      values: option.values.map((value) => ({
+        ...value,
+        isSelected: selections[option.name] === value.valueCode,
+      })),
+    };
+  });
+
+  return { ...payload, data: { ...payload.data, options } };
 }

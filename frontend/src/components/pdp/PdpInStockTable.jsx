@@ -8,7 +8,7 @@
 //
 // Data: `products` comes from data.inStockProducts in the PDP API response
 // (mocked for now in mock/cms/pdpExperience.js -- swap for the real
-// Commerce endpoint later, same as getPDPExperience in services/cms.js).
+// Commerce endpoint later, same as getPDP in services/commerce.js).
 import { useState } from "react";
 import { GiDiamonds } from "react-icons/gi";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
