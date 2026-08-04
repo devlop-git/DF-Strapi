@@ -30,23 +30,20 @@ const PRIMARY_ORDER = [
 // Best-effort swatch colour for a metal, derived from its name.
 function metalColor(name = "") {
   const n = name.toLowerCase();
-  if (n.includes("rose")) return "#E0B0A0";
-  if (n.includes("yellow")) return "#E6C67A";
-  if (n.includes("platinum") || n.includes("white")) return "#E5E4E2";
+  if (n.includes("rose") || n.includes("rotgold")) return "#E0B0A0";
+  if (n.includes("yellow") || n.includes("gelbgold")) return "#E6C67A";
+  if (n.includes("platinum") || n.includes("white") || n.includes("platin")) return "#E5E4E2";
   return "#E5E4E2";
 }
 
 function metalAbbr(name = "") {
-  // Some values are a platinum/karat-gold combo (e.g. "18K White Gold
-  // Shank/Platinum (950) Head") -- show both, e.g. "PL 18K". Pure
-  // "Platinum(950)" has no karat and shows just "PL". The full name is
-  // still available as the title on hover either way.
   const karat = name.match(/(\d+)K/i);
-  const isPlatinum = /platinum/i.test(name);
+  const isPlatinum = /platinum|platin/i.test(name);
 
   if (isPlatinum && karat) return `PL ${karat[1]}K`;
   if (isPlatinum) return "PL";
-  return karat ? `${karat[1]}K` : name.slice(0, 2);
+
+  return karat ? `${karat[1]}K` : name.slice(0, 2).toUpperCase();
 }
 
 function Label({ option }) {

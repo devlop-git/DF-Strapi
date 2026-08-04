@@ -6,7 +6,8 @@ const PLP_API = "http://localhost:8040/api/plp/v1";
 const PDP_API = "http://localhost:8040/api/pdp/v1";
 
 async function fetchCategoryAPI(query) {
-  const url = query ? `${CATEGORY_API}?${query}` : CATEGORY_API;
+  const params = query ? `${query}&batchSize=100` : "batchSize=100";
+  const url = `${CATEGORY_API}?${params}`;
   const response = await fetch(url, { cache: "no-store" });
 
   if (!response.ok) {
@@ -23,7 +24,6 @@ async function fetchCategoryAPI(query) {
 // subcategory and belongs in its parent's dropdown, not the main nav bar.
 export async function getCategories(language = "de") {
   const res = await fetchCategoryAPI(`language=${language}`);
-
   return {
     ...res,
     data: (res.data || []).filter(
