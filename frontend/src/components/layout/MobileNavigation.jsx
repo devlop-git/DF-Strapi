@@ -7,8 +7,9 @@ import { IoIosArrowForward } from "react-icons/io";
 import HeaderTabs from "./HeaderTabs";
 import TopAnnouncementBar from "./TopAnnouncementBar";
 import { slugify } from "@/utils/slugify";
+import LanguageDropdown from "../homePage/LanguageDropdown";  
 
-export default function MobileNavigation({ navigation = [] }) {
+export default function MobileNavigation({ navigation = [], languages }) {
   const [open, setOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -145,6 +146,9 @@ export default function MobileNavigation({ navigation = [] }) {
                 })}
               </>
             )}
+            <div className="flex items-center justify-center py-4">
+              <LanguageDropdown languages={languages} />
+            </div>
           </div>
         </aside>
       </div>

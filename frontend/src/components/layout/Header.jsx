@@ -33,7 +33,7 @@ const Header = async () => {
 
           <div className="">
             <div className="px-2 lg:px-8">
-              <Navigation locale={locale} />
+              <Navigation locale={locale} languages={languages} />
             </div>
           </div>
         </header>

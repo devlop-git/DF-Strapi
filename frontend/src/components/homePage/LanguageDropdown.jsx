@@ -6,9 +6,9 @@ import { FaChevronDown } from "react-icons/fa";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
-const flags = {
-  en: "🇬🇧",
-  de: "🇩🇪",
+const countryCodes = {
+  en: "gb",
+  de: "de",
 };
 
 const LanguageDropdown = ({ languages = [] }) => {
@@ -38,7 +38,7 @@ const LanguageDropdown = ({ languages = [] }) => {
         onClick={() => setOpen((prev) => !prev)}
         className="flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase rounded-md hover:bg-gray-100"
       >
-        <span className="text-xl">{flags[selected.code]}</span>
+        <span className={`fi fi-${countryCodes[selected.code]} rounded-sm`} />
 
         <span>{selected.label}</span>
 
@@ -59,7 +59,7 @@ const LanguageDropdown = ({ languages = [] }) => {
                 selected.code === lang.code ? "bg-gray-50 font-semibold" : ""
               }`}
             >
-              <span className="text-xl">{flags[lang.code]}</span>
+              <span className={`fi fi-${countryCodes[lang.code]} rounded-sm`} />
               {lang.label}
             </button>
           ))}

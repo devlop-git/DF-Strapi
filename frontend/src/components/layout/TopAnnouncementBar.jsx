@@ -17,8 +17,9 @@ export default function TopAnnouncementBar({ headerTextStyle }) {
   if (!showNavbar) return null;
 
   return (
-    <section className="w-full bg-[#1A1A18] text-white ">
-      <div className=" min-h-10 flex justify-center items-center lg:hidden">
+    <section className="w-full max-w-full overflow-hidden bg-[#1A1A18] text-white">
+      {/* Mobile */}
+      <div className="min-h-10 flex justify-center items-center lg:hidden">
         <Link
           href="/sale"
           className={`hover:underline text-base ${headerTextStyle}`}
@@ -26,47 +27,41 @@ export default function TopAnnouncementBar({ headerTextStyle }) {
           SALE
         </Link>
       </div>
-      <div className="mx-auto hidden lg:flex h-14  items-center overflow-x-auto whitespace-nowrap scrollbar-hide">
-        <div className="flex items-center text-sm font-medium">
+
+      {/* Desktop */}
+      <div className="hidden lg:flex w-full h-14 items-center overflow-hidden">
+        <div className="flex w-full min-w-0 items-center justify-between text-sm font-medium">
           {/* Sale */}
-          <div className="px-5 uppercase tracking-wide">SALE</div>
+          <div className="shrink-0 px-2 xl:px-4 uppercase tracking-wide">
+            SALE
+          </div>
 
           {/* Trustpilot */}
-          <div className="flex items-center gap-3 ">
-            <span className="text-[17px] font-bold">Hervorragend</span>
-
-            <span className="text-[17px]">4.3 von 5</span>
-
-            {/* Trustpilot */}
-            {/* <Image
-              src="/images/trustpilot-logo.svg"
-              alt="Trustpilot"
-              width={130}
-              height={28}
-              className="h-7 w-auto"
-            /> */}
+          <div className="flex min-w-0 items-center gap-2 px-2 xl:px-4">
+            <span className="whitespace-nowrap text-[15px] xl:text-[17px] font-bold">
+              Hervorragend
+            </span>
+            <span className="whitespace-nowrap text-[15px] xl:text-[17px]">
+              4.3 von 5
+            </span>
           </div>
 
           {/* Klarna */}
-          <div className="flex items-center gap-3 px-5 uppercase">
-            <span>Bezahlen Sie später mit</span>
-
-            {/* <Image
-              src="/images/klarna-logo.svg"
-              alt="Klarna"
-              width={95}
-              height={24}
-              className="h-6 w-auto"
-            /> */}
+          <div className="flex min-w-0 items-center gap-2 px-2 xl:px-4 uppercase">
+            <span className="whitespace-nowrap">
+              Bezahlen Sie später mit
+            </span>
           </div>
 
-          <div className="px-5 uppercase">Preisanpassungsgarantie</div>
-
-          <div className="px-5 uppercase">
+          <div className="shrink-0 px-2 xl:px-4 uppercase whitespace-nowrap">
+            Preisanpassungsgarantie
+          </div>
+          <div className="shrink-0 px-2 xl:px-4 uppercase whitespace-nowrap">
             30 Tage kostenloses Rückgaberecht
           </div>
-
-          <div className="px-5 uppercase">Lebenslange Garantie</div>
+          <div className="shrink-0 px-2 xl:px-4 uppercase whitespace-nowrap">
+            Lebenslange Garantie
+          </div>
         </div>
       </div>
     </section>
