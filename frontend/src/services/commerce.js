@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { slugify } from "@/utils/slugify";
 import { parseSku } from "@/utils/buildSku";
 
@@ -5,10 +6,31 @@ const CATEGORY_API = "http://localhost:8010/api/category/v1";
 const PLP_API = "http://localhost:8040/api/plp/v1";
 const PDP_API = "http://localhost:8040/api/pdp/v1";
 
+const SESSION_ID_KEY = "x-session-id";
+
+async function getTransactionId() {
+  const headersList = await headers();
+  return headersList.get(SESSION_ID_KEY) ?? crypto.randomUUID();
+}
+
+// Common fetch wrapper so every Commerce API call carries the same
+// x-session-id header the backend uses to track the session.
+async function commerceFetch(url, options = {}) {
+  const transactionId = await getTransactionId();
+
+  return fetch(url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      [SESSION_ID_KEY]: transactionId,
+    },
+  });
+}
+
 async function fetchCategoryAPI(query) {
   const params = query ? `${query}&batchSize=100` : "batchSize=100";
   const url = `${CATEGORY_API}?${params}`;
-  const response = await fetch(url, { cache: "no-store" });
+  const response = await commerceFetch(url, { cache: "no-store" });
 
   if (!response.ok) {
     const error = await response.text();
@@ -80,7 +102,7 @@ export async function resolveCategoryIds(categorySlug, subCategorySlug, language
 
 export async function getPLP(categoryId, subCategoryId, language = "de") {
   const query = `categoryId=${categoryId}&subCategoryId=${subCategoryId}`;
-  const response = await fetch(`${PLP_API}/${language}?${query}`, { cache: "no-store" });
+  const response = await commerceFetch(`${PLP_API}/${language}?${query}`, { cache: "no-store" });
   
   if (!response.ok) {
     const error = await response.text();
@@ -93,7 +115,7 @@ export async function getPLP(categoryId, subCategoryId, language = "de") {
 
 export async function getPDP(slug, sku, language = "de") {
   const query = `${slug}/${sku}`;
-  const response = await fetch(`${PDP_API}/${language}/design/${query}`);
+  const response = await commerceFetch(`${PDP_API}/${language}/design/${query}`);
   if (!response.ok) {
     const error = await response.text();
     throw new Error(`PDP API error ${response.status}: ${error}`);
