@@ -5,7 +5,7 @@ import { getStrapiMedia } from "@/utils/strapi";
 import Navigation from "./Navigation";
 import HeaderTabs from "./HeaderTabs";
 import { getCurrentLocale } from "@/lib/locale";
-import TopAnnouncementBar from "./TopAnnouncementBar";
+// import TopAnnouncementBar from "./TopAnnouncementBar";
 
 const Header = async () => {
   const locale = await getCurrentLocale();
@@ -18,7 +18,7 @@ const Header = async () => {
   return (
     <>
       {/* Not sticky */}
-      <TopAnnouncementBar />
+      {/* <TopAnnouncementBar /> */}
 
       {/* Sticky */}
       <div className="sticky top-0 z-50 w-full bg-white">
