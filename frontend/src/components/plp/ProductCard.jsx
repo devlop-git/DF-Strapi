@@ -103,7 +103,7 @@ export default function ProductCard({ product, filters }) {
           <p className="text-[12px] font-normal leading-5 text-gray-800">
             From
             <span className="ml-1 whitespace-nowrap text-[13px] font-semibold text-black">
-              £{product.priceFrom?.salePrice}
+              {product.priceFrom?.salePrice}€
             </span>
           </p>
         </div>

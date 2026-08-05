@@ -1,4 +1,4 @@
-const CURRENCY_SYMBOL = { GBP: "£", EUR: "€", USD: "$" };
+const CURRENCY_SYMBOL = { GBP: "€", EUR: "€", USD: "€" };
 
 export function formatPrice(amount, currency) {
   const symbol = CURRENCY_SYMBOL[currency] ?? "";
@@ -6,5 +6,5 @@ export function formatPrice(amount, currency) {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  return `${symbol}${value}`;
+  return `${value}${symbol}`;
 }
