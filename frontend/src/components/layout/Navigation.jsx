@@ -3,7 +3,7 @@ import DesktopNavigation from "./DesktopNavigation"
 import MobileNavigation from "./MobileNavigation"
 import { getCategories, getSubCategories } from "@/services/commerce"
 
-const Navigation = async ({ languages }) => {
+const Navigation = async ({ languages, locale }) => {
   const categoryRes = await getCategories();
   const categories = categoryRes.data;
 
@@ -24,7 +24,11 @@ const Navigation = async ({ languages }) => {
         <DesktopNavigation navigation={navigation} />
       </div>
       <div className="block lg:hidden">
-        <MobileNavigation navigation={navigation} languages={languages} />
+        <MobileNavigation
+          navigation={navigation}
+          languages={languages}
+          locale={locale}
+        />
       </div>
     </div>
   );

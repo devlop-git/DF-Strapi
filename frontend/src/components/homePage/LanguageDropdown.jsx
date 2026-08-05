@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 import Cookies from "js-cookie";
@@ -11,10 +11,24 @@ const countryCodes = {
   de: "de",
 };
 
-const LanguageDropdown = ({ languages = [] }) => {
-  const [selected, setSelected] = useState(languages[0]);
+const DEFAULT_LANGUAGE = "de";
+
+const LanguageDropdown = ({ languages = [], locale }) => {
+  const [selected, setSelected] = useState(
+    languages.find((lang) => lang.code === locale) || languages[0],
+  );
   const [open, setOpen] = useState(false);
   const router = useRouter();
+
+  // The server already treats a missing cookie as "de" (see
+  // lib/locale.js), but that's a single fallback other code can't rely on
+  // unless it also remembers to apply it. Write the cookie explicitly on
+  // first load so "de" is a real, persisted value from the start, not an
+  // implicit default that only one call site currently honours.
+  useEffect(() => {
+    if (Cookies.get("language")) return;
+    Cookies.set("language", DEFAULT_LANGUAGE, { expires: 365, path: "/" });
+  }, []);
 
   if (!selected) return null;
 

@@ -11,7 +11,7 @@ import {
   FaShoppingBag,
 } from "react-icons/fa";
 
-const HeaderTabs = ({ logo, getStrapiMedia, languages }) => {
+const HeaderTabs = ({ logo, getStrapiMedia, languages, locale }) => {
   return (
     <div className="lg:border-b lg:border-[#E8DDCF] ">
       <div className=" gap-x-1 mx-auto flex lg:grid grid-cols-3 h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -49,7 +49,7 @@ const HeaderTabs = ({ logo, getStrapiMedia, languages }) => {
         {/* Right */}
 
         <div className="flex lg:justify-end items-center gap-x-4 ">
-          <LanguageDropdown languages={languages} />
+          <LanguageDropdown languages={languages} locale={locale} />
           <button className="hover:text-[#A5744A] hidden lg:block">
             <FaSearch className="text-lg md:text-2xl" />
           </button>

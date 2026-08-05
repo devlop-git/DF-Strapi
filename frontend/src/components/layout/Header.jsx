@@ -28,6 +28,7 @@ const Header = async () => {
               logo={logo}
               getStrapiMedia={getStrapiMedia}
               languages={languages}
+              locale={locale}
             />
           </div>
 
