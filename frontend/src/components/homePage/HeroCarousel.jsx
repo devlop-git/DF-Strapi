@@ -97,18 +97,7 @@ export default function HeroCarousel({ data }) {
                       {slide.buttonText && slide.buttonLink && (
                         <Link
                           href={slide.buttonLink}
-                          className="
-                            inline-flex
-                            mt-10
-                            px-10
-                            py-4
-                            bg-[#ffffff]
-                            text-[#000000]
-                            text-lg
-                            
-                            transition-all
-                            duration-300
-                          "
+                          className="inline-flex mt-10 px-10 py-4 bg-[#ffffff] text-[#000000] text-lg transition-all duration-300"
                         >
                           {slide.buttonText}
                         </Link>
@@ -121,24 +110,6 @@ export default function HeroCarousel({ data }) {
           );
         })}
       </Swiper>
-
-      <style jsx global>{`
-        .swiper-pagination {
-          bottom: 35px !important;
-        }
-
-        .swiper-pagination-bullet {
-          width: 12px;
-          height: 12px;
-          background: white;
-          opacity: 0.5;
-        }
-
-        .swiper-pagination-bullet-active {
-          background: #a5744a;
-          opacity: 1;
-        }
-      `}</style>
     </section>
   );
 }

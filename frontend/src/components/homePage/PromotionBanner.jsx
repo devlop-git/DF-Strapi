@@ -61,21 +61,21 @@ export default function PromotionBanner({ data }) {
         </div>
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#F4F2EF] via-[#F4F2EF]/95 via-35% to-transparent" />
+        <div className="absolute inset-0" />
 
         {/* Content */}
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-xl px-6 sm:px-10 lg:px-28">
             {/* Title */}
             {data?.title && (
-              <h2 className="font-serif text-[#111] text-3xl sm:text-5xl lg:text-6xl leading-[1.08] font-light whitespace-pre-line">
+              <h2 className="font-serif text-white text-3xl sm:text-5xl lg:text-6xl leading-[1.08] font-light whitespace-pre-line">
                 {data.title}
               </h2>
             )}
 
             {/* Description */}
             {data?.description && (
-              <p className="mt-4 sm:mt-6 text-base sm:text-[17px] leading-7 sm:leading-8 text-[#3B3B3B] whitespace-pre-line">
+              <p className="mt-4 sm:mt-6 text-base sm:text-[17px] leading-7 sm:leading-8 text-white whitespace-pre-line">
                 {data.description}
               </p>
             )}
