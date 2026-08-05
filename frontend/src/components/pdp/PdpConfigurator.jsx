@@ -30,14 +30,14 @@ const PRIMARY_ORDER = [
 // Best-effort swatch colour for a metal, derived from its name.
 function metalColor(name = "") {
   const n = name.toLowerCase();
-  if (n.includes("rose") || n.includes("rotgold")) return "#E0B0A0";
+  if (n.includes("rose") || n.includes("rosé") || n.includes("rotgold")) return "#E0B0A0";
   if (n.includes("yellow") || n.includes("gelbgold")) return "#E6C67A";
   if (n.includes("platinum") || n.includes("white") || n.includes("platin")) return "#E5E4E2";
   return "#E5E4E2";
 }
 
 function metalAbbr(name = "") {
-  const karat = name.match(/(\d+)K/i);
+  const karat = name.match(/(\d+)\s*(?:K|Karat)/i);
   const isPlatinum = /platinum|platin/i.test(name);
 
   if (isPlatinum && karat) return `PL ${karat[1]}K`;
