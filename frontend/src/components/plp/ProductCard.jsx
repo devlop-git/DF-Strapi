@@ -44,7 +44,7 @@ export default function ProductCard({ product, filters }) {
           {/* Desktop Images */}
           <div className="relative hidden lg:block">
             <Image
-              src={product.image.medium}
+              src={product.image.thumbnail}
               alt={product.image.altText}
               width={500}
               height={500}
