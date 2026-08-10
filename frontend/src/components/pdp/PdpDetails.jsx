@@ -44,8 +44,15 @@ export default function PdpDetails({
     const target = priceRef.current;
     if (!target) return;
 
+    // isIntersecting alone is true both when the price row has scrolled up
+    // out of view AND when it simply hasn't been scrolled to yet (e.g. on
+    // mobile, where the gallery stacks above it and pushes it below the
+    // fold on load). Checking boundingClientRect.top instead only counts
+    // "scrolled past going down", so the banner stays hidden until then and
+    // hides again once scrolling back up returns the price row to/below the
+    // viewport's top edge.
     const observer = new IntersectionObserver(
-      ([entry]) => setPriceOutOfView(!entry.isIntersecting),
+      ([entry]) => setPriceOutOfView(entry.boundingClientRect.top < 0),
       { threshold: 0 },
     );
     observer.observe(target);

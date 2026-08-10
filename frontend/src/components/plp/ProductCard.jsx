@@ -66,7 +66,7 @@ export default function ProductCard({ product, filters }) {
           {/* Mobile Image */}
           <div className="lg:hidden">
             <Image
-              src={images[activeImage]}
+              src={product.image.thumbnail}
               alt={product.image.altText}
               width={500}
               height={500}

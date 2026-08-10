@@ -2,49 +2,47 @@ import Link from "next/link";
 import { FiChevronRight } from "react-icons/fi";
 
 export default function Breadcrumb({ items }) {
+  const parentItems = items.slice(0, -1);
+  const lastItem = items[items.length - 1];
+
+  const renderCrumb = (item) =>
+    item?.url ? (
+      <Link
+        href={item.url || "#"}
+        className="text-[#1F1F1F] transition hover:text-[#A0704F]"
+      >
+        {item.label}
+      </Link>
+    ) : (
+      <span className="text-[#1F1F1F]">{item.label}</span>
+    );
+
   return (
     <section className=" bg-white">
       <div className="mx-auto lg:max-w-7xl  py-5 px-2 md:px-8 lg:px-10">
-        <nav
-          aria-label="Breadcrumb"
-          className="flex  items-center  text-sm md:text-base"
-        >
-          {items.map((item, index) => {
-            const isLast = index === items.length - 1;
-
-            return (
-              <div key={item.label} className="flex text-sm items-center">
-                {isLast || !item?.url ? (
-                  // Last crumb, or a crumb with no page of its own (e.g. a
-                  // parent category, which is only a menu grouping and has
-                  // no standalone PLP route) -- render as plain text.
-                  <span
-                    className={
-                      isLast
-                        ? "font-medium text-[#1F1F1F]"
-                        : "text-[#1F1F1F]"
-                    }
-                  >
-                    {item.label}
-                  </span>
-                ) : (
-                  <Link
-                    href={item.url}
-                    className="text-[#1F1F1F] transition hover:text-[#A0704F]"
-                  >
-                    {item.label}
-                  </Link>
-                )}
-
-                {!isLast && (
-                  <FiChevronRight
-                    className="lg:mx-3 text-[#4A4A4A]"
-                    size={14}
-                  />
-                )}
+        <nav aria-label="Breadcrumb" className="text-sm md:text-base">
+          {/* Parent trail: wraps as a group; on desktop the final crumb
+              joins this same line, on mobile it drops to its own line
+              below instead of breaking mid-label. */}
+          <div className="flex flex-wrap items-center">
+            {parentItems.map((item) => (
+              <div key={item.label} className="flex items-center whitespace-nowrap">
+                {renderCrumb(item)}
+                <FiChevronRight
+                  className="mx-1 md:mx-2 lg:mx-3 text-[#4A4A4A]"
+                  size={14}
+                />
               </div>
-            );
-          })}
+            ))}
+
+            <span className="hidden lg:inline font-medium text-[#1F1F1F] whitespace-nowrap">
+              {lastItem.label}
+            </span>
+          </div>
+
+          <div className="mt-1 font-medium text-[#1F1F1F] lg:hidden">
+            {lastItem.label}
+          </div>
         </nav>
       </div>
     </section>
