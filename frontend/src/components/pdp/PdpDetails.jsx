@@ -31,6 +31,19 @@ export default function PdpDetails({
 
   const [loadedSku, setLoadedSku] = useState(currentSku);
 
+  // `pdpData` is a local copy of these props, kept only so a filter-change
+  // fetch can overwrite it without waiting for a server round-trip. That
+  // copy goes stale on its own the moment the *server* gives us new values
+  // for the sku already on screen (e.g. a language switch re-renders this
+  // page with translated basicDetails but `sku` doesn't change, so the
+  // fetch effect below never re-fires). Whenever that happens, resync --
+  // but only if we're not mid-flight fetching a *different* sku, or this
+  // would stomp that fetch's eventual result with stale props.
+  useEffect(() => {
+    if (currentSku !== loadedSku) return;
+    setPdpData({ basicDetails, priceInformation, bomDetails, inStockProducts });
+  }, [basicDetails, priceInformation, bomDetails, inStockProducts, currentSku, loadedSku]);
+
   // True while a filter-change fetch is in flight.
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("customise");

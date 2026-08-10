@@ -1,6 +1,4 @@
 import { getPDP } from "@/services/commerce";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Breadcrumb from "@/components/common/Breadcrumb";
 import PdpGallery from "@/components/pdp/PdpGallery";
 import PdpDetails from "@/components/pdp/PdpDetails";
@@ -52,9 +50,7 @@ export default async function PDPPage({ params }) {
     : null;
 
   return (
-    <main>
-      <Header params={params} />
-
+    <>
       <Breadcrumb items={breadcrumbItems} />
 
       <section className="mx-auto max-w-7xl px-4 py-8 lg:px-10">
@@ -74,8 +70,6 @@ export default async function PDPPage({ params }) {
           />
         </div>
       </section>
-
-      <Footer params={params} />
-    </main>
+    </>
   );
 }

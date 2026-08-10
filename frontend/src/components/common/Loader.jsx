@@ -9,10 +9,16 @@ import { RotatingLines } from "react-loader-spinner";
 // as much as ITS OWN box ends up being, which can fall short of the real
 // page height and leave a gap at the bottom. `fixed inset-0` always covers
 // exactly the current viewport, so there's no dependency on content height.
+//
+// Background is intentionally transparent: this overlay also fires on
+// router.refresh() (language switch) and PDP option/filter navigations,
+// where the previous page's content is still visible underneath and an
+// opaque backdrop would blank the whole screen instead of just showing a
+// spinner over it.
 export default function Loader() {
   return (
       <div
-    className="fixed inset-0 z-9999 flex items-center justify-center bg-#faf7f2"
+    className="fixed inset-0 z-9999 flex items-center justify-center bg-transparent"
   >
       <RotatingLines
         visible
