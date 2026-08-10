@@ -163,7 +163,7 @@ export default function PdpDetails({
       </div>
 
       {/* Price */}
-      <div ref={priceRef} className="flex items-baseline gap-3">
+      {salePrice !== 0 ? <div ref={priceRef} className="flex items-baseline gap-3 mb-2">
         <span className="text-xl font-semibold text-[#9C6D4B]">
           {formatPrice(salePrice, currency)}
         </span>
@@ -173,7 +173,10 @@ export default function PdpDetails({
           </span>
         )}
         {onSale && <span className="text-xs text-[#9C6D4B]">Sale Price</span>}
-      </div>
+      </div> : 
+      <div className="text-xs text-[#e72618]">
+        Please contact a member of our sales team regarding your combination. We would be delighted to help you. Our team can be contacted on 0800 1844 819.
+      </div>}
 
       {/* Promotion banner */}
       {promotion?.description && (
