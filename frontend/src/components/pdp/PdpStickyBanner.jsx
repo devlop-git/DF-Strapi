@@ -30,34 +30,34 @@ export default function PdpStickyBanner({
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-8 lg:gap-6 lg:px-10">
         {/* Price breakdown: Setting + Diamond = subtotal */}
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-6 text-sm lg:text-sm">
-            <div className="text-center leading-tight">
+          <div className="flex items-start gap-6 text-sm lg:text-sm">
+            <div className="w-32.5 text-center leading-tight">
               <div className="font-semibold text-[#1F1F1F]">
                 {formatPrice(priceBeforeDiscount?.metal, currency)}
               </div>
               <div className="text-lg">Setting</div>
               {bomDetails?.metal && (
-                <div className="hidden text-[14px] text-[#9A8B78] whitespace-nowrap md:block">
+                <div className="hidden text-[14px] text-[#9A8B78] md:block">
                   ({bomDetails.metal})
                 </div>
               )}
             </div>
 
-            <span className="text-[#9A8B78]">+</span>
+            <span className="pt-1 text-[#9A8B78]">+</span>
 
-            <div className="text-center leading-tight">
+            <div className="w-32.5 text-center leading-tight">
               <div className="font-semibold text-[#1F1F1F]">
                 {formatPrice(priceBeforeDiscount?.stones, currency)}
               </div>
               <div className="text-lg">Diamond</div>
               {stoneLabel && (
-                <div className="hidden text-[14px] text-[#9A8B78] whitespace-nowrap md:block">
+                <div className="hidden text-[14px] text-[#9A8B78] md:block">
                   ({stoneLabel})
                 </div>
               )}
             </div>
 
-            <span className="text-[#9A8B78]">=</span>
+            <span className="pt-1 text-[#9A8B78]">=</span>
 
             <span className="bg-[#9C6D4B]/10 px-2 py-1 font-semibold text-[#1F1F1F]">
               {formatPrice(priceBeforeDiscount?.subtotal, currency)}
