@@ -41,10 +41,12 @@ export default function DesktopNavigation({ navigation = [] }) {
                   className="
                     invisible
                     absolute
-                    left-0
+                    left-1/2
                     top-full
                     z-50
                     w-130
+                    max-w-[calc(100vw-2rem)]
+                    -translate-x-1/2
                     translate-y-2
                     border
                     border-[#ECE6DE]

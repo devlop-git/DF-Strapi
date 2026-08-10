@@ -133,8 +133,17 @@ export default function ProductCard({ product, filters }) {
                   }`}
                 >
                   <span
-                    className="h-4 w-4 rounded-full border"
-                    style={{ backgroundColor: metal.swatch }}
+                    className="h-4 w-4 rounded-full border-white"
+                     style={{
+      background: `
+        radial-gradient(
+          circle at 30% 25%,
+          #ffffff 0%,
+          ${metal.swatch} 45%,
+          #cfcfcd 100%
+        )
+      `,
+    }}
                   />
                 </div>
 

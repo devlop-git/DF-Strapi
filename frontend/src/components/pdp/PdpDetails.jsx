@@ -57,20 +57,28 @@ export default function PdpDetails({
     const target = priceRef.current;
     if (!target) return;
 
-    // isIntersecting alone is true both when the price row has scrolled up
-    // out of view AND when it simply hasn't been scrolled to yet (e.g. on
-    // mobile, where the gallery stacks above it and pushes it below the
-    // fold on load). Checking boundingClientRect.top instead only counts
-    // "scrolled past going down", so the banner stays hidden until then and
-    // hides again once scrolling back up returns the price row to/below the
-    // viewport's top edge.
-    const observer = new IntersectionObserver(
-      ([entry]) => setPriceOutOfView(entry.boundingClientRect.top < 0),
-      { threshold: 0 },
-    );
-    observer.observe(target);
+    // A plain scroll listener (rather than IntersectionObserver) so the
+    // check runs continuously while scrolling, not just on the entering/
+    // leaving events that fire when the price row crosses the viewport
+    // boundary -- with IntersectionObserver, scrolling slowly back up
+    // while the row stays intersecting never re-fires the callback, so
+    // priceOutOfView gets stuck true until a big jump (e.g. dragging the
+    // scrollbar to the very top) forces a fresh intersection event.
+    let ticking = false;
+    const checkPosition = () => {
+      ticking = false;
+      setPriceOutOfView(target.getBoundingClientRect().top < 0);
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(checkPosition);
+    };
 
-    return () => observer.disconnect();
+    checkPosition();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   // Single source of truth for every option the shopper has chosen so far.
