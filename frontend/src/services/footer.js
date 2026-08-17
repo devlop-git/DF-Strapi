@@ -5,9 +5,7 @@ const api = axios.create({
 });
 
 export async function getFooter(locale) {
-  const res = await api.get(
-    `/footer?locale=${locale}&populate=*`
-  );
+  const res = await api.get(`/footer?locale=${locale}&populate=*`);
 
   return res.data.data;
 }

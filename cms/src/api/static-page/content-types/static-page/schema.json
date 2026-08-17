@@ -125,6 +125,37 @@
       "relation": "manyToOne",
       "target": "api::static-page.static-page",
       "inversedBy": "children"
+    },
+    "show_in_footer": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "default": true
+    },
+    "footer_column": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "enum": [
+        "about",
+        "services",
+        "help"
+      ]
+    },
+    "footer_order": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

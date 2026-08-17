@@ -12,6 +12,17 @@ export function nestedParentPopulate(depth) {
   return { populate: { parent_page: nestedParentPopulate(depth - 1) } };
 }
 
+// Same shape, but restricted to just `slug` at every level -- for callers
+// (like the footer link list) that only need to build a path, not render
+// each ancestor's full content/SEO fields.
+export function nestedParentPopulateWithFields(depth) {
+  if (depth <= 0) return { fields: ["slug"] };
+  return {
+    fields: ["slug"],
+    populate: { parent_page: nestedParentPopulateWithFields(depth - 1) },
+  };
+}
+
 // `page` must have `parent_page` populated (nested, via the above) -- walks
 // it root-first and joins with the page's own slug, e.g. a Valuations page
 // whose parent is Customer Care becomes "/customer-care/valuations".

@@ -2,6 +2,8 @@ import axios from "axios";
 import homePopulate from "./queries/homepage";
 import plpPopulate from "./queries/plpPage";
 import staticPagePopulate, { MAX_ANCESTOR_DEPTH } from "./queries/staticPage";
+import footerPagesPopulate from "./queries/footerPages";
+import { buildStaticPagePath } from "@/utils/staticPagePath";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_STRAPI_URL + "/api",
@@ -93,4 +95,40 @@ export async function resolveStaticPage(segments, locale, market) {
     breadcrumbItems,
     componentContent: page.component_content || [],
   };
+}
+
+const FOOTER_COLUMNS = ["about", "services", "help"];
+
+// Pages "push" themselves into the footer (a `show_in_footer` +
+// `footer_column` flag on the page itself) rather than the footer "pulling"
+// via a separate relation list -- one place to edit per page, and a page
+// disappears from the footer the moment it's unpublished or unflagged, with
+// no second list to fall out of sync. Returns `{ about: [], help: [],
+// explore: [], contact: [] }`, each entry `{ title, path }`.
+export async function getFooterPages(locale, market) {
+  const grouped = Object.fromEntries(FOOTER_COLUMNS.map((c) => [c, []]));
+
+  try {
+    const url =
+      `/static-pages?filters[show_in_footer][$eq]=true` +
+      `&filters[locale][$eq]=${locale}` +
+      `&filters[market][slug][$eq]=${market}` +
+      `&${footerPagesPopulate}`;
+    const res = await api.get(url);
+
+    for (const page of res.data.data || []) {
+      if (!FOOTER_COLUMNS.includes(page.footer_column)) continue;
+      grouped[page.footer_column].push({
+        title: page.title,
+        path: buildStaticPagePath(page),
+      });
+    }
+  } catch (err) {
+    // `show_in_footer`/`footer_column` may not exist in Strapi yet --
+    // degrade to empty columns rather than taking the whole footer (and
+    // therefore every page on the site) down.
+    if (err.response?.status !== 400) throw err;
+  }
+
+  return grouped;
 }
