@@ -1,0 +1,130 @@
+{
+  "kind": "collectionType",
+  "collectionName": "static_pages",
+  "info": {
+    "singularName": "static-page",
+    "pluralName": "static-pages",
+    "displayName": "static-page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "seo_title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "seo_description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "breadcrumb_labels": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "show_breadcrumb": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "market": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::market.market",
+      "inversedBy": "static_pages"
+    },
+    "content": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "component_content": {
+      "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "components": [
+        "sections.slides",
+        "sections.reviews",
+        "sections.promotion-banner",
+        "sections.posts",
+        "sections.newsletter",
+        "sections.new-home-page",
+        "sections.instagram-feed",
+        "sections.image-text-section",
+        "sections.hero-banner",
+        "sections.featured-categories",
+        "sections.feature-item",
+        "sections.feature-highlights",
+        "sections.custom-banner",
+        "plp.toolbar-configuration",
+        "plp.read-more-content",
+        "plp.product-listing",
+        "plp.product-grid-cofiguration",
+        "plp.guides",
+        "plp.guide-section",
+        "plp.filter-configuration",
+        "plp.faq",
+        "plp.faq-items",
+        "plp.banner-info",
+        "plp.banner-configuration"
+      ]
+    },
+    "children": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::static-page.static-page",
+      "mappedBy": "parent_page"
+    },
+    "parent_page": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::static-page.static-page",
+      "inversedBy": "children"
+    }
+  }
+}

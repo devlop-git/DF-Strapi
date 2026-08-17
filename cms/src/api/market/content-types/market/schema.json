@@ -121,6 +121,12 @@
       "relation": "manyToOne",
       "target": "api::plp-page.plp-page",
       "inversedBy": "markets"
+    },
+    "static_pages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::static-page.static-page",
+      "mappedBy": "market"
     }
   }
 }
