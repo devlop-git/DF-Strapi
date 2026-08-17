@@ -61,7 +61,7 @@ export default function FeatureHighlights({ data }) {
                   />
                 )}
 
-                <h4 className="text-base font-medium  text-[#171714] ">
+                <h4 className="text-base font-medium  text-[#171714] text-center">
                   {item.iconDescription}
                 </h4>
               </div>
