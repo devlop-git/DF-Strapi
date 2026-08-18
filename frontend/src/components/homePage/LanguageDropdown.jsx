@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const countryCodes = {
   en: "gb",
@@ -19,6 +19,7 @@ const LanguageDropdown = ({ languages = [], locale }) => {
   );
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   // The server already treats a missing cookie as "de" (see
   // lib/locale.js), but that's a single fallback other code can't rely on
@@ -32,7 +33,7 @@ const LanguageDropdown = ({ languages = [], locale }) => {
 
   if (!selected) return null;
 
-  const handleSelect = (lang) => {
+  const handleSelect = async (lang) => {
     setSelected(lang);
     setOpen(false);
 
@@ -40,6 +41,32 @@ const LanguageDropdown = ({ languages = [], locale }) => {
       expires: 365,
       path: "/",
     });
+
+    // The current URL's slug is business content translated per-locale
+    // (e.g. "/about-us" vs "/uber-uns") -- switching locale without
+    // remapping it 404s, so ask the server what this same page's slug is
+    // in the target locale before navigating.
+    try {
+      const params = new URLSearchParams({
+        path: pathname,
+        currentLocale: locale,
+        targetLocale: lang.code,
+      });
+      const res = await fetch(`/api/localized-static-page-path?${params}`);
+      const { path, isStaticPage } = await res.json();
+      if (path) {
+        router.push(path);
+        return;
+      }
+      if (isStaticPage) {
+        // No published translation for this page in the target locale --
+        // land on that locale's homepage rather than 404.
+        router.push("/");
+        return;
+      }
+    } catch {
+      // Fall through to a same-path refresh below.
+    }
 
     router.refresh();
   };

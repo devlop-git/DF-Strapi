@@ -1,9 +1,13 @@
 import axios from "axios";
 import homePopulate from "./queries/homepage";
 import plpPopulate from "./queries/plpPage";
+import qs from "qs";
 import staticPagePopulate, { MAX_ANCESTOR_DEPTH } from "./queries/staticPage";
 import footerPagesPopulate from "./queries/footerPages";
-import { buildStaticPagePath } from "@/utils/staticPagePath";
+import {
+  buildStaticPagePath,
+  nestedParentPopulateWithFields,
+} from "@/utils/staticPagePath";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_STRAPI_URL + "/api",
@@ -88,6 +92,7 @@ export async function resolveStaticPage(segments, locale, market) {
   }
 
   return {
+    documentId: page.documentId,
     title: page.title,
     content: page.content,
     seoTitle: page.seo_title,
@@ -95,6 +100,33 @@ export async function resolveStaticPage(segments, locale, market) {
     breadcrumbItems,
     componentContent: page.component_content || [],
   };
+}
+
+// A static page's `slug` (and its ancestors') is itself a localized field --
+// the same logical page has a different slug per locale (e.g. "about-us" vs
+// "uber-uns"), sharing only its `documentId` across locales. Given the page
+// (and its ancestor chain) already resolved in one locale, this looks up
+// the same document in another locale and rebuilds the URL that locale's
+// slug chain maps to -- returns null if that locale has no published
+// version of the page (caller should fall back to that locale's homepage).
+export async function getStaticPageLocalizedPath(documentId, locale) {
+  // Uses the collection `find` route filtered by documentId rather than
+  // the single-item `findOne` route (`/static-pages/:documentId`) --
+  // Strapi's public role only has `find` enabled for static-page, so
+  // `findOne` 403s.
+  const query = qs.stringify(
+    {
+      filters: { documentId: { $eq: documentId } },
+      locale,
+      populate: { parent_page: nestedParentPopulateWithFields(MAX_ANCESTOR_DEPTH) },
+    },
+    { encodeValuesOnly: true },
+  );
+  const res = await api.get(`/static-pages?${query}`);
+  const page = res.data.data?.[0];
+
+  if (!page || !page.publishedAt) return null;
+  return buildStaticPagePath(page);
 }
 
 const FOOTER_COLUMNS = ["about", "services", "help"];
