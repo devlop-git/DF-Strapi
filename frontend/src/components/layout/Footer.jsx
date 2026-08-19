@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { getFooter } from "@/services/footer";
 import { getFooterPages } from "@/services/cms";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
-import { FiChevronDown } from "react-icons/fi";
+import MarketDropdown from "@/components/layout/MarketDropdown";
 import { getCurrentLocale } from "@/lib/locale";
 import { getCurrentMarket } from "@/lib/market";
+import {getStrapiMedia} from "@/utils/strapi";
 
 // Renders one column's business-managed static-page links. Pages flag
 // themselves into a footer column in Strapi (`show_in_footer` +
@@ -24,23 +26,28 @@ const Footer = async () => {
   const market = await getCurrentMarket();
   const footerData = await getFooter(locale);
   const footerPages = await getFooterPages(locale, market);
+  const columns = footerData.columns || [];
+
+  // "Shop From" (the market dropdown) is itself a footer-column entry
+  // (`key: "shop_from"`) so business users can toggle it off via its
+  // `active` flag, same as any other column -- `getFooter` only returns
+  // active columns, so its absence here already means it's been switched off.
+  const shopFromColumn = columns.find((column) => column.key === "shop_from");
+  const staticColumns = columns.filter((column) => column.key !== "shop_from");
+
 
   return (
     <div className="bg-[#171715] text-white mt-6">
       <div className="max-w-7xl mx-auto px-8 py-14">
         {/* Top Footer */}
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
-          {/* About */}
+        <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-12">
+          {/* Brand */}
 
           <div>
-            <h3 className="font-serif text-xl mb-6 leading-tight">
-              Diamonds
-              <br />
-              Factory
-            </h3>
+             <Image src={getStrapiMedia(footerData?.logo)} alt="Logo" width={150} height={50} />
 
-            <div className="flex gap-4 mb-10">
+            <div className="flex gap-4 my-10">
               <a
                 href={footerData.InstagramLink}
                 target="_blank"
@@ -61,62 +68,27 @@ const Footer = async () => {
             </div>
           </div>
 
-          {/* About links */}
+          {/* Business-managed columns -- heading text, count, and order all
+              come from Strapi (`footer.columns`), no hardcoded list here. */}
 
-          <div>
-            <h3 className="font-semibold uppercase mb-6">About</h3>
+          {staticColumns.map((column) => (
+            <div key={column.documentId}>
+              <h3 className="font-semibold uppercase mb-6">{column.heading}</h3>
 
-            <ul className="space-y-3 text-gray-300">
-              <FooterPageLinks pages={footerPages.about} />
-              <li>Our Story</li>
-              <li>Visit Our Stores</li>
-              <li>Book An Appointment</li>
-              <li>Blog</li>
-              <li>Gift Cards</li>
-              <li>Student Discount</li>
-            </ul>
-          </div>
+              <ul className="space-y-3 text-gray-300">
+                <FooterPageLinks pages={footerPages[column.documentId]} />
+              </ul>
+            </div>
+            ))
+          }
 
-          {/* Services & Care */}
+          {shopFromColumn && (
+            <div>
+              <h3 className="font-semibold uppercase mb-6">{shopFromColumn.heading}</h3>
 
-          <div>
-            <h3 className="font-semibold uppercase mb-6">Services & Care</h3>
-
-            <ul className="space-y-3 text-gray-300">
-              <FooterPageLinks pages={footerPages.services} />
-              <li>30-Day Free Ring Resizing</li>
-              <li>Made To Order Jewellery</li>
-              <li>Exercise Your Right Of Withdrawal</li>
-              <li>Lifetime Manufacturing Guarantee</li>
-            </ul>
-          </div>
-
-          {/* Help & Support */}
-
-          <div>
-            <h3 className="font-semibold uppercase mb-6">Help & Support</h3>
-
-            <ul className="space-y-3 text-gray-300">
-              <li>FAQs</li>
-              <li>Delivery</li>
-              <li>Track Your Order</li>
-              <li>Refunds & Returns</li>
-              <li>Ring Size Guide</li>
-              <li>Contact Us</li>
-              <FooterPageLinks pages={footerPages.help} />
-            </ul>
-          </div>
-
-          {/* Shop From */}
-
-          <div>
-            <h3 className="font-semibold uppercase mb-6">Shop From</h3>
-
-            <button className="flex items-center gap-2 text-gray-300">
-              <span>You&apos;re in: {market}</span>
-              <FiChevronDown size={16} />
-            </button>
-          </div>
+              <MarketDropdown market={market} />
+            </div>
+          )}
         </div>
 
         {/* Bottom */}

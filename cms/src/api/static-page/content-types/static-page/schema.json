@@ -136,19 +136,6 @@
       "required": true,
       "default": true
     },
-    "footer_column": {
-      "type": "enumeration",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "enum": [
-        "about",
-        "services",
-        "help"
-      ]
-    },
     "footer_order": {
       "type": "integer",
       "pluginOptions": {
@@ -156,6 +143,12 @@
           "localized": true
         }
       }
+    },
+    "footer_column": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::footer-column.footer-column",
+      "inversedBy": "static_pages"
     }
   }
 }

@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "footer_columns",
+  "info": {
+    "singularName": "footer-column",
+    "pluralName": "footer-columns",
+    "displayName": "footer_column"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "key": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "unique": true
+    },
+    "heading": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "default": 0
+    },
+    "active": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "default": true
+    },
+    "static_pages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::static-page.static-page",
+      "mappedBy": "footer_column"
+    }
+  }
+}

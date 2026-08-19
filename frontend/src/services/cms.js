@@ -129,16 +129,16 @@ export async function getStaticPageLocalizedPath(documentId, locale) {
   return buildStaticPagePath(page);
 }
 
-const FOOTER_COLUMNS = ["about", "services", "help"];
-
-// Pages "push" themselves into the footer (a `show_in_footer` +
-// `footer_column` flag on the page itself) rather than the footer "pulling"
-// via a separate relation list -- one place to edit per page, and a page
-// disappears from the footer the moment it's unpublished or unflagged, with
-// no second list to fall out of sync. Returns `{ about: [], help: [],
-// explore: [], contact: [] }`, each entry `{ title, path }`.
+// Pages "push" themselves into a footer column (a `show_in_footer` flag +
+// `footer_column` relation on the page itself) rather than the footer
+// "pulling" via a separate list -- one place to edit per page, and a page
+// disappears from its column the moment it's unpublished or unflagged, with
+// no second list to fall out of sync. Which columns exist, their heading,
+// and their order are entirely Strapi-managed (`footer.columns`, see
+// `getFooter`) -- this only groups pages by their column's documentId.
+// Returns `{ [columnDocumentId]: [{ title, path }] }`.
 export async function getFooterPages(locale, market) {
-  const grouped = Object.fromEntries(FOOTER_COLUMNS.map((c) => [c, []]));
+  const grouped = {};
 
   try {
     const url =
@@ -149,8 +149,9 @@ export async function getFooterPages(locale, market) {
     const res = await api.get(url);
 
     for (const page of res.data.data || []) {
-      if (!FOOTER_COLUMNS.includes(page.footer_column)) continue;
-      grouped[page.footer_column].push({
+      const columnId = page.footer_column?.documentId;
+      if (!columnId) continue;
+      (grouped[columnId] ??= []).push({
         title: page.title,
         path: buildStaticPagePath(page),
       });

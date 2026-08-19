@@ -69,6 +69,16 @@
         "videos",
         "audios"
       ]
+    },
+    "market": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::market.market"
+    },
+    "columns": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::footer-column.footer-column"
     }
   }
 }

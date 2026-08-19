@@ -7,9 +7,10 @@ import { nestedParentPopulateWithFields, MAX_ANCESTOR_DEPTH } from "@/utils/stat
 // filtered to just the ones flagged `show_in_footer`.
 const footerPagesPopulate = qs.stringify(
   {
-    fields: ["title", "slug", "footer_column", "footer_order"],
+    fields: ["title", "slug", "footer_order"],
     populate: {
       parent_page: nestedParentPopulateWithFields(MAX_ANCESTOR_DEPTH),
+      footer_column: true,
     },
     sort: ["footer_order:asc", "title:asc"],
   },

@@ -5,11 +5,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 import Cookies from "js-cookie";
 import { useRouter, usePathname } from "next/navigation";
-
-const countryCodes = {
-  en: "gb",
-  de: "de",
-};
+import countryCodes from "@/lib/countryCodes";
 
 const DEFAULT_LANGUAGE = "de";
 
