@@ -4,7 +4,10 @@ import { getStrapiMedia } from "@/utils/strapi";
 
 export default function ImageTextSection({ data }) {
   const description = data.description?.[0]?.children?.[0]?.text || "";
-  const image = data?.image?.[0];
+  const desktopImage = data?.desktopImage;
+  const tabletImage = data?.tabImage;
+  const mobileImage = data?.mobileImage;
+  console.log(desktopImage, tabletImage, mobileImage);
 
   return (
     <section className="w-full bg-[#FAF7F2] border-y border-gray-100 ">
@@ -42,16 +45,31 @@ export default function ImageTextSection({ data }) {
             data.imagePosition === "right" ? "lg:order-2" : "lg:order-1"
           }`}
         >
-          {image && (
-            <div className="relative w-[520px] h-[420px] bg-[#F6F3EF] overflow-hidden">
-              <Image
-                src={getStrapiMedia(image)} // <-- Add your image URL here later
-                alt={data.title}
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-          )}
+          <picture>
+              {desktopImage && (
+                <source
+                  media="(min-width:1024px)"
+                  srcSet={getStrapiMedia(desktopImage)}
+                />
+              )}
+
+              {tabletImage && (
+                <source
+                  media="(min-width:768px)"
+                  srcSet={getStrapiMedia(tabletImage)}
+                />
+              )}
+
+              {(desktopImage || tabletImage || mobileImage) && (
+                <img
+                  src={getStrapiMedia(
+                    mobileImage || tabletImage || desktopImage,
+                  )}
+                  alt={data.title}
+                  className="w-full max-w-[650px] object-cover"
+                />
+              )}
+            </picture>
         </div>
       </div>
     </section>
