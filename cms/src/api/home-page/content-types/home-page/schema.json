@@ -48,7 +48,14 @@
         "plp.product-listing",
         "plp.product-grid-cofiguration",
         "plp.filter-configuration",
-        "plp.banner-configuration"
+        "plp.banner-configuration",
+        "grids.image-grid",
+        "grids.image-grid-card",
+        "content-blocks.read-more-content",
+        "content-blocks.faq",
+        "content-blocks.faq-items",
+        "carousels.icon-link-card",
+        "banners.banner-info"
       ]
     },
     "market": {

@@ -2,6 +2,7 @@ import HeroCarousel from "./HeroCarousel";
 import ImageTextSection from "./ImageTextSection";
 import {
   FeatureHighlights,
+  ImageGrid,
   PromotionBanner,
   ReviewsSection,
   InstagramFeed,
@@ -13,6 +14,7 @@ const componentMap = {
   "sections.new-home-page": HeroCarousel,
   "sections.image-text-section": ImageTextSection,
   "grids.feature-highlights": FeatureHighlights,
+  "grids.image-grid": ImageGrid,
   "banners.promotion-banner": PromotionBanner,
   "social-proof.reviews": ReviewsSection,
   "carousels.instagram-feed": InstagramFeed,

@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_grids_image_grid_cards",
+  "info": {
+    "displayName": "Image Grid Card"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "CTALabel": {
+      "type": "string",
+      "default": "Learn More"
+    },
+    "CTAUrl": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -16,6 +16,15 @@ const plpPopulate = qs.stringify(
                             },
                         },
                     },
+                    "grids.image-grid": {
+                        populate: {
+                            items: {
+                                populate: {
+                                    image: true
+                                },
+                            },
+                        },
+                    },
                     "forms.newsletter": {
                         populate: "*",
                     },

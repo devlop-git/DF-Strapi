@@ -1,6 +1,7 @@
 import ProductListing from "./ProductListing";
 import {
   FeatureHighlights,
+  ImageGrid,
   ReadMoreContent,
   FAQSection,
   BannerInfo,
@@ -9,6 +10,7 @@ import {
 
 const componentMap = {
   "grids.feature-highlights": FeatureHighlights,
+  "grids.image-grid": ImageGrid,
   "content-blocks.read-more-content": ReadMoreContent,
   "content-blocks.faq": FAQSection,
   "banners.banner-info": BannerInfo,

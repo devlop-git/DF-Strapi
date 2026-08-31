@@ -40,6 +40,15 @@ const componentContentOn = {
       },
     },
   },
+  "grids.image-grid": {
+    populate: {
+      items: {
+        populate: {
+          image: true,
+        },
+      },
+    },
+  },
   "banners.promotion-banner": {
     populate: {
       desktopBgImage: true,

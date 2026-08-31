@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_grids_image_grids",
+  "info": {
+    "displayName": "Image Grid"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "component": "grids.image-grid-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
