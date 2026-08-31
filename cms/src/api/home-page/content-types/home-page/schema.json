@@ -51,6 +51,7 @@
         "plp.banner-configuration",
         "grids.image-grid",
         "grids.image-grid-card",
+        "grids.promotion-banner-grid",
         "content-blocks.read-more-content",
         "content-blocks.faq",
         "content-blocks.faq-items",

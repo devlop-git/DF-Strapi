@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_grids_promotion_banner_grids",
+  "info": {
+    "displayName": "Promotion Banner Grid"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "component": "banners.promotion-banner",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

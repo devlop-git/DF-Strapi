@@ -47,6 +47,18 @@ const homePopulate = qs.stringify(
                         },
                     },
 
+                    "grids.promotion-banner-grid": {
+                        populate: {
+                            items: {
+                                populate: {
+                                    desktopBgImage: true,
+                                    mobileBgImage: true,
+                                    tabBgImage: true
+                                },
+                            },
+                        },
+                    },
+
                     "banners.promotion-banner": {
                         populate: {
                             desktopBgImage: true,

@@ -3,6 +3,7 @@ import ImageTextSection from "./ImageTextSection";
 import {
   FeatureHighlights,
   ImageGrid,
+  PromotionBannerGrid,
   PromotionBanner,
   ReviewsSection,
   InstagramFeed,
@@ -15,6 +16,7 @@ const componentMap = {
   "sections.image-text-section": ImageTextSection,
   "grids.feature-highlights": FeatureHighlights,
   "grids.image-grid": ImageGrid,
+  "grids.promotion-banner-grid": PromotionBannerGrid,
   "banners.promotion-banner": PromotionBanner,
   "social-proof.reviews": ReviewsSection,
   "carousels.instagram-feed": InstagramFeed,

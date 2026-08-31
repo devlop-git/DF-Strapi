@@ -46,6 +46,18 @@
         "videos",
         "audios"
       ]
+    },
+    "disclaimer": {
+      "type": "string"
+    },
+    "contentAlignment": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ],
+      "default": "left"
     }
   },
   "config": {}
