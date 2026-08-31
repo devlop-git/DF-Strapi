@@ -47,13 +47,12 @@
         }
       },
       "components": [
-        "plp.banner-info",
+        "banners.banner-info",
         "plp.banner-configuration",
-        "plp.faq",
-        "sections.feature-highlights",
-        "sections.newsletter",
-        "plp.guide-section",
-        "plp.read-more-content",
+        "content-blocks.faq",
+        "grids.feature-highlights",
+        "forms.newsletter",
+        "content-blocks.read-more-content",
         "plp.product-listing"
       ],
       "required": true

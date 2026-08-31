@@ -1,21 +1,23 @@
 import HeroCarousel from "./HeroCarousel";
-import FeaturedCategory from "./FeaturedCategory";
 import ImageTextSection from "./ImageTextSection";
-import FeatureHighlights from "./FeatureHighlights";
-import PromotionBanner from "./PromotionBanner";
-import ReviewsSection from "./ReviewsSection";
-import InstagramFeed from "./InstagramFeed";
-import NewsletterSignup from "@/components/common/SharedComponents/NewsletterSignup";
+import {
+  FeatureHighlights,
+  PromotionBanner,
+  ReviewsSection,
+  InstagramFeed,
+  NewsletterSignup,
+  ImageCardCarousel,
+} from "@/components/common/SharedComponents";
 
 const componentMap = {
   "sections.new-home-page": HeroCarousel,
-  "sections.featured-categories": FeaturedCategory,
   "sections.image-text-section": ImageTextSection,
-  "sections.feature-highlights": FeatureHighlights,
-  "sections.promotion-banner": PromotionBanner,
-  "sections.reviews": ReviewsSection,
-  "sections.instagram-feed": InstagramFeed,
-  "sections.newsletter": NewsletterSignup,
+  "grids.feature-highlights": FeatureHighlights,
+  "banners.promotion-banner": PromotionBanner,
+  "social-proof.reviews": ReviewsSection,
+  "carousels.instagram-feed": InstagramFeed,
+  "forms.newsletter": NewsletterSignup,
+  "carousels.image-card-carousel": ImageCardCarousel,
 };
 
 export default function SectionRenderer({ section }) {

@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_carousels_posts",
+  "info": {
+    "displayName": "Posts"
+  },
+  "options": {},
+  "attributes": {
+    "desktopInstaImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "instaURL": {
+      "type": "string"
+    },
+    "mobileInstaImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tabInstaImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

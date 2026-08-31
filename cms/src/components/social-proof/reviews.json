@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_social_proof_reviews",
+  "info": {
+    "displayName": "Reviews"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "trustpilotImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "googleImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "gap": {
+      "type": "integer"
+    },
+    "desktopColumns": {
+      "type": "integer"
+    },
+    "tabColumns": {
+      "type": "integer"
+    },
+    "mobileColumn": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

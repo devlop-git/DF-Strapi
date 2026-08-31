@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_carousels_image_card_carousels",
+  "info": {
+    "displayName": "Image Card Carousel",
+    "icon": "images"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "guideItem": {
+      "type": "component",
+      "component": "carousels.icon-link-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

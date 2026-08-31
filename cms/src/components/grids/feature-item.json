@@ -1,0 +1,62 @@
+{
+  "collectionName": "components_grids_feature_items",
+  "info": {
+    "displayName": "Feature Item"
+  },
+  "options": {},
+  "attributes": {
+    "desktopIcon": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "iconDescription": {
+      "type": "text"
+    },
+    "mobileIcon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tabIcon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "iconPosition": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "CTALabel": {
+      "type": "string",
+      "default": "Read More"
+    },
+    "CTAUrl": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

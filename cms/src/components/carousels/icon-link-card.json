@@ -1,0 +1,51 @@
+{
+  "collectionName": "components_carousels_icon_link_cards",
+  "info": {
+    "displayName": "Icon Link Card",
+    "icon": "image"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "desktopMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "mobileMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tabMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "CTALabel": {
+      "type": "string",
+      "default": "Read More"
+    },
+    "CTAUrl": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

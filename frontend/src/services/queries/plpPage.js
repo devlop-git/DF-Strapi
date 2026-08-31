@@ -5,7 +5,7 @@ const plpPopulate = qs.stringify(
         populate: {
             plp_section: {
                 on: {
-                    "sections.feature-highlights": {
+                    "grids.feature-highlights": {
                         populate: {
                             items: {
                                 populate: {
@@ -16,31 +16,20 @@ const plpPopulate = qs.stringify(
                             },
                         },
                     },
-                    "sections.newsletter": {
+                    "forms.newsletter": {
                         populate: "*",
                     },
-                    "plp.faq": {
+                    "content-blocks.faq": {
                         populate: {
                           faqItem: {
                             populate: "*"
                           },
                         },
                     },
-                    "plp.banner-info": {
+                    "banners.banner-info": {
                         populate: "*"
                     },
-                    "plp.guide-section": {
-                        populate: {
-                            guideItem: {
-                                populate: {
-                                 desktopIcon: true,
-                                    mobileIcon: true,
-                                    tabIcon: true,
-                                },
-                            },
-                        },
-                    },
-                    "plp.read-more-content": {
+                    "content-blocks.read-more-content": {
                         populate: "*"
                     },
                     "plp.banner-configuration": {

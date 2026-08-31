@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_carousels_instagram_feeds",
+  "info": {
+    "displayName": "Instagram Feed"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "posts": {
+      "type": "component",
+      "component": "carousels.posts",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

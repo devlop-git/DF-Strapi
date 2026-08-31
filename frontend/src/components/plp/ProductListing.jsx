@@ -24,11 +24,11 @@ export default function ProductListing({ data, commerce }) {
   const handleSortChange = (sort) => {
     setSelectedSort(sort);
 
-    getProducts({
-      sort,
-      filters: appliedFilters,
-      page: 1,
-    });
+    // getProducts({
+    //   sort,
+    //   filters: appliedFilters,
+    //   page: 1,
+    // });
   };
 
   return (

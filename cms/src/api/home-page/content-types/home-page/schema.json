@@ -32,19 +32,23 @@
         }
       },
       "components": [
-        "sections.promotion-banner",
+        "banners.promotion-banner",
         "sections.new-home-page",
         "sections.hero-banner",
-        "sections.featured-categories",
         "sections.slides",
-        "sections.reviews",
-        "sections.posts",
-        "sections.newsletter",
-        "sections.instagram-feed",
+        "social-proof.reviews",
+        "carousels.posts",
+        "forms.newsletter",
+        "carousels.instagram-feed",
         "sections.image-text-section",
-        "sections.feature-item",
-        "sections.feature-highlights",
-        "sections.custom-banner"
+        "grids.feature-item",
+        "grids.feature-highlights",
+        "carousels.image-card-carousel",
+        "plp.toolbar-configuration",
+        "plp.product-listing",
+        "plp.product-grid-cofiguration",
+        "plp.filter-configuration",
+        "plp.banner-configuration"
       ]
     },
     "market": {

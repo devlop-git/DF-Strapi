@@ -22,9 +22,6 @@ const componentContentOn = {
       },
     },
   },
-  "sections.featured-categories": {
-    populate: "*",
-  },
   "sections.image-text-section": {
     populate: {
       desktopImage: true,
@@ -32,7 +29,7 @@ const componentContentOn = {
       mobileImage: true,
     },
   },
-  "sections.feature-highlights": {
+  "grids.feature-highlights": {
     populate: {
       items: {
         populate: {
@@ -43,17 +40,17 @@ const componentContentOn = {
       },
     },
   },
-  "sections.promotion-banner": {
+  "banners.promotion-banner": {
     populate: {
       desktopBgImage: true,
       mobileBgImage: true,
       tabBgImage: true,
     },
   },
-  "sections.reviews": {
+  "social-proof.reviews": {
     populate: "*",
   },
-  "sections.instagram-feed": {
+  "carousels.instagram-feed": {
     populate: {
       posts: {
         populate: {
@@ -64,30 +61,19 @@ const componentContentOn = {
       },
     },
   },
-  "sections.newsletter": {
+  "forms.newsletter": {
     populate: "*",
   },
-  "plp.guide-section": {
-    populate: {
-      guideItem: {
-        populate: {
-          desktopIcon: true,
-          mobileIcon: true,
-          tabIcon: true,
-        },
-      },
-    },
-  },
-  "plp.read-more-content": {
+  "content-blocks.read-more-content": {
     populate: "*",
   },
-  "plp.banner-info": {
+  "banners.banner-info": {
     populate: "*",
   },
   "plp.banner-configuration": {
     populate: "*",
   },
-  "plp.faq": {
+  "content-blocks.faq": {
     populate: {
       faqItem: {
         populate: "*",

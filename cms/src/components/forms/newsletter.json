@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_forms_newsletters",
+  "info": {
+    "displayName": "NewsletterSection"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "btnLabel": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

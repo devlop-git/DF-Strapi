@@ -17,10 +17,6 @@ const homePopulate = qs.stringify(
                         },
                     },
 
-                    "sections.featured-categories": {
-                        populate: "*",
-                    },
-
                     "sections.image-text-section": {
                         populate: {
                             desktopImage: true,
@@ -29,7 +25,7 @@ const homePopulate = qs.stringify(
                         },
                     },
 
-                    "sections.feature-highlights": {
+                    "grids.feature-highlights": {
                         populate: {
                             items: {
                                 populate: {
@@ -41,7 +37,7 @@ const homePopulate = qs.stringify(
                         },
                     },
 
-                    "sections.promotion-banner": {
+                    "banners.promotion-banner": {
                         populate: {
                             desktopBgImage: true,
                             mobileBgImage: true,
@@ -49,11 +45,11 @@ const homePopulate = qs.stringify(
                         },
                     },
 
-                    "sections.reviews": {
+                    "social-proof.reviews": {
                         populate: "*",
                     },
 
-                    "sections.instagram-feed": {
+                    "carousels.instagram-feed": {
                         populate: {
                             posts: {
                                 populate: {
@@ -65,7 +61,19 @@ const homePopulate = qs.stringify(
                         },
                     },
 
-                    "sections.newsletter": {
+                     "carousels.image-card-carousel": {
+                        populate: {
+                            guideItem: {
+                                populate: {
+                                    desktopMedia: true,
+                                    mobileMedia: true,
+                                    tabMedia: true
+                                },
+                            },
+                        },
+                    },
+
+                    "forms.newsletter": {
                         populate: "*",
                     },
                 },

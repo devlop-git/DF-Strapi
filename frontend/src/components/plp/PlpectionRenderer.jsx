@@ -1,19 +1,19 @@
-import FeatureHighlights from "../homePage/FeatureHighlights";
-import GuideSection from "./GuideSection";
-import ReadMoreContent from "./ReadMoreContent";
-import FAQSection from "./FAQSection";
-import BannerInfo from "./BannerInfo";
 import ProductListing from "./ProductListing";
-import NewsletterSignup from "@/components/common/SharedComponents/NewsletterSignup";
+import {
+  FeatureHighlights,
+  ReadMoreContent,
+  FAQSection,
+  BannerInfo,
+  NewsletterSignup,
+} from "@/components/common/SharedComponents";
 
 const componentMap = {
-  "sections.feature-highlights": FeatureHighlights,
-  "plp.guide-section": GuideSection,
-  "plp.read-more-content": ReadMoreContent,
-  "plp.faq": FAQSection,
-  "plp.banner-info": BannerInfo,
+  "grids.feature-highlights": FeatureHighlights,
+  "content-blocks.read-more-content": ReadMoreContent,
+  "content-blocks.faq": FAQSection,
+  "banners.banner-info": BannerInfo,
   "plp.product-listing": ProductListing,
-  "sections.newsletter": NewsletterSignup,
+  "forms.newsletter": NewsletterSignup,
 };
 
 export default function PlpSectionRenderer({ section, commerce }) {
