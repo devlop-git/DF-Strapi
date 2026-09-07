@@ -28,7 +28,7 @@ export default function ReviewsSection({ data }) {
       <div className="mx-auto  px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         {data?.heading && (
-          <h2 className="text-center font-serif text-[28px] font-light leading-tight text-[#111]  lg:text-[36px]">
+          <h2 className="text-center font-serif text-[28px] pt-8 font-light leading-tight text-[#111]  lg:text-[36px]">
             {data.heading}
           </h2>
         )}

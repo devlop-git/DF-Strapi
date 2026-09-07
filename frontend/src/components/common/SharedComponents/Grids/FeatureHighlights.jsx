@@ -4,7 +4,10 @@ import { getStrapiMedia } from "@/utils/strapi";
 
 export default function FeatureHighlights({ data }) {
   return (
-    <section className="w-full  ">
+    <section
+      className="w-full"
+      style={data.bgColor ? { backgroundColor: data.bgColor } : undefined}
+    >
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
         <div className="max-w-4xl mx-auto text-center">

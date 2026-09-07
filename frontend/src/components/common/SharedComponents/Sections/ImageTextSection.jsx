@@ -1,13 +1,21 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
+import RichText from "../RichText/RichText";
+import { createRichTextBlocks } from "../RichText/richTextBlocks";
+
+const descriptionBlocks = createRichTextBlocks({
+  headingClassName: "font-serif text-[#171717] text-2xl leading-tight my-2",
+  paragraphClassName: "text-[17px] leading-8 text-gray-700 my-2",
+  quoteClassName: "italic text-[17px] leading-8 text-gray-700 my-2",
+  listClassName: "list-inside text-[17px] leading-8 text-gray-700 my-2",
+});
 
 export default function ImageTextSection({ data }) {
-  const description = data.description?.[0]?.children?.[0]?.text || "";
   const desktopImage = data?.desktopImage;
   const tabletImage = data?.tabImage;
   const mobileImage = data?.mobileImage;
-  console.log(desktopImage, tabletImage, mobileImage);
 
   return (
     <section className="w-full bg-[#FAF7F2] border-y border-gray-100 ">
@@ -26,17 +34,19 @@ export default function ImageTextSection({ data }) {
             {data.title}
           </h2>
 
-          <p className="mt-8 text-[17px] leading-8 text-gray-700">
-            {description}
-          </p>
+          <RichText
+            content={data?.description}
+            blocks={descriptionBlocks}
+            className="mt-8"
+          />
 
-          <Link
+          {data?.buttonText && <Link
             href={data?.buttonURL || ""}
             target="_blank"
             className="inline-flex mt-10 border border-black px-10 py-4 text-sm font-medium tracking-wide hover:bg-black hover:text-white text-black transition-all duration-300"
           >
             {data?.buttonText}
-          </Link>
+          </Link>}
         </div>
 
         {/* Image */}

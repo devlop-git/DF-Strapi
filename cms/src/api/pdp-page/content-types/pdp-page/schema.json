@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pdp_pages",
+  "info": {
+    "singularName": "pdp-page",
+    "pluralName": "pdp-pages",
+    "displayName": "PDP Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "slug": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "markets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::market.market"
+    },
+    "pdp_section": {
+      "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "components": [
+        "social-proof.reviews",
+        "forms.newsletter",
+        "sections.slides",
+        "sections.new-home-page",
+        "sections.image-text-section",
+        "sections.hero-banner",
+        "grids.promotion-banner-grid",
+        "grids.image-grid",
+        "grids.image-grid-card",
+        "grids.feature-item",
+        "grids.feature-highlights",
+        "carousels.posts",
+        "carousels.instagram-feed",
+        "carousels.image-card-carousel",
+        "carousels.icon-link-card"
+      ]
+    }
+  }
+}

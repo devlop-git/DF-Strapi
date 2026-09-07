@@ -18,6 +18,9 @@
     },
     "gap": {
       "type": "integer"
+    },
+    "bgColor": {
+      "type": "string"
     }
   },
   "config": {}

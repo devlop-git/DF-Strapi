@@ -1,6 +1,7 @@
 import axios from "axios";
 import homePopulate from "./queries/homepage";
 import plpPopulate from "./queries/plpPage";
+import pdpPopulate from "./queries/pdpPage";
 import qs from "qs";
 import staticPagePopulate, { MAX_ANCESTOR_DEPTH } from "./queries/staticPage";
 import footerPagesPopulate from "./queries/footerPages";
@@ -26,6 +27,12 @@ export async function getPLPLayout(locale) {
   const url = `/plp-pages?locale=${locale}&${plpPopulate}`;
   const res = await api.get(url);
   return res.data.data;
+}
+
+export async function getPDPLayout(locale, market) {
+  const url = `/pdp-pages?filters[markets][slug][$eq]=${market}&locale=${locale}&${pdpPopulate}`;
+  const res = await api.get(url);
+  return res.data.data[0];
 }
 
 export async function getStaticPages(locale) {

@@ -1,34 +1,31 @@
 import {
-  HeroCarousel,
-  ImageTextSection,
   FeatureHighlights,
   ImageGrid,
   PromotionBannerGrid,
-  PromotionBanner,
   ReviewsSection,
   InstagramFeed,
   NewsletterSignup,
   ImageCardCarousel,
+  ImageTextSection
 } from "@/components/common/SharedComponents";
 
 const componentMap = {
-  "sections.new-home-page": HeroCarousel,
-  "sections.image-text-section": ImageTextSection,
   "grids.feature-highlights": FeatureHighlights,
+  "sections.image-text-section": ImageTextSection,
   "grids.image-grid": ImageGrid,
   "grids.promotion-banner-grid": PromotionBannerGrid,
-  "banners.promotion-banner": PromotionBanner,
   "social-proof.reviews": ReviewsSection,
   "carousels.instagram-feed": InstagramFeed,
-  "forms.newsletter": NewsletterSignup,
   "carousels.image-card-carousel": ImageCardCarousel,
+  "forms.newsletter": NewsletterSignup,
 };
 
-export default function SectionRenderer({ section }) {
+export default function PdpSectionRenderer({ section }) {
   const Component = componentMap[section.__component];
+
   if (!Component) {
-    console.log("No component found");
     return null;
   }
+
   return <Component data={section} />;
 }

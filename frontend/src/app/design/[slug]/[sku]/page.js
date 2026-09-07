@@ -1,9 +1,12 @@
 import { getPDP } from "@/services/commerce";
+import { getPDPLayout } from "@/services/cms";
 import Breadcrumb from "@/components/common/Breadcrumb";
 import PdpGallery from "@/components/pdp/PdpGallery";
 import PdpDetails from "@/components/pdp/PdpDetails";
+import PdpCmsSections from "@/components/pdp/PdpCmsSections";
 import { slugify } from "@/utils/slugify";
 import { getCurrentLocale } from "@/lib/locale";
+import { getCurrentMarket } from "@/lib/market";
 
 // Route shape: /design/{slug}/{designRef}_{sku}
 //   e.g. /design/clrn349_01/CLRN349_MS03MT1600MFCT00ST0300SF0102000302
@@ -14,7 +17,9 @@ import { getCurrentLocale } from "@/lib/locale";
 export default async function PDPPage({ params }) {
   const { slug, sku } = await params;
   const locale = await getCurrentLocale();
+  const market = await getCurrentMarket();
   const { data, meta } = await getPDP(slug, sku, locale);
+  const cms = await getPDPLayout(locale, market);
   const {
     basicDetails,
     options,
@@ -69,6 +74,8 @@ export default async function PDPPage({ params }) {
             currentSku={sku}
           />
         </div>
+
+        <PdpCmsSections sections={cms?.pdp_section} />
       </section>
     </>
   );

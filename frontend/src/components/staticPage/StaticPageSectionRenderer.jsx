@@ -1,6 +1,6 @@
-import HeroCarousel from "@/components/homePage/HeroCarousel";
-import ImageTextSection from "@/components/homePage/ImageTextSection";
 import {
+  HeroCarousel,
+  ImageTextSection,
   FeatureHighlights,
   ImageGrid,
   PromotionBannerGrid,
