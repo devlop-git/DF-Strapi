@@ -12,11 +12,8 @@
     "previewContent": {
       "type": "text"
     },
-    "expandedTitle": {
-      "type": "string"
-    },
     "expandedContent": {
-      "type": "text"
+      "type": "blocks"
     },
     "readMoreLabel": {
       "type": "string"

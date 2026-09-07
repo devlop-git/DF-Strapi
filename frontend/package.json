@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@strapi/blocks-react-renderer": "^1.0.2",
     "axios": "^1.18.1",
     "clsx": "^2.1.1",
     "flag-icons": "^7.5.0",

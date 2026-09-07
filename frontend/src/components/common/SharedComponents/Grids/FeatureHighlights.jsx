@@ -23,8 +23,9 @@ export default function FeatureHighlights({ data }) {
             const iconForDesktop = item?.desktopIcon?.[0];
             const iconForMobile = item?.mobileIcon;
             const iconForTablet = item?.tabIcon;
+            const iconPosition = item?.iconPosition || "top";
 
-            const content = (
+            const icon = (
               <>
                 {/* Desktop */}
                 {iconForDesktop && (
@@ -58,14 +59,25 @@ export default function FeatureHighlights({ data }) {
                     className="block object-contain md:hidden"
                   />
                 )}
+              </>
+            );
 
+            const isSideIcon = iconPosition === "left" || iconPosition === "right";
+            const textAlignClass = isSideIcon ? "text-left" : "text-center";
+
+            const text = (
+              <>
                 {item.title && (
-                  <h3 className="text-base font-medium text-[#171714] text-center">
+                  <h3
+                    className={`text-base font-medium text-[#171714] ${textAlignClass}`}
+                  >
                     {item.title}
                   </h3>
                 )}
 
-                <h4 className="text-base font-medium  text-[#171714] text-center">
+                <h4
+                  className={`text-base font-medium text-[#171714] ${textAlignClass}`}
+                >
                   {item.iconDescription}
                 </h4>
 
@@ -77,19 +89,33 @@ export default function FeatureHighlights({ data }) {
               </>
             );
 
+            const wrapperClass = isSideIcon
+              ? `flex items-center justify-center gap-5 ${
+                  iconPosition === "right" ? "flex-row-reverse" : "flex-row"
+                }`
+              : `flex items-center justify-center gap-5 ${
+                  iconPosition === "bottom" ? "flex-col-reverse" : "flex-col"
+                }`;
+
+            const content = (
+              <>
+                {icon}
+                <div className={isSideIcon ? "flex flex-col" : "contents"}>
+                  {text}
+                </div>
+              </>
+            );
+
             return item.CTAUrl ? (
               <Link
                 key={item?.id}
                 href={item.CTAUrl}
-                className="group flex flex-col items-center justify-center gap-5"
+                className={`group ${wrapperClass}`}
               >
                 {content}
               </Link>
             ) : (
-              <div
-                key={item?.id}
-                className="flex flex-col items-center justify-center gap-5"
-              >
+              <div key={item?.id} className={wrapperClass}>
                 {content}
               </div>
             );

@@ -56,7 +56,9 @@
         "grids.promotion-banner-grid",
         "forms.newsletter",
         "content-blocks.read-more-content",
-        "plp.product-listing"
+        "plp.product-listing",
+        "content-blocks.rich-text",
+        "content-blocks.faq-items"
       ],
       "required": true
     }
