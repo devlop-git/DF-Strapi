@@ -9,5 +9,5 @@ export async function getHeader(locale) {
     `/header?locale=${locale}&populate=*`
   );
 
-  return res.data.data;
+  return res.data.data || {};
 }

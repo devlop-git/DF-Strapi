@@ -53,7 +53,8 @@ const pdpPopulate = qs.stringify(
                                 populate: {
                                     desktopIcon: true,
                                     mobileIcon: true,
-                                    tabIcon: true
+                                    tabIcon: true,
+                                    lines: true
                                 },
                             },
                         },
@@ -111,6 +112,13 @@ const pdpPopulate = qs.stringify(
                     },
                     "carousels.icon-link-card": {
                         populate: "*",
+                    },
+                    "banners.image-banner": {
+                        populate: {
+                            desktopImage: true,
+                            tabImage: true,
+                            mobileImage: true
+                        },
                     },
                 },
             },

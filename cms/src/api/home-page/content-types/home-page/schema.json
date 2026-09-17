@@ -56,7 +56,8 @@
         "content-blocks.faq",
         "content-blocks.faq-items",
         "carousels.icon-link-card",
-        "banners.banner-info"
+        "banners.banner-info",
+        "banners.image-banner"
       ]
     },
     "market": {

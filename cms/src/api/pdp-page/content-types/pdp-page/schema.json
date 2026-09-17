@@ -58,7 +58,8 @@
         "carousels.posts",
         "carousels.instagram-feed",
         "carousels.image-card-carousel",
-        "carousels.icon-link-card"
+        "carousels.icon-link-card",
+        "banners.image-banner"
       ]
     }
   }

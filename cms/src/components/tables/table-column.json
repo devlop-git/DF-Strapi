@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_tables_table_columns",
+  "info": {
+    "displayName": "Table Column"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

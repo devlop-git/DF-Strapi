@@ -6,6 +6,8 @@ import { FiPlus, FiMinus } from "react-icons/fi";
 export default function FAQSection({ data }) {
   const [active, setActive] = useState(null);
 
+  alert('calling...')
+
   return (
     <section className="bg-[#FAF7F3] py-14 lg:py-18">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">

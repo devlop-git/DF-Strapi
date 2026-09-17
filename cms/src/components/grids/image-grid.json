@@ -15,6 +15,12 @@
       "type": "component",
       "component": "grids.image-grid-card",
       "repeatable": true
+    },
+    "imageWidth": {
+      "type": "integer"
+    },
+    "imageHeight": {
+      "type": "integer"
     }
   },
   "config": {}

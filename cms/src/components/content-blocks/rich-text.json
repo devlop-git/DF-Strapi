@@ -7,7 +7,17 @@
   "options": {},
   "attributes": {
     "content": {
-      "type": "blocks"
+      "type": "customField",
+      "customField": "plugin::tiptap-editor.RichText",
+      "options": {
+        "preset": "richTextSection"
+      }
+    },
+    "heading": {
+      "type": "string"
+    },
+    "bgColor": {
+      "type": "string"
     }
   },
   "config": {}

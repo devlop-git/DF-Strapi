@@ -31,7 +31,8 @@ const homePopulate = qs.stringify(
                                 populate: {
                                     desktopIcon: true,
                                     mobileIcon: true,
-                                    tabIcon: true
+                                    tabIcon: true,
+                                    lines: true
                                 },
                             },
                         },
@@ -97,6 +98,14 @@ const homePopulate = qs.stringify(
 
                     "forms.newsletter": {
                         populate: "*",
+                    },
+
+                    "banners.image-banner": {
+                        populate: {
+                            desktopImage: true,
+                            tabImage: true,
+                            mobileImage: true
+                        },
                     },
                 },
             },

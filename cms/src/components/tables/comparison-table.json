@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_tables_comparison_tables",
+  "info": {
+    "displayName": "Comparison Table"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "columns": {
+      "type": "component",
+      "component": "tables.table-column",
+      "repeatable": true
+    },
+    "rows": {
+      "type": "component",
+      "component": "tables.table-row",
+      "repeatable": true
+    },
+    "highlightFirstColumn": {
+      "type": "boolean",
+      "default": true
+    },
+    "groupsCount": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    }
+  },
+  "config": {}
+}

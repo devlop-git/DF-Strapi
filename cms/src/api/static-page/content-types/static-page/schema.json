@@ -78,7 +78,7 @@
           "localized": true
         }
       },
-      "required": true
+      "required": false
     },
     "component_content": {
       "type": "dynamiczone",
@@ -93,6 +93,7 @@
         "banners.promotion-banner",
         "carousels.posts",
         "forms.newsletter",
+        "forms.cancel-order-form",
         "sections.new-home-page",
         "carousels.instagram-feed",
         "sections.image-text-section",
@@ -112,7 +113,10 @@
         "content-blocks.faq",
         "content-blocks.faq-items",
         "banners.banner-info",
-        "plp.banner-configuration"
+        "plp.banner-configuration",
+        "banners.image-banner",
+        "tables.comparison-table",
+        "content-blocks.rich-text"
       ]
     },
     "children": {

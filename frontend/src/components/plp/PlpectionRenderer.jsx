@@ -7,6 +7,8 @@ import {
   FAQSection,
   BannerInfo,
   NewsletterSignup,
+  ImageBanner,
+  RichTextSection,
 } from "@/components/common/SharedComponents";
 
 const componentMap = {
@@ -18,6 +20,8 @@ const componentMap = {
   "banners.banner-info": BannerInfo,
   "plp.product-listing": ProductListing,
   "forms.newsletter": NewsletterSignup,
+  "banners.image-banner": ImageBanner,
+  "content-blocks.rich-text": RichTextSection,
 };
 
 export default function PlpSectionRenderer({ section, commerce }) {

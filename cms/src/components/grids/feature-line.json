@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_grids_feature_lines",
+  "info": {
+    "displayName": "Feature Line"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "heading",
+        "body"
+      ],
+      "default": "body"
+    },
+    "fontColor": {
+      "type": "string"
+    },
+    "fontFamily": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

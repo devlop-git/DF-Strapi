@@ -36,6 +36,7 @@ const componentContentOn = {
           desktopIcon: true,
           mobileIcon: true,
           tabIcon: true,
+          lines: true,
         },
       },
     },
@@ -84,13 +85,36 @@ const componentContentOn = {
   "forms.newsletter": {
     populate: "*",
   },
+  "forms.cancel-order-form": {
+    populate: "*",
+  },
   "content-blocks.read-more-content": {
     populate: "*",
   },
   "banners.banner-info": {
     populate: "*",
   },
+  "banners.image-banner": {
+    populate: {
+      desktopImage: true,
+      tabImage: true,
+      mobileImage: true,
+    },
+  },
+  "tables.comparison-table": {
+    populate: {
+      columns: true,
+      rows: {
+        populate: {
+          values: true,
+        },
+      },
+    },
+  },
   "plp.banner-configuration": {
+    populate: "*",
+  },
+  "content-blocks.rich-text": {
     populate: "*",
   },
   "content-blocks.faq": {

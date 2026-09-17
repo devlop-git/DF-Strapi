@@ -11,7 +11,8 @@ const plpPopulate = qs.stringify(
                                 populate: {
                                     desktopIcon: true,
                                     mobileIcon: true,
-                                    tabIcon: true
+                                    tabIcon: true,
+                                    lines: true
                                 },
                             },
                         },
@@ -49,7 +50,17 @@ const plpPopulate = qs.stringify(
                     "banners.banner-info": {
                         populate: "*"
                     },
+                    "banners.image-banner": {
+                        populate: {
+                            desktopImage: true,
+                            tabImage: true,
+                            mobileImage: true
+                        }
+                    },
                     "content-blocks.read-more-content": {
+                        populate: "*"
+                    },
+                    "content-blocks.rich-text": {
                         populate: "*"
                     },
                     "plp.banner-configuration": {

@@ -514,6 +514,73 @@ export interface ApiAboutUsAboutUs extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiFooterColumnFooterColumn
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'footer_columns';
+  info: {
+    displayName: 'footer_column';
+    pluralName: 'footer-columns';
+    singularName: 'footer-column';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    active: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    key: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::footer-column.footer-column'
+    >;
+    order: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    static_pages: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::static-page.static-page'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFooterFooter extends Struct.SingleTypeSchema {
   collectionName: 'footers';
   info: {
@@ -530,6 +597,10 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
+    columns: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::footer-column.footer-column'
+    >;
     Copyright: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -553,6 +624,13 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
       }>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::footer.footer'>;
+    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    market: Schema.Attribute.Relation<'oneToOne', 'api::market.market'>;
     PrivacyURL: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -651,19 +729,32 @@ export interface ApiHomePageHomePage extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     Sections: Schema.Attribute.DynamicZone<
       [
-        'sections.promotion-banner',
+        'banners.promotion-banner',
         'sections.new-home-page',
         'sections.hero-banner',
-        'sections.featured-categories',
         'sections.slides',
-        'sections.reviews',
-        'sections.posts',
-        'sections.newsletter',
-        'sections.instagram-feed',
+        'social-proof.reviews',
+        'carousels.posts',
+        'forms.newsletter',
+        'carousels.instagram-feed',
         'sections.image-text-section',
-        'sections.feature-item',
-        'sections.feature-highlights',
-        'sections.custom-banner',
+        'grids.feature-item',
+        'grids.feature-highlights',
+        'carousels.image-card-carousel',
+        'plp.toolbar-configuration',
+        'plp.product-listing',
+        'plp.product-grid-cofiguration',
+        'plp.filter-configuration',
+        'plp.banner-configuration',
+        'grids.image-grid',
+        'grids.image-grid-card',
+        'grids.promotion-banner-grid',
+        'content-blocks.read-more-content',
+        'content-blocks.faq',
+        'content-blocks.faq-items',
+        'carousels.icon-link-card',
+        'banners.banner-info',
+        'banners.image-banner',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -678,70 +769,6 @@ export interface ApiHomePageHomePage extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<'Homepage EN'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
-  collectionName: 'homepages';
-  info: {
-    displayName: 'Homepage';
-    pluralName: 'homepages';
-    singularName: 'homepage';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    heroButtonLink: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    heroButtonText: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    heroDescription: Schema.Attribute.Text &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    heroImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    heroTitle: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::homepage.homepage'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -817,6 +844,10 @@ export interface ApiMarketMarket extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    static_pages: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::static-page.static-page'
+    >;
     supportedLocale: Schema.Attribute.JSON &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -830,6 +861,75 @@ export interface ApiMarketMarket extends Struct.CollectionTypeSchema {
         };
       }>;
     TrustpilotWidgetID: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPdpPagePdpPage extends Struct.CollectionTypeSchema {
+  collectionName: 'pdp_pages';
+  info: {
+    displayName: 'PDP Page';
+    pluralName: 'pdp-pages';
+    singularName: 'pdp-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pdp-page.pdp-page'
+    >;
+    markets: Schema.Attribute.Relation<'oneToMany', 'api::market.market'>;
+    pdp_section: Schema.Attribute.DynamicZone<
+      [
+        'social-proof.reviews',
+        'forms.newsletter',
+        'sections.slides',
+        'sections.new-home-page',
+        'sections.image-text-section',
+        'sections.hero-banner',
+        'grids.promotion-banner-grid',
+        'grids.image-grid',
+        'grids.image-grid-card',
+        'grids.feature-item',
+        'grids.feature-highlights',
+        'carousels.posts',
+        'carousels.instagram-feed',
+        'carousels.image-card-carousel',
+        'carousels.icon-link-card',
+        'banners.image-banner',
+      ]
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -929,14 +1029,19 @@ export interface ApiPlpPagePlpPage extends Struct.CollectionTypeSchema {
     markets: Schema.Attribute.Relation<'oneToMany', 'api::market.market'>;
     plp_section: Schema.Attribute.DynamicZone<
       [
-        'plp.banner-info',
+        'banners.banner-info',
+        'banners.image-banner',
         'plp.banner-configuration',
-        'plp.faq',
-        'sections.feature-highlights',
-        'sections.newsletter',
-        'plp.guide-section',
-        'plp.read-more-content',
+        'content-blocks.faq',
+        'grids.feature-highlights',
+        'grids.image-grid',
+        'grids.image-grid-card',
+        'grids.promotion-banner-grid',
+        'forms.newsletter',
+        'content-blocks.read-more-content',
         'plp.product-listing',
+        'content-blocks.rich-text',
+        'content-blocks.faq-items',
       ]
     > &
       Schema.Attribute.Required &
@@ -946,6 +1051,146 @@ export interface ApiPlpPagePlpPage extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStaticPageStaticPage extends Struct.CollectionTypeSchema {
+  collectionName: 'static_pages';
+  info: {
+    displayName: 'static-page';
+    pluralName: 'static-pages';
+    singularName: 'static-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    breadcrumb_labels: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    children: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::static-page.static-page'
+    >;
+    component_content: Schema.Attribute.DynamicZone<
+      [
+        'sections.slides',
+        'social-proof.reviews',
+        'banners.promotion-banner',
+        'carousels.posts',
+        'forms.newsletter',
+        'forms.cancel-order-form',
+        'sections.new-home-page',
+        'carousels.instagram-feed',
+        'sections.image-text-section',
+        'sections.hero-banner',
+        'grids.feature-item',
+        'grids.feature-highlights',
+        'grids.image-grid',
+        'grids.image-grid-card',
+        'grids.promotion-banner-grid',
+        'carousels.image-card-carousel',
+        'plp.toolbar-configuration',
+        'content-blocks.read-more-content',
+        'plp.product-listing',
+        'plp.product-grid-cofiguration',
+        'carousels.icon-link-card',
+        'plp.filter-configuration',
+        'content-blocks.faq',
+        'content-blocks.faq-items',
+        'banners.banner-info',
+        'plp.banner-configuration',
+        'banners.image-banner',
+        'tables.comparison-table',
+        'content-blocks.rich-text',
+      ]
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    footer_column: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::footer-column.footer-column'
+    >;
+    footer_order: Schema.Attribute.Integer &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::static-page.static-page'
+    >;
+    market: Schema.Attribute.Relation<'manyToOne', 'api::market.market'>;
+    parent_page: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::static-page.static-page'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    seo_description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    show_breadcrumb: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    show_in_footer: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<true>;
     slug: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -1479,13 +1724,15 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about-us.about-us': ApiAboutUsAboutUs;
+      'api::footer-column.footer-column': ApiFooterColumnFooterColumn;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
       'api::home-page.home-page': ApiHomePageHomePage;
-      'api::homepage.homepage': ApiHomepageHomepage;
       'api::market.market': ApiMarketMarket;
+      'api::pdp-page.pdp-page': ApiPdpPagePdpPage;
       'api::plp-experience.plp-experience': ApiPlpExperiencePlpExperience;
       'api::plp-page.plp-page': ApiPlpPagePlpPage;
+      'api::static-page.static-page': ApiStaticPageStaticPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

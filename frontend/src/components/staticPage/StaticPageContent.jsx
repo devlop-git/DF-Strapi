@@ -13,9 +13,9 @@ export default function StaticPageContent({ page }) {
     <>
       {page.breadcrumbItems && <Breadcrumb items={page.breadcrumbItems} />}
 
-      <section className="mx-auto max-w-4xl space-y-10 px-4 py-8 lg:px-10">
+      <section className="mx-auto max-w-full">
         <div className="space-y-4">
-          <h1 className="text-2xl font-semibold text-[#1F1F1F]">{page.title}</h1>
+          {/* <h1 className="text-2xl font-semibold text-[#1F1F1F]">{page.title}</h1> */}
           {page.content && (
             <div className="prose max-w-none">
               {/* remark-gfm: strikethrough/tables (Strapi's editor toolbar

@@ -1,5 +1,305 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BannersBannerInfo extends Struct.ComponentSchema {
+  collectionName: 'components_banners_banner_infos';
+  info: {
+    displayName: 'SEO Banner Info';
+    icon: 'information';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface BannersImageBanner extends Struct.ComponentSchema {
+  collectionName: 'components_banners_image_banners';
+  info: {
+    displayName: 'Image Banner';
+  };
+  attributes: {
+    bgColor: Schema.Attribute.String;
+    buttonText: Schema.Attribute.String;
+    buttonURL: Schema.Attribute.String;
+    description: Schema.Attribute.Blocks;
+    desktopImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    imagePosition: Schema.Attribute.Enumeration<['left', 'right']>;
+    mobileImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    tabImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface BannersPromotionBanner extends Struct.ComponentSchema {
+  collectionName: 'components_banners_promotion_banners';
+  info: {
+    displayName: 'Promotion Banner';
+  };
+  attributes: {
+    btnLink: Schema.Attribute.String;
+    btnText: Schema.Attribute.String;
+    contentAlignment: Schema.Attribute.Enumeration<
+      ['left', 'center', 'right']
+    > &
+      Schema.Attribute.DefaultTo<'left'>;
+    description: Schema.Attribute.Text;
+    desktopBgImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    disclaimer: Schema.Attribute.String;
+    mobileBgImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    tabBgImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface CarouselsIconLinkCard extends Struct.ComponentSchema {
+  collectionName: 'components_carousels_icon_link_cards';
+  info: {
+    displayName: 'Icon Link Card';
+    icon: 'image';
+  };
+  attributes: {
+    CTALabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Read More'>;
+    CTAUrl: Schema.Attribute.String;
+    desktopMedia: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    mobileMedia: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    tabMedia: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface CarouselsImageCardCarousel extends Struct.ComponentSchema {
+  collectionName: 'components_carousels_image_card_carousels';
+  info: {
+    displayName: 'Image Card Carousel';
+    icon: 'images';
+  };
+  attributes: {
+    guideItem: Schema.Attribute.Component<'carousels.icon-link-card', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface CarouselsInstagramFeed extends Struct.ComponentSchema {
+  collectionName: 'components_carousels_instagram_feeds';
+  info: {
+    displayName: 'Instagram Feed';
+  };
+  attributes: {
+    posts: Schema.Attribute.Component<'carousels.posts', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface CarouselsPosts extends Struct.ComponentSchema {
+  collectionName: 'components_carousels_posts';
+  info: {
+    displayName: 'Posts';
+  };
+  attributes: {
+    desktopInstaImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    instaURL: Schema.Attribute.String;
+    mobileInstaImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    tabInstaImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+  };
+}
+
+export interface ContentBlocksFaq extends Struct.ComponentSchema {
+  collectionName: 'components_content_blocks_faqs';
+  info: {
+    displayName: 'FAQ';
+    icon: 'question';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    faqItem: Schema.Attribute.Component<'content-blocks.faq-items', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ContentBlocksFaqItems extends Struct.ComponentSchema {
+  collectionName: 'components_content_blocks_faq_items';
+  info: {
+    displayName: 'FAQ Items';
+  };
+  attributes: {
+    answer: Schema.Attribute.Text;
+    question: Schema.Attribute.String;
+  };
+}
+
+export interface ContentBlocksReadMoreContent extends Struct.ComponentSchema {
+  collectionName: 'components_content_blocks_read_more_contents';
+  info: {
+    displayName: 'ReadMoreContent';
+    icon: 'quote';
+  };
+  attributes: {
+    expandedContent: Schema.Attribute.Blocks;
+    previewContent: Schema.Attribute.Text;
+    readLessLabel: Schema.Attribute.String;
+    readMoreLabel: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ContentBlocksRichText extends Struct.ComponentSchema {
+  collectionName: 'components_content_blocks_rich_texts';
+  info: {
+    displayName: 'Rich Text';
+    icon: 'code';
+  };
+  attributes: {
+    bgColor: Schema.Attribute.String;
+    content: Schema.Attribute.Text &
+      Schema.Attribute.CustomField<
+        'plugin::tiptap-editor.RichText',
+        {
+          preset: 'richTextSection';
+        }
+      >;
+    heading: Schema.Attribute.String;
+  };
+}
+
+export interface FormsCancelOrderForm extends Struct.ComponentSchema {
+  collectionName: 'components_forms_cancel_order_forms';
+  info: {
+    displayName: 'Cancel Order Form';
+  };
+  attributes: {
+    btnLabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Submit'>;
+    heading: Schema.Attribute.String;
+  };
+}
+
+export interface FormsNewsletter extends Struct.ComponentSchema {
+  collectionName: 'components_forms_newsletters';
+  info: {
+    displayName: 'NewsletterSection';
+  };
+  attributes: {
+    btnLabel: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+  };
+}
+
+export interface GridsFeatureHighlights extends Struct.ComponentSchema {
+  collectionName: 'components_grids_feature_highlights';
+  info: {
+    displayName: 'Feature Highlights';
+  };
+  attributes: {
+    bgColor: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    gap: Schema.Attribute.Integer;
+    items: Schema.Attribute.Component<'grids.feature-item', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface GridsFeatureItem extends Struct.ComponentSchema {
+  collectionName: 'components_grids_feature_items';
+  info: {
+    displayName: 'Feature Item';
+  };
+  attributes: {
+    desktopIcon: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    iconPosition: Schema.Attribute.Enumeration<
+      ['left', 'right', 'top', 'bottom']
+    >;
+    lines: Schema.Attribute.Component<'grids.feature-line', true>;
+    mediaType: Schema.Attribute.Enumeration<['icon', 'image']> &
+      Schema.Attribute.DefaultTo<'icon'>;
+    mobileIcon: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    tabIcon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
+export interface GridsFeatureLine extends Struct.ComponentSchema {
+  collectionName: 'components_grids_feature_lines';
+  info: {
+    displayName: 'Feature Line';
+  };
+  attributes: {
+    fontColor: Schema.Attribute.String;
+    fontFamily: Schema.Attribute.String;
+    text: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+    variant: Schema.Attribute.Enumeration<['heading', 'body']> &
+      Schema.Attribute.DefaultTo<'body'>;
+  };
+}
+
+export interface GridsImageGrid extends Struct.ComponentSchema {
+  collectionName: 'components_grids_image_grids';
+  info: {
+    displayName: 'Image Grid';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+    imageHeight: Schema.Attribute.Integer;
+    imageWidth: Schema.Attribute.Integer;
+    items: Schema.Attribute.Component<'grids.image-grid-card', true>;
+  };
+}
+
+export interface GridsImageGridCard extends Struct.ComponentSchema {
+  collectionName: 'components_grids_image_grid_cards';
+  info: {
+    displayName: 'Image Grid Card';
+  };
+  attributes: {
+    CTALabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Learn More'>;
+    CTAUrl: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface GridsPromotionBannerGrid extends Struct.ComponentSchema {
+  collectionName: 'components_grids_promotion_banner_grids';
+  info: {
+    displayName: 'Promotion Banner Grid';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+    items: Schema.Attribute.Component<'banners.promotion-banner', true>;
+  };
+}
+
 export interface PlpBannerConfiguration extends Struct.ComponentSchema {
   collectionName: 'components_plp_banner_configurations';
   info: {
@@ -21,42 +321,6 @@ export interface PlpBannerConfiguration extends Struct.ComponentSchema {
   };
 }
 
-export interface PlpBannerInfo extends Struct.ComponentSchema {
-  collectionName: 'components_plp_banner_infos';
-  info: {
-    displayName: 'SEO Banner Info';
-    icon: 'information';
-  };
-  attributes: {
-    description: Schema.Attribute.Blocks;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface PlpFaq extends Struct.ComponentSchema {
-  collectionName: 'components_plp_faqs';
-  info: {
-    displayName: 'FAQ';
-    icon: 'question';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    faqItem: Schema.Attribute.Component<'plp.faq-items', true>;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface PlpFaqItems extends Struct.ComponentSchema {
-  collectionName: 'components_plp_faq_items';
-  info: {
-    displayName: 'FAQ Items';
-  };
-  attributes: {
-    answer: Schema.Attribute.Text;
-    question: Schema.Attribute.String;
-  };
-}
-
 export interface PlpFilterConfiguration extends Struct.ComponentSchema {
   collectionName: 'components_plp_filter_configurations';
   info: {
@@ -69,39 +333,6 @@ export interface PlpFilterConfiguration extends Struct.ComponentSchema {
       Schema.Attribute.DefaultTo<'left'>;
     sticky: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     width: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<280>;
-  };
-}
-
-export interface PlpGuideSection extends Struct.ComponentSchema {
-  collectionName: 'components_plp_guide_sections';
-  info: {
-    displayName: 'guide Section';
-    icon: 'user';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    guideItem: Schema.Attribute.Component<'plp.guides', true>;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface PlpGuides extends Struct.ComponentSchema {
-  collectionName: 'components_plp_guides';
-  info: {
-    displayName: 'Guides';
-    icon: 'file';
-  };
-  attributes: {
-    CTALabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Read More'>;
-    CTAUrl: Schema.Attribute.String;
-    desktopIcon: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    mobileIcon: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    tabIcon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    title: Schema.Attribute.String;
   };
 }
 
@@ -136,22 +367,6 @@ export interface PlpProductListing extends Struct.ComponentSchema {
   };
 }
 
-export interface PlpReadMoreContent extends Struct.ComponentSchema {
-  collectionName: 'components_plp_read_more_contents';
-  info: {
-    displayName: 'ReadMoreContent';
-    icon: 'quote';
-  };
-  attributes: {
-    expandedContent: Schema.Attribute.Text;
-    expandedTitle: Schema.Attribute.String;
-    previewContent: Schema.Attribute.Text;
-    readLessLabel: Schema.Attribute.String;
-    readMoreLabel: Schema.Attribute.String;
-    title: Schema.Attribute.String;
-  };
-}
-
 export interface PlpToolbarConfiguration extends Struct.ComponentSchema {
   collectionName: 'components_plp_toolbar_configurations';
   info: {
@@ -162,82 +377,6 @@ export interface PlpToolbarConfiguration extends Struct.ComponentSchema {
     showFilterButton: Schema.Attribute.Boolean;
     showProductCount: Schema.Attribute.Boolean;
     showSort: Schema.Attribute.Boolean;
-  };
-}
-
-export interface SectionsCustomBanner extends Struct.ComponentSchema {
-  collectionName: 'components_sections_custom_banners';
-  info: {
-    displayName: 'Custom Banner';
-  };
-  attributes: {
-    backgroundImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    buttonLink: Schema.Attribute.String;
-    buttonText: Schema.Attribute.String;
-    description: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface SectionsFeatureHighlights extends Struct.ComponentSchema {
-  collectionName: 'components_sections_feature_highlights';
-  info: {
-    displayName: 'Feature Highlights';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    gap: Schema.Attribute.Integer;
-    items: Schema.Attribute.Component<'sections.feature-item', true>;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface SectionsFeatureItem extends Struct.ComponentSchema {
-  collectionName: 'components_sections_feature_items';
-  info: {
-    displayName: 'Feature Item';
-  };
-  attributes: {
-    desktopIcon: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    iconDescription: Schema.Attribute.Text;
-    iconPosition: Schema.Attribute.Enumeration<
-      ['left', 'right', 'top', 'bottom']
-    >;
-    mobileIcon: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    tabIcon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-  };
-}
-
-export interface SectionsFeaturedCategories extends Struct.ComponentSchema {
-  collectionName: 'components_sections_featured_categories';
-  info: {
-    displayName: 'Product Highlight';
-  };
-  attributes: {
-    ctaText: Schema.Attribute.String;
-    ctaURL: Schema.Attribute.String;
-    description: Schema.Attribute.RichText;
-    desktopImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    mobileImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    tabImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    title: Schema.Attribute.String;
   };
 }
 
@@ -288,17 +427,6 @@ export interface SectionsImageTextSection extends Struct.ComponentSchema {
   };
 }
 
-export interface SectionsInstagramFeed extends Struct.ComponentSchema {
-  collectionName: 'components_sections_instagram_feeds';
-  info: {
-    displayName: 'Instagram Feed';
-  };
-  attributes: {
-    posts: Schema.Attribute.Component<'sections.posts', true>;
-    title: Schema.Attribute.String;
-  };
-}
-
 export interface SectionsNewHomePage extends Struct.ComponentSchema {
   collectionName: 'components_sections_new_home_pages';
   info: {
@@ -309,63 +437,18 @@ export interface SectionsNewHomePage extends Struct.ComponentSchema {
   };
 }
 
-export interface SectionsNewsletter extends Struct.ComponentSchema {
-  collectionName: 'components_sections_newsletters';
+export interface SectionsSlides extends Struct.ComponentSchema {
+  collectionName: 'components_sections_slides';
   info: {
-    displayName: 'NewsletterSection';
+    displayName: 'Slides';
   };
   attributes: {
-    description: Schema.Attribute.Text;
-    heading: Schema.Attribute.String;
+    heroSlides: Schema.Attribute.Component<'sections.hero-banner', true>;
   };
 }
 
-export interface SectionsPosts extends Struct.ComponentSchema {
-  collectionName: 'components_sections_posts';
-  info: {
-    displayName: 'Posts';
-  };
-  attributes: {
-    desktopInstaImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    instaURL: Schema.Attribute.String;
-    mobileInstaImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    tabInstaImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-  };
-}
-
-export interface SectionsPromotionBanner extends Struct.ComponentSchema {
-  collectionName: 'components_sections_promotion_banners';
-  info: {
-    displayName: 'Promotion Banner';
-  };
-  attributes: {
-    btnLink: Schema.Attribute.String;
-    btnText: Schema.Attribute.String;
-    description: Schema.Attribute.Text;
-    desktopBgImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    mobileBgImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    tabBgImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface SectionsReviews extends Struct.ComponentSchema {
-  collectionName: 'components_sections_reviews';
+export interface SocialProofReviews extends Struct.ComponentSchema {
+  collectionName: 'components_social_proof_reviews';
   info: {
     displayName: 'Reviews';
   };
@@ -386,43 +469,94 @@ export interface SectionsReviews extends Struct.ComponentSchema {
   };
 }
 
-export interface SectionsSlides extends Struct.ComponentSchema {
-  collectionName: 'components_sections_slides';
+export interface TablesComparisonTable extends Struct.ComponentSchema {
+  collectionName: 'components_tables_comparison_tables';
   info: {
-    displayName: 'Slides';
+    displayName: 'Comparison Table';
   };
   attributes: {
-    heroSlides: Schema.Attribute.Component<'sections.hero-banner', true>;
+    columns: Schema.Attribute.Component<'tables.table-column', true>;
+    groupsCount: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<1>;
+    heading: Schema.Attribute.String;
+    highlightFirstColumn: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    rows: Schema.Attribute.Component<'tables.table-row', true>;
+  };
+}
+
+export interface TablesTableCell extends Struct.ComponentSchema {
+  collectionName: 'components_tables_table_cells';
+  info: {
+    displayName: 'Table Cell';
+  };
+  attributes: {
+    value: Schema.Attribute.String;
+  };
+}
+
+export interface TablesTableColumn extends Struct.ComponentSchema {
+  collectionName: 'components_tables_table_columns';
+  info: {
+    displayName: 'Table Column';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+  };
+}
+
+export interface TablesTableRow extends Struct.ComponentSchema {
+  collectionName: 'components_tables_table_rows';
+  info: {
+    displayName: 'Table Row';
+  };
+  attributes: {
+    values: Schema.Attribute.Component<'tables.table-cell', true>;
   };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'banners.banner-info': BannersBannerInfo;
+      'banners.image-banner': BannersImageBanner;
+      'banners.promotion-banner': BannersPromotionBanner;
+      'carousels.icon-link-card': CarouselsIconLinkCard;
+      'carousels.image-card-carousel': CarouselsImageCardCarousel;
+      'carousels.instagram-feed': CarouselsInstagramFeed;
+      'carousels.posts': CarouselsPosts;
+      'content-blocks.faq': ContentBlocksFaq;
+      'content-blocks.faq-items': ContentBlocksFaqItems;
+      'content-blocks.read-more-content': ContentBlocksReadMoreContent;
+      'content-blocks.rich-text': ContentBlocksRichText;
+      'forms.cancel-order-form': FormsCancelOrderForm;
+      'forms.newsletter': FormsNewsletter;
+      'grids.feature-highlights': GridsFeatureHighlights;
+      'grids.feature-item': GridsFeatureItem;
+      'grids.feature-line': GridsFeatureLine;
+      'grids.image-grid': GridsImageGrid;
+      'grids.image-grid-card': GridsImageGridCard;
+      'grids.promotion-banner-grid': GridsPromotionBannerGrid;
       'plp.banner-configuration': PlpBannerConfiguration;
-      'plp.banner-info': PlpBannerInfo;
-      'plp.faq': PlpFaq;
-      'plp.faq-items': PlpFaqItems;
       'plp.filter-configuration': PlpFilterConfiguration;
-      'plp.guide-section': PlpGuideSection;
-      'plp.guides': PlpGuides;
       'plp.product-grid-cofiguration': PlpProductGridCofiguration;
       'plp.product-listing': PlpProductListing;
-      'plp.read-more-content': PlpReadMoreContent;
       'plp.toolbar-configuration': PlpToolbarConfiguration;
-      'sections.custom-banner': SectionsCustomBanner;
-      'sections.feature-highlights': SectionsFeatureHighlights;
-      'sections.feature-item': SectionsFeatureItem;
-      'sections.featured-categories': SectionsFeaturedCategories;
       'sections.hero-banner': SectionsHeroBanner;
       'sections.image-text-section': SectionsImageTextSection;
-      'sections.instagram-feed': SectionsInstagramFeed;
       'sections.new-home-page': SectionsNewHomePage;
-      'sections.newsletter': SectionsNewsletter;
-      'sections.posts': SectionsPosts;
-      'sections.promotion-banner': SectionsPromotionBanner;
-      'sections.reviews': SectionsReviews;
       'sections.slides': SectionsSlides;
+      'social-proof.reviews': SocialProofReviews;
+      'tables.comparison-table': TablesComparisonTable;
+      'tables.table-cell': TablesTableCell;
+      'tables.table-column': TablesTableColumn;
+      'tables.table-row': TablesTableRow;
     }
   }
 }

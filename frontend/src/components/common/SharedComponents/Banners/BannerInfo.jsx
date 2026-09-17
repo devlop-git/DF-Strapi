@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function BannerInfo({ data }) {
   const descriptionText = data.description[0].children[0].text;
   const [expanded, setExpanded] = useState(false);
+  console.log(data);
 
   return (
     <section
@@ -25,10 +26,10 @@ export default function BannerInfo({ data }) {
         {/* Description */}
         <div className="mx-auto mt-8 max-w-5xl">
           <p className="text-center text-[16px] lg:leading-8 text-[#262626] ">
-            {descriptionText}---
+            {descriptionText}
           </p>
 
-          {expanded && (
+          {/* {expanded && (
             <p className="text-center text-[16px] lg:leading-8 text-[#262626] ">
               {descriptionText}
             </p>
@@ -41,7 +42,7 @@ export default function BannerInfo({ data }) {
             >
               {expanded ? "Read less" : "Read more"}
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

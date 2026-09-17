@@ -9,6 +9,7 @@ import {
   InstagramFeed,
   NewsletterSignup,
   ImageCardCarousel,
+  ImageBanner,
 } from "@/components/common/SharedComponents";
 
 const componentMap = {
@@ -22,6 +23,7 @@ const componentMap = {
   "carousels.instagram-feed": InstagramFeed,
   "forms.newsletter": NewsletterSignup,
   "carousels.image-card-carousel": ImageCardCarousel,
+  "banners.image-banner": ImageBanner,
 };
 
 export default function SectionRenderer({ section }) {

@@ -12,6 +12,10 @@ import {
   ReadMoreContent,
   FAQSection,
   BannerInfo,
+  ImageBanner,
+  ComparisonTable,
+  RichTextSection,
+  CancelOrderForm,
 } from "@/components/common/SharedComponents";
 
 // Reuses the exact same block components already used by home-pages
@@ -29,10 +33,14 @@ const componentMap = {
   "social-proof.reviews": ReviewsSection,
   "carousels.instagram-feed": InstagramFeed,
   "forms.newsletter": NewsletterSignup,
+  "forms.cancel-order-form": CancelOrderForm,
   "carousels.image-card-carousel": ImageCardCarousel,
   "content-blocks.read-more-content": ReadMoreContent,
   "content-blocks.faq": FAQSection,
   "banners.banner-info": BannerInfo,
+  "banners.image-banner": ImageBanner,
+  "tables.comparison-table": ComparisonTable,
+  "content-blocks.rich-text": RichTextSection,
 };
 
 export default function StaticPageSectionRenderer({ section }) {

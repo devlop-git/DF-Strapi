@@ -6,7 +6,8 @@ import {
   InstagramFeed,
   NewsletterSignup,
   ImageCardCarousel,
-  ImageTextSection
+  ImageTextSection,
+  ImageBanner,
 } from "@/components/common/SharedComponents";
 
 const componentMap = {
@@ -18,6 +19,7 @@ const componentMap = {
   "carousels.instagram-feed": InstagramFeed,
   "carousels.image-card-carousel": ImageCardCarousel,
   "forms.newsletter": NewsletterSignup,
+  "banners.image-banner": ImageBanner,
 };
 
 export default function PdpSectionRenderer({ section }) {

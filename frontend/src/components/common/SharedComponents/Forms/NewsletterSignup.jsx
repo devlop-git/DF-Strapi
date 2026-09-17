@@ -11,7 +11,7 @@ export default function NewsletterSignup({ data }) {
 
   return (
     <section className="bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="max-w-6xl mx-auto px-6 py-14 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-y-4  ">
           {/* Left Content */}
           <div>

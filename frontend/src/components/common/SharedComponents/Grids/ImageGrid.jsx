@@ -11,6 +11,8 @@ const GRID_COLUMNS_BY_COUNT = {
 export default function ImageGrid({ data }) {
   const items = data.items ?? [];
   const columnsClass = GRID_COLUMNS_BY_COUNT[items.length] || "lg:grid-cols-4";
+  const imageHeight = Number.isFinite(data?.imageHeight) && data.imageHeight > 0 ? data.imageHeight : null;
+  const imageWidth = Number.isFinite(data?.imageWidth) && data.imageWidth > 0 ? data.imageWidth : null;
 
   return (
     <section className="w-full">
@@ -39,7 +41,16 @@ export default function ImageGrid({ data }) {
 
             const content = (
               <>
-                {image && (
+                {image && (imageHeight ? (
+                  <Image
+                    src={getStrapiMedia(image)}
+                    alt={image.alternativeText || item.title || ""}
+                    width={imageWidth || imageHeight}
+                    height={imageHeight}
+                    style={{ height: `${imageHeight}px`, width: imageWidth ? `${imageWidth}px` : "auto" }}
+                    className="mx-auto object-contain"
+                  />
+                ) : (
                   <Image
                     src={getStrapiMedia(image)}
                     alt={image.alternativeText || item.title || ""}
@@ -47,7 +58,7 @@ export default function ImageGrid({ data }) {
                     height={600}
                     className="w-full h-auto object-cover"
                   />
-                )}
+                ))}
 
                 {item.title && (
                   <h3 className="mt-6 font-serif text-2xl text-center text-[#171717]">

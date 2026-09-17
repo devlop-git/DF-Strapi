@@ -1,21 +1,17 @@
 {
-  "collectionName": "components_grids_feature_items",
+  "collectionName": "components_banners_image_banners",
   "info": {
-    "displayName": "Feature Item"
+    "displayName": "Image Banner"
   },
   "options": {},
   "attributes": {
-    "desktopIcon": {
-      "type": "media",
-      "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "title": {
+      "type": "string"
     },
-    "mobileIcon": {
+    "description": {
+      "type": "blocks"
+    },
+    "desktopImage": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -25,7 +21,7 @@
         "audios"
       ]
     },
-    "tabIcon": {
+    "mobileImage": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -35,27 +31,31 @@
         "audios"
       ]
     },
-    "iconPosition": {
+    "tabImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "imagePosition": {
       "type": "enumeration",
       "enum": [
         "left",
-        "right",
-        "top",
-        "bottom"
+        "right"
       ]
     },
-    "mediaType": {
-      "type": "enumeration",
-      "enum": [
-        "icon",
-        "image"
-      ],
-      "default": "icon"
+    "buttonText": {
+      "type": "string"
     },
-    "lines": {
-      "type": "component",
-      "component": "grids.feature-line",
-      "repeatable": true
+    "buttonURL": {
+      "type": "string"
+    },
+    "bgColor": {
+      "type": "string"
     }
   },
   "config": {}

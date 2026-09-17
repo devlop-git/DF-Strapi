@@ -48,6 +48,7 @@
       },
       "components": [
         "banners.banner-info",
+        "banners.image-banner",
         "plp.banner-configuration",
         "content-blocks.faq",
         "grids.feature-highlights",
