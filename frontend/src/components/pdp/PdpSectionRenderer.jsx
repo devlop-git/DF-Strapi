@@ -8,6 +8,7 @@ import {
   ImageCardCarousel,
   ImageTextSection,
   ImageBanner,
+  ContactUsForm,
 } from "@/components/common/SharedComponents";
 
 const componentMap = {
@@ -20,6 +21,7 @@ const componentMap = {
   "carousels.image-card-carousel": ImageCardCarousel,
   "forms.newsletter": NewsletterSignup,
   "banners.image-banner": ImageBanner,
+  "forms.contact-us-form": ContactUsForm,
 };
 
 export default function PdpSectionRenderer({ section }) {

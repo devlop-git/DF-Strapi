@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
 
-function FeatureMedia({ item, className }) {
+function FeatureMedia({ item, className, objectFit = "cover" }) {
   const desktop = item?.desktopIcon?.[0];
   const tablet = item?.tabIcon;
   const mobile = item?.mobileIcon;
   const altFallback = item?.lines?.[0]?.text || "";
+  const objectFitClass = objectFit === "contain" ? "object-contain" : "object-cover";
 
   if (!desktop && !tablet && !mobile) return null;
 
@@ -18,7 +19,7 @@ function FeatureMedia({ item, className }) {
           alt={desktop.alternativeText || altFallback}
           width={400}
           height={240}
-          className={`hidden object-cover lg:block ${className}`}
+          className={`hidden ${objectFitClass} lg:block ${className}`}
         />
       )}
 
@@ -28,7 +29,7 @@ function FeatureMedia({ item, className }) {
           alt={tablet.alternativeText || altFallback}
           width={400}
           height={240}
-          className={`hidden object-cover md:block lg:hidden ${className}`}
+          className={`hidden ${objectFitClass} md:block lg:hidden ${className}`}
         />
       )}
 
@@ -38,7 +39,7 @@ function FeatureMedia({ item, className }) {
           alt={mobile.alternativeText || altFallback}
           width={400}
           height={240}
-          className={`block object-cover md:hidden ${className}`}
+          className={`block ${objectFitClass} md:hidden ${className}`}
         />
       )}
     </>
@@ -54,24 +55,42 @@ function FeatureLines({ lines, textAlignClass, className }) {
         if (!line?.text) return null;
 
         const isHeading = line.variant === "heading";
+        const isCta = line.variant === "cta";
         const isLink = Boolean(line.url);
-        const sizeWeightClass = isHeading ? "text-[28px] font-medium" : "text-sm font-medium";
-        const linkStyleClass = isLink && !isHeading ? "uppercase tracking-wide" : "";
-        const defaultColorClass = line.fontColor
-          ? ""
-          : isHeading
-          ? "text-[#171714]"
-          : isLink
-          ? "text-[#A0704F]"
-          : "text-[#4B4B4B]";
-
-        const lineClassName = `${sizeWeightClass} ${textAlignClass} ${defaultColorClass} ${linkStyleClass} ${
-          isLink ? "hover:underline" : ""
-        }`;
         const style = {
           ...(line.fontColor && { color: line.fontColor }),
           ...(line.fontFamily && { fontFamily: line.fontFamily }),
         };
+
+        if (isCta) {
+          const ctaAlignClass = textAlignClass === "text-right"
+            ? "self-end"
+            : textAlignClass === "text-left"
+            ? "self-start"
+            : "self-center";
+
+          return (
+            <Link
+              key={line.id ?? index}
+              href={line?.url || ""}
+              className={`mt-4 inline-flex border border-black px-8 py-3 text-sm font-semibold tracking-wide text-black transition-all duration-300 hover:bg-black hover:text-white ${ctaAlignClass}`}
+              style={style}
+            >
+              {line.text}
+            </Link>
+          );
+        }
+
+        const sizeWeightClass = isHeading ? "text-[28px] font-medium" : "text-sm font-medium";
+        const defaultColorClass = line.fontColor
+          ? ""
+          : isHeading
+          ? "text-[#171714]"
+          : "text-[#4B4B4B]";
+
+        const lineClassName = `${sizeWeightClass} ${textAlignClass} ${defaultColorClass} ${
+          isLink ? "hover:underline" : ""
+        }`;
 
         return isLink ? (
           <Link key={line.id ?? index} href={line?.url} className={lineClassName} style={style}>
@@ -116,7 +135,7 @@ function IconFeatureCard({ item }) {
 
   return (
     <div className={wrapperClass}>
-      <FeatureMedia item={item} className="h-15 w-15" />
+      <FeatureMedia item={item} className="h-15 w-15" objectFit="contain" />
 
       <FeatureLines
         lines={item.lines}
@@ -133,7 +152,7 @@ export default function FeatureHighlights({ data }) {
 
   return (
     <section
-      className="w-full"
+      className="w-full mt-2"
       style={data.bgColor ? { backgroundColor: data.bgColor } : undefined}
     >
       <div className="max-w-6xl mx-auto px-6 py-6">

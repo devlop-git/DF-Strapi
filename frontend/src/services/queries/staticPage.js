@@ -88,6 +88,21 @@ const componentContentOn = {
   "forms.cancel-order-form": {
     populate: "*",
   },
+  "forms.contact-us-form": {
+    populate: "*",
+  },
+  "content-blocks.link-chips": {
+    populate: {
+      chips: true,
+    },
+  },
+  "grids.image-overlay-grid": {
+    populate: {
+      items: {
+        populate: "*",
+      },
+    },
+  },
   "content-blocks.read-more-content": {
     populate: "*",
   },
@@ -122,6 +137,7 @@ const componentContentOn = {
       faqItem: {
         populate: "*",
       },
+      image: true,
     },
   },
 };

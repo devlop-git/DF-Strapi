@@ -1,49 +1,26 @@
-"use client";
-
-import { useState } from "react";
+import { tiptapContentToHtml } from "../RichText/tiptapToHtml";
 
 export default function BannerInfo({ data }) {
-  const descriptionText = data.description[0].children[0].text;
-  const [expanded, setExpanded] = useState(false);
-  console.log(data);
+  const html = tiptapContentToHtml(data?.description);
 
   return (
     <section
-      className={`lg:bg-[#faf7f2] transition-all duration-500 ${
-        expanded ? "lg:min-h-[338px]" : "lg:min-h-[314px]"
-      }`}
+      className="lg:bg-[var(--banner-bg-color)] transition-all duration-500 lg:min-h-[314px]"
+      style={{ "--banner-bg-color": data?.bgColor }}
     >
-      <div
-        className={`mx-auto flex max-w-7xl flex-col justify-center px-5 md:px-8 lg:px-12 transition-all duration-500 ${
-          expanded ? "lg:min-h-[338px]" : "lg:min-h-[314px]"
-        }`}
-      >
+      <div className="mx-auto flex max-w-7xl flex-col justify-center px-5 md:px-8 lg:px-12 transition-all duration-500 lg:min-h-[314px]">
         {/* Heading */}
         <h2 className="text-center font-serif text-[38px] leading-tight text-[#1D1D1D] md:text-[48px] lg:leading-15">
           {data?.title}
         </h2>
 
         {/* Description */}
-        <div className="mx-auto mt-8 max-w-5xl">
-          <p className="text-center text-[16px] lg:leading-8 text-[#262626] ">
-            {descriptionText}
-          </p>
-
-          {/* {expanded && (
-            <p className="text-center text-[16px] lg:leading-8 text-[#262626] ">
-              {descriptionText}
-            </p>
-          )}
-
-          <div className="mt-4 flex justify-center">
-            <button
-              onClick={() => setExpanded(!expanded)}
-              className="text-[18px] font-medium text-[#A0704F] transition hover:underline"
-            >
-              {expanded ? "Read less" : "Read more"}
-            </button>
-          </div> */}
-        </div>
+        {html && (
+          <div
+            className="mx-auto mt-8 max-w-5xl text-center [&_h1]:text-2xl [&_h2]:text-2xl [&_h3]:text-2xl [&_h4]:text-xl [&_h5]:text-lg [&_h6]:text-base [&_h1]:font-serif [&_h2]:font-serif [&_h3]:font-serif [&_h1]:my-2 [&_h2]:my-2 [&_h3]:my-2 [&_h1]:leading-tight [&_h2]:leading-tight [&_h3]:leading-tight [&_p]:text-[16px] [&_p]:lg:leading-8 [&_p]:text-[#262626] [&_ul]:list-disc [&_ul]:list-outside [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:list-outside [&_ol]:pl-5 [&_li]:my-1 [&_li>p]:m-0 [&_blockquote]:italic [&_a]:text-[#A0704F] [&_a]:underline"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        )}
       </div>
     </section>
   );

@@ -1,0 +1,127 @@
+{
+  "heading": "What does the plan offer & how much does it cost?",
+  "headerColor": "#976649",
+  "highlightColumnColor": "#976649",
+  "highlightFirstColumn": true,
+  "groupsCount": 1,
+  "columns": [
+    { "label": "Plan Details" },
+    { "label": "1 Year" },
+    { "label": "2 Year" },
+    { "label": "3 Year" },
+    { "label": "4 Year" },
+    { "label": "5 Year" }
+  ],
+  "rows": [
+    {
+      "values": [
+        { "value": "Price" },
+        { "value": "120€" },
+        { "value": "210€" },
+        { "value": "290€" },
+        { "value": "380€" },
+        { "value": "470€" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Cleaning Service" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Stone Tightening" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Earring Repairs" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Chain and Bracelet Soldering" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Resetting Diamonds and Gemstones" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Clasp Replacement" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Complimentary Jewellery Inspection" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Free Engraving for the plan duration" },
+        { "value": "1" },
+        { "value": "1" },
+        { "value": "1" },
+        { "value": "1" },
+        { "value": "1" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Ring Resizing for the plan duration" },
+        { "value": "1" },
+        { "value": "1" },
+        { "value": "1" },
+        { "value": "1" },
+        { "value": "1" }
+      ]
+    },
+    {
+      "values": [
+        { "value": "Free use of CAD Service (For Wedding Rings Only)" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" },
+        { "value": "1 per year" }
+      ]
+    }
+  ]
+}

@@ -1,85 +1,108 @@
-"use client";
-
 import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
-import RichText from "../RichText/RichText";
-import { createRichTextBlocks } from "../RichText/richTextBlocks";
-
-const descriptionBlocks = createRichTextBlocks({
-  headingClassName: "font-serif text-[#171717] text-2xl leading-tight my-2",
-  paragraphClassName: "text-[17px] leading-8 text-gray-700 my-2",
-  quoteClassName: "italic text-[17px] leading-8 text-gray-700 my-2",
-  listClassName: "list-inside text-[17px] leading-8 text-gray-700 my-2",
-});
+import { tiptapContentToHtml } from "../RichText/tiptapToHtml";
 
 export default function ImageTextSection({ data }) {
   const desktopImage = data?.desktopImage;
   const tabletImage = data?.tabImage;
   const mobileImage = data?.mobileImage;
+  const html = tiptapContentToHtml(data?.description);
+  const hasImage = Boolean(desktopImage || tabletImage || mobileImage);
 
   return (
-    <section className="w-full bg-[#FAF7F2] border-y border-gray-100 ">
-      <div
-        className={`max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-20 items-center ${
-          data.imagePosition === "left" ? "" : "lg:flex-row-reverse"
-        }`}
-      >
-        {/* Content */}
+    <section className="w-full bg-[#FAF7F2] border-y border-gray-100 py-14 lg:py-18">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        {(data?.topTitle || data?.topDescription) && (
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            {data?.topTitle && (
+              <h2 className="font-serif text-[28px] lg:text-[36px] font-light text-[#171717] leading-tight">
+                {data.topTitle}
+              </h2>
+            )}
+
+            {data?.topDescription && (
+              <p className="mt-4 text-base leading-7 text-[#4B4B4B]">
+                {data.topDescription}
+              </p>
+            )}
+          </div>
+        )}
+
         <div
-          className={`max-w-lg ${
-            data.imagePosition === "right" ? "lg:order-1" : "lg:order-2"
-          }`}
+          className={
+            hasImage
+              ? `grid lg:grid-cols-2 gap-20 items-center ${
+                  data.imagePosition === "left" ? "" : "lg:flex-row-reverse"
+                }`
+              : "flex justify-center"
+          }
         >
-          <h2 className="font-serif text-[#171717] text-5xl lg:text-7xl leading-[1.05] font-light">
-            {data.title}
-          </h2>
-
-          <RichText
-            content={data?.description}
-            blocks={descriptionBlocks}
-            className="mt-8"
-          />
-
-          {data?.buttonText && <Link
-            href={data?.buttonURL || ""}
-            target="_blank"
-            className="inline-flex mt-10 border border-black px-10 py-4 text-sm font-medium tracking-wide hover:bg-black hover:text-white text-black transition-all duration-300"
+          {/* Content */}
+          <div
+            className={
+              hasImage
+                ? `max-w-lg ${
+                    data.imagePosition === "right" ? "lg:order-1" : "lg:order-2"
+                  }`
+                : "max-w-3xl w-full"
+            }
           >
-            {data?.buttonText}
-          </Link>}
-        </div>
+            {data?.title && (
+              <h2 className="font-serif text-[#171717] text-5xl lg:text-7xl leading-[1.05] font-light">
+                {data.title}
+              </h2>
+            )}
 
-        {/* Image */}
-        <div
-          className={`flex justify-center ${
-            data.imagePosition === "right" ? "lg:order-2" : "lg:order-1"
-          }`}
-        >
-          <picture>
-              {desktopImage && (
-                <source
-                  media="(min-width:1024px)"
-                  srcSet={getStrapiMedia(desktopImage)}
-                />
-              )}
+            {html && (
+              <div
+                className="mt-8 [&_h1]:text-2xl [&_h2]:text-2xl [&_h3]:text-2xl [&_h4]:text-xl [&_h5]:text-lg [&_h6]:text-base [&_h1]:font-serif [&_h2]:font-serif [&_h3]:font-serif [&_h1]:my-2 [&_h2]:my-2 [&_h3]:my-2 [&_h4]:my-2 [&_h5]:my-2 [&_h6]:my-2 [&_h1]:leading-tight [&_h2]:leading-tight [&_h3]:leading-tight [&_h1]:text-[#171717] [&_h2]:text-[#171717] [&_h3]:text-[#171717] [&_p]:text-[17px] [&_p]:leading-8 [&_p]:text-gray-700 [&_p]:my-2 [&_ul]:list-disc [&_ul]:list-outside [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:list-outside [&_ol]:pl-5 [&_li]:my-1 [&_li>p]:m-0 [&_blockquote]:italic [&_a]:text-[#A0704F] [&_a]:underline"
+                dangerouslySetInnerHTML={{ __html: html }}
+              />
+            )}
 
-              {tabletImage && (
-                <source
-                  media="(min-width:768px)"
-                  srcSet={getStrapiMedia(tabletImage)}
-                />
-              )}
+            {data?.buttonText && (
+              <Link
+                href={data?.buttonURL || ""}
+                target="_blank"
+                className="inline-flex mt-10 border border-black px-10 py-4 text-sm font-medium tracking-wide hover:bg-black hover:text-white text-black transition-all duration-300"
+              >
+                {data?.buttonText}
+              </Link>
+            )}
+          </div>
 
-              {(desktopImage || tabletImage || mobileImage) && (
+          {/* Image */}
+          {hasImage && (
+            <div
+              className={`flex justify-center ${
+                data.imagePosition === "right" ? "lg:order-2" : "lg:order-1"
+              }`}
+            >
+              <picture>
+                {desktopImage && (
+                  <source
+                    media="(min-width:1024px)"
+                    srcSet={getStrapiMedia(desktopImage)}
+                  />
+                )}
+
+                {tabletImage && (
+                  <source
+                    media="(min-width:768px)"
+                    srcSet={getStrapiMedia(tabletImage)}
+                  />
+                )}
+
                 <img
                   src={getStrapiMedia(
                     mobileImage || tabletImage || desktopImage,
                   )}
-                  alt={data.title}
+                  alt={data.title || data.topTitle}
                   className="w-full max-w-[650px] object-cover"
                 />
-              )}
-            </picture>
+              </picture>
+            </div>
+          )}
         </div>
       </div>
     </section>

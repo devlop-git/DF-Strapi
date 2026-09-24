@@ -1,14 +1,24 @@
+import ringSizeChartFallback from "@/data/ringSizeChart.json";
+import jewelleryCarePlanFallback from "@/data/jewelleryCarePlanTable.json";
+
+// Keyed by (lowercased) `heading` so multiple placeholder tables can coexist
+// without one's fallback data leaking into another's empty table.
+const TABLE_FALLBACKS_BY_HEADING = {
+  [ringSizeChartFallback.heading.toLowerCase()]: ringSizeChartFallback,
+  [jewelleryCarePlanFallback.heading.toLowerCase()]: jewelleryCarePlanFallback,
+};
+
 // Generic Strapi-driven table: `columns` + `rows` (each row's `values[i]`
 // lines up with `columns[i]` by position) covers both a label/value matrix
 // (protection-plan pricing, `highlightFirstColumn: true`) and a plain
 // reference table (ring-size chart, `highlightFirstColumn: false`).
 // `groupsCount` splits the rows evenly across that many side-by-side tables
 // that repeat the same column headers, for long lists like the ring chart.
-function TableGroup({ columns, rows, highlightFirstColumn }) {
+function TableGroup({ columns, rows, highlightFirstColumn, headerColor, highlightColumnColor }) {
   return (
-    <table className="w-full min-w-[420px] border-collapse overflow-hidden rounded-md border border-[#E5E0DA] text-sm">
+    <table className="w-full min-w-[300px] border-collapse overflow-hidden rounded-md border border-[#E5E0DA] text-sm">
       <thead>
-        <tr className="bg-[#A0704F] text-white">
+        <tr style={{ backgroundColor: headerColor }} className="text-white">
           {columns.map((column, index) => (
             <th
               key={column?.id ?? index}
@@ -33,7 +43,8 @@ function TableGroup({ columns, rows, highlightFirstColumn }) {
                   <th
                     key={column?.id ?? colIndex}
                     scope="row"
-                    className="bg-[#A0704F] px-4 py-4 text-left font-medium text-white"
+                    style={{ backgroundColor: highlightColumnColor }}
+                    className="px-4 py-4 text-left font-medium text-white"
                   >
                     {value}
                   </th>
@@ -56,11 +67,18 @@ function TableGroup({ columns, rows, highlightFirstColumn }) {
   );
 }
 
+// TEMPORARY: some tables' rows will eventually come from a real API/data
+// entry -- until that's wired up, fall back to static JSON (matched by
+// `heading`) whenever a table's CMS `columns`/`rows` are empty. Remove each
+// fallback once its real data source is integrated.
 export default function ComparisonTable({ data }) {
-  const columns = data?.columns || [];
-  const rows = data?.rows || [];
+  const fallback = TABLE_FALLBACKS_BY_HEADING[data?.heading?.toLowerCase()];
+  const columns = data?.columns?.length ? data.columns : fallback?.columns || [];
+  const rows = data?.rows?.length ? data.rows : fallback?.rows || [];
   const highlightFirstColumn = data?.highlightFirstColumn !== false;
   const groupsCount = Math.max(1, data?.groupsCount || 1);
+  const headerColor = data?.headerColor || "#A0704F";
+  const highlightColumnColor = data?.highlightColumnColor || "#A0704F";
 
   const chunkSize = Math.ceil(rows.length / groupsCount);
   const groups = Array.from({ length: groupsCount }, (_, i) =>
@@ -76,6 +94,12 @@ export default function ComparisonTable({ data }) {
           </h2>
         )}
 
+        {data?.description && (
+          <p className="mt-4 max-w-3xl text-base leading-7 text-[#4B4B4B]">
+            {data.description}
+          </p>
+        )}
+
         <div className="mt-8 flex flex-col gap-6 overflow-x-auto md:flex-row">
           {groups.map((groupRows, groupIndex) => (
             <div key={groupIndex} className="flex-1">
@@ -83,6 +107,8 @@ export default function ComparisonTable({ data }) {
                 columns={columns}
                 rows={groupRows}
                 highlightFirstColumn={highlightFirstColumn}
+                headerColor={headerColor}
+                highlightColumnColor={highlightColumnColor}
               />
             </div>
           ))}

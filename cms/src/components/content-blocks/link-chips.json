@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_content_blocks_link_chips",
+  "info": {
+    "displayName": "Link Chips"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "chips": {
+      "type": "component",
+      "component": "content-blocks.chip-link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

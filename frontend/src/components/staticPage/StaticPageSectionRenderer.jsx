@@ -15,7 +15,10 @@ import {
   ImageBanner,
   ComparisonTable,
   RichTextSection,
+  LinkChips,
+  ImageOverlayGrid,
   CancelOrderForm,
+  ContactUsForm,
 } from "@/components/common/SharedComponents";
 
 // Reuses the exact same block components already used by home-pages
@@ -34,12 +37,15 @@ const componentMap = {
   "carousels.instagram-feed": InstagramFeed,
   "forms.newsletter": NewsletterSignup,
   "forms.cancel-order-form": CancelOrderForm,
+  "forms.contact-us-form": ContactUsForm,
   "carousels.image-card-carousel": ImageCardCarousel,
   "content-blocks.read-more-content": ReadMoreContent,
   "content-blocks.faq": FAQSection,
   "banners.banner-info": BannerInfo,
   "banners.image-banner": ImageBanner,
   "tables.comparison-table": ComparisonTable,
+  "content-blocks.link-chips": LinkChips,
+  "grids.image-overlay-grid": ImageOverlayGrid,
   "content-blocks.rich-text": RichTextSection,
 };
 

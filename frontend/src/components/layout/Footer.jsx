@@ -21,6 +21,17 @@ function FooterPageLinks({ pages }) {
   ));
 }
 
+// The bottom legal row (Privacy Policy, Terms & Conditions, etc.) is just
+// another footer column (`key: "legal"`) rendered inline instead of as a
+// list -- same business-managed static-page mechanism as the other columns.
+function FooterLegalLinks({ pages }) {
+  return (pages || []).map((page) => (
+    <Link key={page.path} href={page.path} className="hover:text-white">
+      {page.title}
+    </Link>
+  ));
+}
+
 const Footer = async () => {
   const locale = await getCurrentLocale();
   const market = await getCurrentMarket();
@@ -33,7 +44,10 @@ const Footer = async () => {
   // `active` flag, same as any other column -- `getFooter` only returns
   // active columns, so its absence here already means it's been switched off.
   const shopFromColumn = columns.find((column) => column.key === "shop_from");
-  const staticColumns = columns.filter((column) => column.key !== "shop_from");
+  const legalColumn = columns.find((column) => column.key === "legal");
+  const staticColumns = columns.filter(
+    (column) => column.key !== "shop_from" && column.key !== "legal",
+  );
 
 
   return (
@@ -96,23 +110,7 @@ const Footer = async () => {
         <div className="border-t border-gray-700 mt-14 pt-8">
           <div className="flex flex-col lg:flex-row justify-between gap-6">
             <div className="flex flex-wrap gap-6 text-sm">
-              <a
-                href={footerData.PrivacyURL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
-                Privacy Policy
-              </a>
-
-              <a
-                href={footerData.TermsURL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
-                Terms & Conditions
-              </a>
+              <FooterLegalLinks pages={footerPages[legalColumn?.documentId]} />
             </div>
 
             <p className="text-xs text-gray-400 max-w-3xl">

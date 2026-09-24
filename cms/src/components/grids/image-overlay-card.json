@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_grids_image_overlay_cards",
+  "info": {
+    "displayName": "Image Overlay Card"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "customField",
+      "customField": "plugin::tiptap-editor.RichText",
+      "options": {
+        "preset": "richTextSection"
+      }
+    },
+    "CTALabel": {
+      "type": "string",
+      "default": "Learn More"
+    },
+    "CTAUrl": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

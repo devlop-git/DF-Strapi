@@ -8,6 +8,17 @@
     "heading": {
       "type": "string"
     },
+    "description": {
+      "type": "text"
+    },
+    "headerColor": {
+      "type": "string",
+      "default": "#A0704F"
+    },
+    "highlightColumnColor": {
+      "type": "string",
+      "default": "#A0704F"
+    },
     "columns": {
       "type": "component",
       "component": "tables.table-column",

@@ -5,11 +5,21 @@
   },
   "options": {},
   "attributes": {
+    "topTitle": {
+      "type": "string"
+    },
+    "topDescription": {
+      "type": "text"
+    },
     "title": {
       "type": "string"
     },
     "description": {
-      "type": "blocks"
+      "type": "customField",
+      "customField": "plugin::tiptap-editor.RichText",
+      "options": {
+        "preset": "richTextSection"
+      }
     },
     "desktopImage": {
       "type": "media",

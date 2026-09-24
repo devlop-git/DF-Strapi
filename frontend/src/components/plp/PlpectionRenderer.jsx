@@ -9,6 +9,7 @@ import {
   NewsletterSignup,
   ImageBanner,
   RichTextSection,
+  ContactUsForm,
 } from "@/components/common/SharedComponents";
 
 const componentMap = {
@@ -22,6 +23,7 @@ const componentMap = {
   "forms.newsletter": NewsletterSignup,
   "banners.image-banner": ImageBanner,
   "content-blocks.rich-text": RichTextSection,
+  "forms.contact-us-form": ContactUsForm,
 };
 
 export default function PlpSectionRenderer({ section, commerce }) {

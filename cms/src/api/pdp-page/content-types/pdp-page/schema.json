@@ -46,6 +46,7 @@
       "components": [
         "social-proof.reviews",
         "forms.newsletter",
+        "forms.contact-us-form",
         "sections.slides",
         "sections.new-home-page",
         "sections.image-text-section",

@@ -10,6 +10,7 @@ import {
   NewsletterSignup,
   ImageCardCarousel,
   ImageBanner,
+  ContactUsForm,
 } from "@/components/common/SharedComponents";
 
 const componentMap = {
@@ -24,6 +25,7 @@ const componentMap = {
   "forms.newsletter": NewsletterSignup,
   "carousels.image-card-carousel": ImageCardCarousel,
   "banners.image-banner": ImageBanner,
+  "forms.contact-us-form": ContactUsForm,
 };
 
 export default function SectionRenderer({ section }) {

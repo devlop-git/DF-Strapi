@@ -6,18 +6,19 @@
   "options": {},
   "attributes": {
     "text": {
-      "type": "string"
+      "type": "text"
     },
     "url": {
       "type": "string"
     },
     "variant": {
       "type": "enumeration",
+      "default": "body",
       "enum": [
         "heading",
-        "body"
-      ],
-      "default": "body"
+        "body",
+        "cta"
+      ]
     },
     "fontColor": {
       "type": "string"

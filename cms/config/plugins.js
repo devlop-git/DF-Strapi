@@ -9,6 +9,10 @@ module.exports = () => ({
           { label: "Red", color: "#E53E3E" },
           { label: "Blue", color: "#3182CE" },
           { label: "Green", color: "#38A169" },
+          { label: "White", color: "#FFFFFF" },
+          { label: "Orange", color: "#DD6B20" },
+          { label: "Purple", color: "#805AD5" },
+          { label: "Gold", color: "#B8860B" },
         ],
       },
       presets: {

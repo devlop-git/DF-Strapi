@@ -16,6 +16,22 @@
       "type": "component",
       "component": "content-blocks.faq-items",
       "repeatable": true
+    },
+    "titlePosition": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "top"
+      ],
+      "default": "left"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   },
   "config": {}

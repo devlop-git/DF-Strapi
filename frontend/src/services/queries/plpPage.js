@@ -40,11 +40,15 @@ const plpPopulate = qs.stringify(
                     "forms.newsletter": {
                         populate: "*",
                     },
+                    "forms.contact-us-form": {
+                        populate: "*",
+                    },
                     "content-blocks.faq": {
                         populate: {
                           faqItem: {
                             populate: "*"
                           },
+                          image: true,
                         },
                     },
                     "banners.banner-info": {
