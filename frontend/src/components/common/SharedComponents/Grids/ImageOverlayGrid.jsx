@@ -64,7 +64,7 @@ export default function ImageOverlayGrid({ data }) {
 
   return (
     <section className="w-full">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 my-10">
         {data?.heading && (
           <h2 className="mb-8 text-center font-serif text-[28px] lg:text-[36px] font-light text-[#171717] leading-tight">
             {data.heading}
