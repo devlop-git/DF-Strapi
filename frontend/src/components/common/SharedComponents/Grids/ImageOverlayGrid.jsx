@@ -2,6 +2,12 @@ import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
 import { tiptapContentToHtml } from "../RichText/tiptapToHtml";
 
+const GRID_COLUMNS_BY_COUNT = {
+  1: "lg:grid-cols-1",
+  2: "lg:grid-cols-2",
+  3: "lg:grid-cols-3",
+};
+
 function OverlayCard({ item }) {
   const image = item?.image;
   const html = tiptapContentToHtml(item?.description);
@@ -54,6 +60,8 @@ export default function ImageOverlayGrid({ data }) {
 
   if (!items.length) return null;
 
+  const columnsClass = GRID_COLUMNS_BY_COUNT[items.length] || "lg:grid-cols-3";
+
   return (
     <section className="w-full">
       <div className="max-w-7xl mx-auto px-6">
@@ -63,7 +71,7 @@ export default function ImageOverlayGrid({ data }) {
           </h2>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={`grid grid-cols-1 sm:grid-cols-2 ${columnsClass} gap-3`}>
           {items.map((item, index) => (
             <OverlayCard key={item?.id ?? index} item={item} />
           ))}

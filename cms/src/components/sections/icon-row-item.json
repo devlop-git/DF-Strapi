@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_icon_row_items",
+  "info": {
+    "displayName": "Icon Row Item"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "label": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

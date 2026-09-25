@@ -7,12 +7,41 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::tiptap-editor.RichText",
+      "options": {
+        "preset": "richTextSection"
+      }
     },
     "guideItem": {
       "type": "component",
       "component": "carousels.icon-link-card",
       "repeatable": true
+    },
+    "navStyle": {
+      "type": "enumeration",
+      "enum": [
+        "dots",
+        "arrows"
+      ],
+      "default": "dots"
+    },
+    "arrowPosition": {
+      "type": "enumeration",
+      "enum": [
+        "top-right",
+        "bottom",
+        "sides"
+      ],
+      "default": "top-right"
+    },
+    "cardLabelPosition": {
+      "type": "enumeration",
+      "enum": [
+        "overlay",
+        "below"
+      ],
+      "default": "overlay"
     }
   },
   "config": {}

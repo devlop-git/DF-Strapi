@@ -9,7 +9,11 @@
       "type": "string"
     },
     "description": {
-      "type": "text"
+      "type": "customField",
+      "customField": "plugin::tiptap-editor.RichText",
+      "options": {
+        "preset": "richTextSection"
+      }
     },
     "desktopBgImage": {
       "type": "media",
@@ -58,6 +62,11 @@
         "right"
       ],
       "default": "left"
+    },
+    "links": {
+      "type": "component",
+      "component": "content-blocks.chip-link",
+      "repeatable": true
     }
   },
   "config": {}

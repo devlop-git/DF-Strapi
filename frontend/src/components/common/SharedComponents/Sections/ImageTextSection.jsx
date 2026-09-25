@@ -2,12 +2,38 @@ import Link from "next/link";
 import { getStrapiMedia } from "@/utils/strapi";
 import { tiptapContentToHtml } from "../RichText/tiptapToHtml";
 
+function IconRow({ items }) {
+  return (
+    <div className="flex flex-wrap items-start justify-center gap-8 lg:justify-start">
+      {items.map((item, index) => (
+        <div key={item?.id ?? index} className="flex flex-col items-center gap-3">
+          {item?.icon && (
+            <img
+              src={getStrapiMedia(item.icon)}
+              alt={item.icon?.alternativeText || item?.label || ""}
+              className="h-20 w-20 object-contain"
+            />
+          )}
+
+          {item?.label && (
+            <span className="text-sm text-[#8A6D4E]">{item.label}</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function ImageTextSection({ data }) {
   const desktopImage = data?.desktopImage;
   const tabletImage = data?.tabImage;
   const mobileImage = data?.mobileImage;
+  const titleHtml = tiptapContentToHtml(data?.title);
   const html = tiptapContentToHtml(data?.description);
-  const hasImage = Boolean(desktopImage || tabletImage || mobileImage);
+  const iconItems = data?.iconItems || [];
+  const hasIconRow = iconItems.length > 0;
+  const hasImage = !hasIconRow && Boolean(desktopImage || tabletImage || mobileImage);
+  const hasSideContent = hasImage || hasIconRow;
 
   return (
     <section className="w-full bg-[#FAF7F2] border-y border-gray-100 py-14 lg:py-18">
@@ -30,7 +56,7 @@ export default function ImageTextSection({ data }) {
 
         <div
           className={
-            hasImage
+            hasSideContent
               ? `grid lg:grid-cols-2 gap-20 items-center ${
                   data.imagePosition === "left" ? "" : "lg:flex-row-reverse"
                 }`
@@ -40,17 +66,18 @@ export default function ImageTextSection({ data }) {
           {/* Content */}
           <div
             className={
-              hasImage
+              hasSideContent
                 ? `max-w-lg ${
                     data.imagePosition === "right" ? "lg:order-1" : "lg:order-2"
                   }`
                 : "max-w-3xl w-full"
             }
           >
-            {data?.title && (
-              <h2 className="font-serif text-[#171717] text-5xl lg:text-7xl leading-[1.05] font-light">
-                {data.title}
-              </h2>
+            {titleHtml && (
+              <div
+                className="font-serif text-[#171717] text-5xl lg:text-7xl leading-[1.05] font-light [&_em]:text-[#A0704F]"
+                dangerouslySetInnerHTML={{ __html: titleHtml }}
+              />
             )}
 
             {html && (
@@ -71,36 +98,40 @@ export default function ImageTextSection({ data }) {
             )}
           </div>
 
-          {/* Image */}
-          {hasImage && (
+          {/* Image or icon row */}
+          {hasSideContent && (
             <div
               className={`flex justify-center ${
                 data.imagePosition === "right" ? "lg:order-2" : "lg:order-1"
               }`}
             >
-              <picture>
-                {desktopImage && (
-                  <source
-                    media="(min-width:1024px)"
-                    srcSet={getStrapiMedia(desktopImage)}
-                  />
-                )}
-
-                {tabletImage && (
-                  <source
-                    media="(min-width:768px)"
-                    srcSet={getStrapiMedia(tabletImage)}
-                  />
-                )}
-
-                <img
-                  src={getStrapiMedia(
-                    mobileImage || tabletImage || desktopImage,
+              {hasIconRow ? (
+                <IconRow items={iconItems} />
+              ) : (
+                <picture>
+                  {desktopImage && (
+                    <source
+                      media="(min-width:1024px)"
+                      srcSet={getStrapiMedia(desktopImage)}
+                    />
                   )}
-                  alt={data.title || data.topTitle}
-                  className="w-full max-w-[650px] object-cover"
-                />
-              </picture>
+
+                  {tabletImage && (
+                    <source
+                      media="(min-width:768px)"
+                      srcSet={getStrapiMedia(tabletImage)}
+                    />
+                  )}
+
+                  <img
+                    src={getStrapiMedia(
+                      mobileImage || tabletImage || desktopImage,
+                    )}
+                    alt={data.topTitle || ""}
+                    className="w-full max-w-[650px] object-cover"
+                  />
+                </picture>
+              )}
             </div>
           )}
         </div>

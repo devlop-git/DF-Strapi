@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FiChevronRight } from "react-icons/fi";
 import { getStrapiMedia } from "@/utils/strapi";
+import { tiptapContentToHtml } from "../RichText/tiptapToHtml";
 
 const ALIGNMENT_CLASSES = {
   left: "justify-start text-left",
@@ -16,6 +18,7 @@ export default function PromotionBannerCard({ data }) {
   const mobileBgImage = data?.mobileBgImage ?? null;
   const alignmentClass =
     ALIGNMENT_CLASSES[data?.contentAlignment] || ALIGNMENT_CLASSES.left;
+  const descriptionHtml = tiptapContentToHtml(data?.description);
 
   return (
     <div className="relative overflow-hidden min-h-[280px] sm:min-h-[340px] lg:min-h-[400px]">
@@ -77,10 +80,11 @@ export default function PromotionBannerCard({ data }) {
           )}
 
           {/* Description */}
-          {data?.description && (
-            <p className="mt-4 sm:mt-6 text-base sm:text-[17px] leading-7 sm:leading-8 text-white whitespace-pre-line">
-              {data.description}
-            </p>
+          {descriptionHtml && (
+            <div
+              className="mt-4 sm:mt-6 text-base sm:text-[17px] leading-7 sm:leading-8 text-white [&_p]:my-2 [&_a]:underline [&_a]:text-white [&_strong]:font-semibold"
+              dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+            />
           )}
 
           {/* Button */}
@@ -111,6 +115,22 @@ export default function PromotionBannerCard({ data }) {
             >
               {data.btnText}
             </Link>
+          )}
+
+          {/* Links */}
+          {data?.links?.length > 0 && (
+            <div className="mt-8 sm:mt-10 flex flex-col gap-4">
+              {data.links.map((link, index) => (
+                <Link
+                  key={link?.id ?? index}
+                  href={link?.url || ""}
+                  className="inline-flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-[#A0704F] transition-colors hover:text-white"
+                >
+                  {link.label}
+                  <FiChevronRight size={16} />
+                </Link>
+              ))}
+            </div>
           )}
         </div>
       </div>

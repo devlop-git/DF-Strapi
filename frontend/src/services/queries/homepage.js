@@ -21,7 +21,12 @@ const homePopulate = qs.stringify(
                         populate: {
                             desktopImage: true,
                             tabImage: true,
-                            mobileImage: true
+                            mobileImage: true,
+                            iconItems: {
+                                populate: {
+                                    icon: true
+                                }
+                            }
                         },
                     },
 
@@ -64,7 +69,8 @@ const homePopulate = qs.stringify(
                         populate: {
                             desktopBgImage: true,
                             mobileBgImage: true,
-                            tabBgImage: true
+                            tabBgImage: true,
+                            links: true
                         },
                     },
 

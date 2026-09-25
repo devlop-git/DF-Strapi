@@ -47,7 +47,12 @@ const pdpPopulate = qs.stringify(
                         populate: {
                             desktopImage: true,
                             tabImage: true,
-                            mobileImage: true
+                            mobileImage: true,
+                            iconItems: {
+                                populate: {
+                                    icon: true
+                                }
+                            }
                         },
                     },
                     "grids.feature-highlights": {

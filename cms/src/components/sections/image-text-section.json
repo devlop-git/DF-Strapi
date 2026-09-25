@@ -12,7 +12,11 @@
       "type": "text"
     },
     "title": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::tiptap-editor.RichText",
+      "options": {
+        "preset": "richTextSection"
+      }
     },
     "description": {
       "type": "customField",
@@ -70,6 +74,11 @@
         "left",
         "right"
       ]
+    },
+    "iconItems": {
+      "type": "component",
+      "component": "sections.icon-row-item",
+      "repeatable": true
     }
   },
   "config": {}

@@ -27,6 +27,11 @@ const componentContentOn = {
       desktopImage: true,
       tabImage: true,
       mobileImage: true,
+      iconItems: {
+        populate: {
+          icon: true,
+        },
+      },
     },
   },
   "grids.feature-highlights": {
@@ -66,6 +71,7 @@ const componentContentOn = {
       desktopBgImage: true,
       mobileBgImage: true,
       tabBgImage: true,
+      links: true,
     },
   },
   "social-proof.reviews": {
@@ -78,6 +84,17 @@ const componentContentOn = {
           desktopInstaImage: true,
           mobileInstaImage: true,
           tabInstaImage: true,
+        },
+      },
+    },
+  },
+  "carousels.image-card-carousel": {
+    populate: {
+      guideItem: {
+        populate: {
+          desktopMedia: true,
+          mobileMedia: true,
+          tabMedia: true,
         },
       },
     },
